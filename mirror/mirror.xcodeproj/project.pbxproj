@@ -113,6 +113,7 @@
 			);
 			mainGroup = 08FB7794FE84155DC02AAC07 /* mirror */;
 			projectDirPath = "";
+			projectRoot = "";
 			targets = (
 				8DD76F620486A84900D96B5E /* mirror */,
 			);
