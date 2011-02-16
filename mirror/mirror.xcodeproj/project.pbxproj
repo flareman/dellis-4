@@ -6,12 +6,6 @@
 	objectVersion = 45;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		8DD76F650486A84900D96B5E /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 08FB7796FE84155DC02AAC07 /* main.cpp */; settings = {ATTRIBUTES = (); }; };
-		8DD76F6A0486A84900D96B5E /* mirror.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = C6859E8B029090EE04C91782 /* mirror.1 */; };
-		DCB5B696130C59D4009F7024 /* data.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCB5B695130C59D4009F7024 /* data.cpp */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXCopyFilesBuildPhase section */
 		8DD76F690486A84900D96B5E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -19,18 +13,13 @@
 			dstPath = /usr/share/man/man1/;
 			dstSubfolderSpec = 0;
 			files = (
-				8DD76F6A0486A84900D96B5E /* mirror.1 in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		08FB7796FE84155DC02AAC07 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
-		8DD76F6C0486A84900D96B5E /* mirror */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mirror; sourceTree = BUILT_PRODUCTS_DIR; };
-		C6859E8B029090EE04C91782 /* mirror.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = mirror.1; sourceTree = "<group>"; };
-		DCB5B64E130C54AC009F7024 /* main.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = main.h; sourceTree = "<group>"; };
-		DCB5B695130C59D4009F7024 /* data.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = data.cpp; sourceTree = "<group>"; };
+		DC51BCFC130C5B53001834EB /* mirror */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mirror; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,37 +36,17 @@
 		08FB7794FE84155DC02AAC07 /* mirror */ = {
 			isa = PBXGroup;
 			children = (
-				08FB7795FE84155DC02AAC07 /* Source */,
-				C6859E8C029090F304C91782 /* Documentation */,
-				1AB674ADFE9D54B511CA2CBB /* Products */,
+				DC51BCFD130C5B53001834EB /* Products */,
 			);
 			name = mirror;
 			sourceTree = "<group>";
 		};
-		08FB7795FE84155DC02AAC07 /* Source */ = {
+		DC51BCFD130C5B53001834EB /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				DCB5B695130C59D4009F7024 /* data.cpp */,
-				08FB7796FE84155DC02AAC07 /* main.cpp */,
-				DCB5B64E130C54AC009F7024 /* main.h */,
-			);
-			name = Source;
-			sourceTree = "<group>";
-		};
-		1AB674ADFE9D54B511CA2CBB /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				8DD76F6C0486A84900D96B5E /* mirror */,
+				DC51BCFC130C5B53001834EB /* mirror */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		C6859E8C029090F304C91782 /* Documentation */ = {
-			isa = PBXGroup;
-			children = (
-				C6859E8B029090EE04C91782 /* mirror.1 */,
-			);
-			name = Documentation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -98,7 +67,7 @@
 			name = mirror;
 			productInstallPath = "$(HOME)/bin";
 			productName = mirror;
-			productReference = 8DD76F6C0486A84900D96B5E /* mirror */;
+			productReference = DC51BCFC130C5B53001834EB /* mirror */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -117,6 +86,7 @@
 				German,
 			);
 			mainGroup = 08FB7794FE84155DC02AAC07 /* mirror */;
+			productRefGroup = DC51BCFD130C5B53001834EB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -130,8 +100,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8DD76F650486A84900D96B5E /* main.cpp in Sources */,
-				DCB5B696130C59D4009F7024 /* data.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
