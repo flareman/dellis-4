@@ -4,6 +4,8 @@
 		activeBuildConfigurationName = Debug;
 		activeExecutable = DC887E63130C44D900CE8482 /* mirror */;
 		activeTarget = 8DD76F620486A84900D96B5E /* mirror */;
+		addToTargets = (
+		);
 		codeSenseManager = DC887E6D130C451800CE8482 /* Code sense */;
 		executables = (
 			DC887E63130C44D900CE8482 /* mirror */,
@@ -64,6 +66,9 @@
 			DCB5B63C130C540E009F7024 /* PBXTextBookmark */ = DCB5B63C130C540E009F7024 /* PBXTextBookmark */;
 			DCB5B641130C5427009F7024 /* PBXTextBookmark */ = DCB5B641130C5427009F7024 /* PBXTextBookmark */;
 			DCB5B642130C5427009F7024 /* PBXTextBookmark */ = DCB5B642130C5427009F7024 /* PBXTextBookmark */;
+			DCB5B651130C54C2009F7024 /* PBXTextBookmark */ = DCB5B651130C54C2009F7024 /* PBXTextBookmark */;
+			DCB5B652130C54C2009F7024 /* PBXTextBookmark */ = DCB5B652130C54C2009F7024 /* PBXTextBookmark */;
+			DCB5B653130C54C2009F7024 /* PBXTextBookmark */ = DCB5B653130C54C2009F7024 /* PBXTextBookmark */;
 		};
 		sourceControlManager = DC887E6C130C451800CE8482 /* Source Control */;
 		userBuildSettings = {
@@ -72,8 +77,8 @@
 	08FB7796FE84155DC02AAC07 /* main.cpp */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {519, 228}}";
-			sepNavSelRange = "{119, 0}";
-			sepNavVisRange = "{0, 141}";
+			sepNavSelRange = "{18, 0}";
+			sepNavVisRange = "{0, 139}";
 		};
 	};
 	8DD76F620486A84900D96B5E /* mirror */ = {
@@ -138,7 +143,7 @@
 		fRef = 08FB7796FE84155DC02AAC07 /* main.cpp */;
 		name = "main.cpp: 6";
 		rLen = 0;
-		rLoc = 136;
+		rLoc = 134;
 		rType = 0;
 		vrLen = 143;
 		vrLoc = 0;
@@ -148,7 +153,7 @@
 		fRef = 08FB7796FE84155DC02AAC07 /* main.cpp */;
 		name = "main.cpp: 6";
 		rLen = 0;
-		rLoc = 136;
+		rLoc = 134;
 		rType = 0;
 		vrLen = 143;
 		vrLoc = 0;
@@ -158,7 +163,7 @@
 		fRef = 08FB7796FE84155DC02AAC07 /* main.cpp */;
 		name = "main.cpp: 8";
 		rLen = 0;
-		rLoc = 141;
+		rLoc = 139;
 		rType = 0;
 		vrLen = 144;
 		vrLoc = 0;
@@ -168,9 +173,46 @@
 		fRef = 08FB7796FE84155DC02AAC07 /* main.cpp */;
 		name = "main.cpp: 5";
 		rLen = 0;
-		rLoc = 119;
+		rLoc = 117;
 		rType = 0;
 		vrLen = 141;
+		vrLoc = 0;
+	};
+	DCB5B64E130C54AC009F7024 /* main.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {519, 228}}";
+			sepNavSelRange = "{20, 0}";
+			sepNavVisRange = "{0, 20}";
+		};
+	};
+	DCB5B651130C54C2009F7024 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.cpp */;
+		name = "main.cpp: 2";
+		rLen = 0;
+		rLoc = 18;
+		rType = 0;
+		vrLen = 139;
+		vrLoc = 0;
+	};
+	DCB5B652130C54C2009F7024 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DCB5B64E130C54AC009F7024 /* main.h */;
+		name = "main.h: 2";
+		rLen = 0;
+		rLoc = 20;
+		rType = 0;
+		vrLen = 20;
+		vrLoc = 0;
+	};
+	DCB5B653130C54C2009F7024 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DCB5B64E130C54AC009F7024 /* main.h */;
+		name = "main.h: 2";
+		rLen = 0;
+		rLoc = 20;
+		rType = 0;
+		vrLen = 20;
 		vrLoc = 0;
 	};
 }
