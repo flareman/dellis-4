@@ -1,2 +1,0 @@
-/Users/flareman/Documents/Dropbox/DI/3ο Έτος/ΛΣ/Άσκηση 4/mirror/main.cpp: In function 'int main(int, char* const*)':
-/Users/flareman/Documents/Dropbox/DI/3ο Έτος/ΛΣ/Άσκηση 4/mirror/main.cpp:5: error: 'cout' is not a member of 'std'
