@@ -2,14 +2,14 @@
 {
 	08FB7793FE84155DC02AAC07 /* Project object */ = {
 		activeBuildConfigurationName = Debug;
-		activeExecutable = DC887E63130C44D900CE8482 /* mirror */;
+		activeExecutable = DC51BCFE130C5B53001834EB /* mirror */;
 		activeTarget = 8DD76F620486A84900D96B5E /* mirror */;
 		addToTargets = (
 			8DD76F620486A84900D96B5E /* mirror */,
 		);
 		codeSenseManager = DC887E6D130C451800CE8482 /* Code sense */;
 		executables = (
-			DC887E63130C44D900CE8482 /* mirror */,
+			DC51BCFE130C5B53001834EB /* mirror */,
 		);
 		perUserDictionary = {
 			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
@@ -58,37 +58,23 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 319576283;
-			PBXWorkspaceStateSaveDate = 319576283;
+			PBXPerProjectTemplateStateSaveDate = 319576946;
+			PBXWorkspaceStateSaveDate = 319576946;
 		};
 		perUserProjectItems = {
 			DCB5B660130C5587009F7024 = DCB5B660130C5587009F7024 /* PBXTextBookmark */;
-			DCB5B67D130C58D7009F7024 = DCB5B67D130C58D7009F7024 /* PBXTextBookmark */;
-			DCB5B67F130C58D7009F7024 = DCB5B67F130C58D7009F7024 /* PBXTextBookmark */;
-			DCB5B680130C58D7009F7024 = DCB5B680130C58D7009F7024 /* PBXTextBookmark */;
-			DCB5B689130C58E0009F7024 /* PBXTextBookmark */ = DCB5B689130C58E0009F7024 /* PBXTextBookmark */;
-			DCB5B699130C59F2009F7024 /* PBXTextBookmark */ = DCB5B699130C59F2009F7024 /* PBXTextBookmark */;
-			DCB5B69A130C59F2009F7024 /* PBXBookmark */ = DCB5B69A130C59F2009F7024 /* PBXBookmark */;
-			DCB5B69B130C59F2009F7024 /* PBXTextBookmark */ = DCB5B69B130C59F2009F7024 /* PBXTextBookmark */;
 		};
 		sourceControlManager = DC887E6C130C451800CE8482 /* Source Control */;
 		userBuildSettings = {
 		};
 	};
-	08FB7796FE84155DC02AAC07 /* main.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {519, 219}}";
-			sepNavSelRange = "{62, 0}";
-			sepNavVisRange = "{0, 78}";
-		};
-	};
 	8DD76F620486A84900D96B5E /* mirror */ = {
 		activeExec = 0;
 		executables = (
-			DC887E63130C44D900CE8482 /* mirror */,
+			DC51BCFE130C5B53001834EB /* mirror */,
 		);
 	};
-	DC887E63130C44D900CE8482 /* mirror */ = {
+	DC51BCFE130C5B53001834EB /* mirror */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
 		);
@@ -130,11 +116,12 @@
 		indexTemplatePath = "";
 	};
 	DCB5B64E130C54AC009F7024 /* main.h */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {519, 228}}";
-			sepNavSelRange = "{20, 0}";
-			sepNavVisRange = "{0, 20}";
-		};
+		isa = PBXFileReference;
+		fileEncoding = 4;
+		lastKnownFileType = sourcecode.c.h;
+		name = main.h;
+		path = "/Users/flareman/Documents/Dropbox/DI/3ο Έτος/ΛΣ/Άσκηση 4/mirror/main.h";
+		sourceTree = "<absolute>";
 	};
 	DCB5B660130C5587009F7024 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -144,83 +131,6 @@
 		rLoc = 20;
 		rType = 0;
 		vrLen = 20;
-		vrLoc = 0;
-	};
-	DCB5B67D130C58D7009F7024 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = DCB5B67E130C58D7009F7024 /* Diff 8 vs. Local — main.cpp */;
-		name = "Diff 8 vs. Local — main.cpp: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 0;
-		vrLoc = 0;
-	};
-	DCB5B67E130C58D7009F7024 /* Diff 8 vs. Local — main.cpp */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.cpp.cpp;
-		path = "Diff 8 vs. Local — main.cpp";
-		sourceTree = "<group>";
-	};
-	DCB5B67F130C58D7009F7024 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 08FB7796FE84155DC02AAC07 /* main.cpp */;
-		name = "main.cpp: 4";
-		rLen = 0;
-		rLoc = 62;
-		rType = 0;
-		vrLen = 78;
-		vrLoc = 0;
-	};
-	DCB5B680130C58D7009F7024 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 08FB7796FE84155DC02AAC07 /* main.cpp */;
-		name = "main.cpp: 4";
-		rLen = 0;
-		rLoc = 62;
-		rType = 0;
-		vrLen = 78;
-		vrLoc = 0;
-	};
-	DCB5B689130C58E0009F7024 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 08FB7796FE84155DC02AAC07 /* main.cpp */;
-		name = "main.cpp: 4";
-		rLen = 0;
-		rLoc = 62;
-		rType = 0;
-		vrLen = 78;
-		vrLoc = 0;
-	};
-	DCB5B695130C59D4009F7024 /* data.cpp */ = {
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {519, 219}}";
-			sepNavSelRange = "{18, 0}";
-			sepNavVisRange = "{0, 18}";
-		};
-	};
-	DCB5B699130C59F2009F7024 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 08FB7796FE84155DC02AAC07 /* main.cpp */;
-		name = "main.cpp: 4";
-		rLen = 0;
-		rLoc = 62;
-		rType = 0;
-		vrLen = 78;
-		vrLoc = 0;
-	};
-	DCB5B69A130C59F2009F7024 /* PBXBookmark */ = {
-		isa = PBXBookmark;
-		fRef = DCB5B695130C59D4009F7024 /* data.cpp */;
-	};
-	DCB5B69B130C59F2009F7024 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = DCB5B695130C59D4009F7024 /* data.cpp */;
-		name = "data.cpp: 1";
-		rLen = 0;
-		rLoc = 18;
-		rType = 0;
-		vrLen = 18;
 		vrLoc = 0;
 	};
 }
