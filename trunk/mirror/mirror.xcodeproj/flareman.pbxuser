@@ -61,9 +61,6 @@
 			PBXPerProjectTemplateStateSaveDate = 319576946;
 			PBXWorkspaceStateSaveDate = 319576946;
 		};
-		perUserProjectItems = {
-			DCB5B660130C5587009F7024 = DCB5B660130C5587009F7024 /* PBXTextBookmark */;
-		};
 		sourceControlManager = DC887E6C130C451800CE8482 /* Source Control */;
 		userBuildSettings = {
 		};
@@ -114,23 +111,5 @@
 	DC887E6D130C451800CE8482 /* Code sense */ = {
 		isa = PBXCodeSenseManager;
 		indexTemplatePath = "";
-	};
-	DCB5B64E130C54AC009F7024 /* main.h */ = {
-		isa = PBXFileReference;
-		fileEncoding = 4;
-		lastKnownFileType = sourcecode.c.h;
-		name = main.h;
-		path = "/Users/flareman/Documents/Dropbox/DI/3ο Έτος/ΛΣ/Άσκηση 4/mirror/main.h";
-		sourceTree = "<absolute>";
-	};
-	DCB5B660130C5587009F7024 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = DCB5B64E130C54AC009F7024 /* main.h */;
-		name = "main.h: 2";
-		rLen = 0;
-		rLoc = 20;
-		rType = 0;
-		vrLen = 20;
-		vrLoc = 0;
 	};
 }
