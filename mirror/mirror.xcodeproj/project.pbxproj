@@ -6,6 +6,10 @@
 	objectVersion = 45;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		DC4BEC03130C613C00BED0F7 /* objects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC4BEC01130C613C00BED0F7 /* objects.cpp */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXCopyFilesBuildPhase section */
 		8DD76F690486A84900D96B5E /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -19,6 +23,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		DC4BEC01130C613C00BED0F7 /* objects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = objects.cpp; sourceTree = "<group>"; };
+		DC4BEC02130C613C00BED0F7 /* objects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objects.h; sourceTree = "<group>"; };
 		DC51BCFC130C5B53001834EB /* mirror */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mirror; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -36,6 +42,8 @@
 		08FB7794FE84155DC02AAC07 /* mirror */ = {
 			isa = PBXGroup;
 			children = (
+				DC4BEC01130C613C00BED0F7 /* objects.cpp */,
+				DC4BEC02130C613C00BED0F7 /* objects.h */,
 				DC51BCFD130C5B53001834EB /* Products */,
 			);
 			name = mirror;
@@ -100,6 +108,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC4BEC03130C613C00BED0F7 /* objects.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
