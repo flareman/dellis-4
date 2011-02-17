@@ -50,8 +50,8 @@ public:
 class Directory{
     string name;
     Inode* node;
-    vector<Directory> subdir;
-    vector<File> subfiles;
+    vector<Directory> subdir; // sub-directories list
+    vector<File> subfiles; //sub-files list
 public:
     string get_name();
     Inode* get_node();
