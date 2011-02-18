@@ -19,7 +19,7 @@
 using namespace std;
 
 int getdir(string dir, vector<string> &files);
-File_type create_hierarchy(string path);
+File_type create_hierarchy(string path,vector<Inode> ndlist);
 
 #endif	/* FIRST_SYNC_H */
 
