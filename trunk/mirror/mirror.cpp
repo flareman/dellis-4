@@ -31,5 +31,5 @@ int main (int argc, char* argv[]) {
 }
 
 bool isDirectory (char* directoryName) {
-	return TRUE;
+	return true;
 }
