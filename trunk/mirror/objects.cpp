@@ -45,10 +45,11 @@ Inode* Inode::get_target(){
     return target;
 }
 
-Inode::Inode(time_t d, int s){
+Inode::Inode(time_t d, int s,ino_t sr){
     last_change=d;
     size=s;
     num_of_names=0;
+    serial=sr;
 }
 
 //--------------------------------Directory Class Implementation------------------------------------//
