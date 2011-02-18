@@ -22,6 +22,7 @@ struct File_type{
 };
 
 class Inode{
+    ino_t serial;
     time_t last_change;
     int size;
     vector<string> names;

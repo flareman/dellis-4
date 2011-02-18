@@ -26,7 +26,7 @@ File_type create_hierarchy(string path,vector<Inode> ndlist){
         exit(-1);
     }
     else{
-        node=new Inode(buffer->st_mtim,buffer->st_size);
+        node=new Inode(buffer->st_mtim,buffer->st_size,buffer->st_ino);
         node->set_name(path);
         ndlist.push_back((*node));
         if(S_ISDIR(buffer->st_mode)!=0){    //file is a directory
@@ -61,7 +61,7 @@ File_type create_hierarchy(string path,vector<Inode> ndlist){
             File* fl;
             fl=new File(path,node);
             ftp.obj=fl;
-            ftp.type=0;
+            ftp.type=1;
             ftp.nd=node;
         }
     }
