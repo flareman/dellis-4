@@ -12,14 +12,9 @@
 #include <cstdlib>
 #include <string>
 #include <vector>
+#include <sys/stat.h>
 
 using namespace std;
-
-struct File_type{
-    int type;
-    void* obj;
-    Inode* nd;
-};
 
 class Inode{
     ino_t serial;
@@ -32,10 +27,16 @@ public:
     int get_size();
     Inode* get_target();
     time_t get_date();
-    vector<string>::pointer get_names();
+    vector<string>* get_names();
     int get_num_of_names();
     void set_name(string n);
-    Inode(time_t d,int s);
+    Inode(time_t d,int s, ino_t sr);
+};
+
+struct File_type{
+    int type;
+    void* obj;
+    Inode* nd;
 };
 
 class File{
@@ -56,12 +57,12 @@ class Directory{
 public:
     string get_name();
     Inode* get_node();
-    vector<Directory>::pointer get_subdir();
+    vector<Directory>* get_subdir();
     void set_subdir(Directory*);
-    vector<File>::pointer get_subfiles();
+    vector<File>* get_subfiles();
     void set_subfile(File*);
     Directory(string n,Inode* nd);
-    Direcory(const Directory& d);
+    Directory(const Directory& d);
     void set_node(Inode* n);
 };
 

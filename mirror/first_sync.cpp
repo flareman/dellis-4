@@ -1,11 +1,12 @@
 #include "first_sync.h"
 
+using namespace std;
 
 int getdir(string dir, vector<string> &files){
     DIR *dp;
     struct dirent *dirp;
     if((dp  = opendir(dir.c_str())) == NULL) {
-        perror("Failed to open directory %s :",dir);
+        cerr << "Failed to open directory %s :" << dir << endl;
         return -1;
     }
     while((dirp = readdir(dp)) != NULL){
@@ -22,14 +23,14 @@ File_type create_hierarchy(string path,vector<Inode> ndlist){
     Inode* node;
     retval=stat(path.c_str(),&buffer);
     if(retval!=0){
-        perror ("stat() failed on file %s :",path);
+        cerr << "stat() failed on file %s :" << path << endl;
         exit(-1);
     }
     else{
-        node=new Inode(buffer->st_mtim,buffer->st_size,buffer->st_ino);
+        node=new Inode(buffer.st_mtime,buffer.st_size,buffer.st_ino);
         node->set_name(path);
         ndlist.push_back((*node));
-        if(S_ISDIR(buffer->st_mode)!=0){    //file is a directory
+        if(S_ISDIR(buffer.st_mode)!=0){    //file is a directory
             Directory* dir;
             dir=new Directory(path,node);
             vector<string> files = vector<string>();
@@ -44,10 +45,10 @@ File_type create_hierarchy(string path,vector<Inode> ndlist){
                 ft.nd=NULL;
                 ft=create_hierarchy(files[i],ndlist);
                 if(ft.type==0){     //files[i] is directory
-                    dir->set_subdir(ft.obj);
+                    dir->set_subdir((Directory*)ft.obj);
                 }
                 else if(ft.type==1){
-                    dir->set_subfile(ft.obj);
+                    dir->set_subfile((File*)ft.obj);
                 }
             }
             ftp.obj=dir;
@@ -55,7 +56,7 @@ File_type create_hierarchy(string path,vector<Inode> ndlist){
             ftp.nd=node;
         }
         else{
-            if(S_ISREG(buffer->st_mode)==0){
+            if(S_ISREG(buffer.st_mode)==0){
                 cout << "File " << path << "is not a regular file or directory..." << endl;
             }
             File* fl;

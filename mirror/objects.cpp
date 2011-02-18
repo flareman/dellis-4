@@ -37,15 +37,15 @@ void Inode::set_name(string n){
     num_of_names++ ;
 }
 
-vector<string>::pointer Inode::get_names(){
-    return names;
+vector<string>* Inode::get_names(){
+    return &names;
 }
 
 Inode* Inode::get_target(){
     return target;
 }
 
-Inode::Inode(time_t d, int s,ino_t sr){
+Inode::Inode(time_t d, int s, ino_t sr){
     last_change=d;
     size=s;
     num_of_names=0;
@@ -66,16 +66,16 @@ void Directory::set_node(Inode* n){
     node=n;
 }
 
-vector<Directory>::pointer Directory::get_subdir(){
-    return subdir;
+vector<Directory>* Directory::get_subdir(){
+    return &subdir;
 }
 
 void Directory::set_subdir(Directory* dir){
     subdir.push_back((*dir));
 }
 
-vector<File>::pointer Directory::get_subfiles(){
-    return subfiles;
+vector<File>* Directory::get_subfiles(){
+    return &subfiles;
 }
 
 void Directory::set_subfile(File* f){
@@ -87,9 +87,9 @@ Directory::Directory(string n, Inode* nd){
     node=nd;
 }
 
-Directory::Direcory(const Directory& d){
-    d.name=name;
-    d.node=node;
-    d.subdir=subdir;
-    d.subfiles=subfiles;
+Directory::Directory(const Directory& d){
+    name = d.name;
+    node = d.node;
+    subdir = d.subdir;
+    subfiles = d.subfiles;
 }
