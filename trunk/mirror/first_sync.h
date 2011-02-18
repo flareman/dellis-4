@@ -8,14 +8,18 @@
 #ifndef FIRST_SYNC_H
 #define	FIRST_SYNC_H
 
-#include <iostream>
-#include <cstdlib>
+
+#include <time.h>
+#include <dirent.h>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
 #include "objects.h"
 
 using namespace std;
+
+int getdir(string dir, vector<string> &files);
+File_type create_hierarchy(string path);
 
 #endif	/* FIRST_SYNC_H */
 

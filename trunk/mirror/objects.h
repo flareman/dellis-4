@@ -15,14 +15,14 @@
 
 using namespace std;
 
-struct Date{
-    int year;
-    int month;
-    int day;
+struct File_type{
+    int type;
+    void* obj;
+    Inode* nd;
 };
 
 class Inode{
-    Date last_change;
+    time_t last_change;
     int size;
     vector<string> names;
     int num_of_names;
@@ -30,11 +30,11 @@ class Inode{
 public:
     int get_size();
     Inode* get_target();
-    Date get_date();
+    time_t get_date();
     vector<string>::pointer get_names();
     int get_num_of_names();
     void set_name(string n);
-    Inode(Date d,int s);
+    Inode(time_t d,int s);
 };
 
 class File{
@@ -56,8 +56,11 @@ public:
     string get_name();
     Inode* get_node();
     vector<Directory>::pointer get_subdir();
+    void set_subdir(Directory*);
     vector<File>::pointer get_subfiles();
+    void set_subfile(File*);
     Directory(string n,Inode* nd);
+    Direcory(const Directory& d);
     void set_node(Inode* n);
 };
 

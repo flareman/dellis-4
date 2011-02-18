@@ -20,7 +20,7 @@ File::File(string n, Inode* nd){
 
 //-----------------------------Inode Class Implementation-----------------------------------------//
 
-Date Inode::get_date(){
+time_t Inode::get_date(){
     return last_change;
 }
 
@@ -45,10 +45,8 @@ Inode* Inode::get_target(){
     return target;
 }
 
-Inode::Inode(Date d, int s){
-    last_change.day=d.day;
-    last_change.month=d.month;
-    last_change.year=d.year;
+Inode::Inode(time_t d, int s){
+    last_change=d;
     size=s;
     num_of_names=0;
 }
@@ -71,11 +69,26 @@ vector<Directory>::pointer Directory::get_subdir(){
     return subdir;
 }
 
+void Directory::set_subdir(Directory* dir){
+    subdir.push_back((*dir));
+}
+
 vector<File>::pointer Directory::get_subfiles(){
     return subfiles;
+}
+
+void Directory::set_subfile(File* f){
+    subfiles.push_back((*f));
 }
 
 Directory::Directory(string n, Inode* nd){
     name=n;
     node=nd;
+}
+
+Directory::Direcory(const Directory& d){
+    d.name=name;
+    d.node=node;
+    d.subdir=subdir;
+    d.subfiles=subfiles;
 }
