@@ -2,14 +2,14 @@
 {
 	08FB7793FE84155DC02AAC07 /* Project object */ = {
 		activeBuildConfigurationName = Debug;
-		activeExecutable = DC51BCFE130C5B53001834EB /* mirror */;
+		activeExecutable = DCB4AAB0130F07A80004C7BF /* mirror */;
 		activeTarget = 8DD76F620486A84900D96B5E /* mirror */;
 		addToTargets = (
 			8DD76F620486A84900D96B5E /* mirror */,
 		);
 		codeSenseManager = DC887E6D130C451800CE8482 /* Code sense */;
 		executables = (
-			DC51BCFE130C5B53001834EB /* mirror */,
+			DCB4AAB0130F07A80004C7BF /* mirror */,
 		);
 		perUserDictionary = {
 			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
@@ -17,7 +17,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					341,
+					510,
 					20,
 					48,
 					43,
@@ -58,13 +58,16 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 319578382;
-			PBXWorkspaceStateSaveDate = 319578382;
+			PBXPerProjectTemplateStateSaveDate = 319752107;
+			PBXWorkspaceStateSaveDate = 319752107;
 		};
 		perUserProjectItems = {
-			DC4BEC04130C614300BED0F7 /* PBXTextBookmark */ = DC4BEC04130C614300BED0F7 /* PBXTextBookmark */;
-			DC4BEC05130C614300BED0F7 /* PBXTextBookmark */ = DC4BEC05130C614300BED0F7 /* PBXTextBookmark */;
-			DC4BEC06130C614300BED0F7 /* PBXTextBookmark */ = DC4BEC06130C614300BED0F7 /* PBXTextBookmark */;
+			DC3D9BAA130E967600A85AE2 = DC3D9BAA130E967600A85AE2 /* PBXTextBookmark */;
+			DC3D9BAB130E967600A85AE2 = DC3D9BAB130E967600A85AE2 /* PBXTextBookmark */;
+			DC3D9BAC130E967600A85AE2 = DC3D9BAC130E967600A85AE2 /* PBXTextBookmark */;
+			DC3D9BAD130E967600A85AE2 = DC3D9BAD130E967600A85AE2 /* PBXTextBookmark */;
+			DC3D9BAE130E967600A85AE2 = DC3D9BAE130E967600A85AE2 /* PBXTextBookmark */;
+			DC3D9BB0130E967600A85AE2 = DC3D9BB0130E967600A85AE2 /* PBXTextBookmark */;
 		};
 		sourceControlManager = DC887E6C130C451800CE8482 /* Source Control */;
 		userBuildSettings = {
@@ -73,54 +76,121 @@
 	8DD76F620486A84900D96B5E /* mirror */ = {
 		activeExec = 0;
 		executables = (
-			DC51BCFE130C5B53001834EB /* mirror */,
+			DCB4AAB0130F07A80004C7BF /* mirror */,
 		);
 	};
-	DC4BEC01130C613C00BED0F7 /* objects.cpp */ = {
+	DC3D9BA2130E962400A85AE2 /* first_sync.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {705, 1328}}";
+			sepNavIntBoundsRect = "{{0, 0}, {688, 1136}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 244}";
+			sepNavVisRange = "{0, 613}";
 		};
 	};
-	DC4BEC02130C613C00BED0F7 /* objects.h */ = {
+	DC3D9BA3130E962400A85AE2 /* first_sync.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {519, 1104}}";
+			sepNavIntBoundsRect = "{{0, 0}, {688, 416}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 166}";
+			sepNavVisRange = "{28, 394}";
 		};
 	};
-	DC4BEC04130C614300BED0F7 /* PBXTextBookmark */ = {
+	DC3D9BAA130E967600A85AE2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DC4BEC02130C613C00BED0F7 /* objects.h */;
+		name = "objects.h: 70";
+		rLen = 0;
+		rLoc = 1274;
+		rType = 0;
+		vrLen = 275;
+		vrLoc = 999;
+	};
+	DC3D9BAB130E967600A85AE2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DC3D9BA3130E962400A85AE2 /* first_sync.h */;
+		name = "first_sync.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 418;
+		vrLoc = 4;
+	};
+	DC3D9BAC130E967600A85AE2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DC3D9BA2130E962400A85AE2 /* first_sync.cpp */;
+		name = "first_sync.cpp: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 613;
+		vrLoc = 0;
+	};
+	DC3D9BAD130E967600A85AE2 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = DC4BEC01130C613C00BED0F7 /* objects.cpp */;
 		name = "objects.cpp: 1";
 		rLen = 0;
 		rLoc = 0;
 		rType = 0;
-		vrLen = 244;
+		vrLen = 475;
 		vrLoc = 0;
 	};
-	DC4BEC05130C614300BED0F7 /* PBXTextBookmark */ = {
+	DC3D9BAE130E967600A85AE2 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = DC4BEC02130C613C00BED0F7 /* objects.h */;
-		name = "objects.h: 1";
+		fRef = DC3D9BAF130E967600A85AE2 /* Diff 18 vs. Local — objects.cpp */;
+		rLen = 0;
+		rLoc = 9223372036854775808;
+		rType = 0;
+	};
+	DC3D9BAF130E967600A85AE2 /* Diff 18 vs. Local — objects.cpp */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.cpp.cpp;
+		path = "Diff 18 vs. Local — objects.cpp";
+		sourceTree = "<group>";
+	};
+	DC3D9BB0130E967600A85AE2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DC3D9BB1130E967600A85AE2 /* Diff 18 vs. Local — objects.cpp */;
+		name = "Diff 18 vs. Local — objects.cpp: 1";
 		rLen = 0;
 		rLoc = 0;
 		rType = 0;
-		vrLen = 166;
+		vrLen = 643;
 		vrLoc = 0;
 	};
-	DC4BEC06130C614300BED0F7 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = DC4BEC02130C613C00BED0F7 /* objects.h */;
-		name = "objects.h: 1";
-		rLen = 0;
-		rLoc = 0;
-		rType = 0;
-		vrLen = 166;
-		vrLoc = 0;
+	DC3D9BB1130E967600A85AE2 /* Diff 18 vs. Local — objects.cpp */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.cpp.cpp;
+		path = "Diff 18 vs. Local — objects.cpp";
+		sourceTree = "<group>";
 	};
-	DC51BCFE130C5B53001834EB /* mirror */ = {
+	DC4BEC01130C613C00BED0F7 /* objects.cpp */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {726, 1536}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 473}";
+		};
+	};
+	DC4BEC02130C613C00BED0F7 /* objects.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {688, 1120}}";
+			sepNavSelRange = "{1274, 0}";
+			sepNavVisRange = "{0, 304}";
+		};
+	};
+	DC887E6C130C451800CE8482 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "Dellis 4";
+			};
+		};
+	};
+	DC887E6D130C451800CE8482 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	DCB4AAB0130F07A80004C7BF /* mirror */ = {
 		isa = PBXExecutable;
 		activeArgIndices = (
 		);
@@ -146,19 +216,5 @@
 		showTypeColumn = 0;
 		sourceDirectories = (
 		);
-	};
-	DC887E6C130C451800CE8482 /* Source Control */ = {
-		isa = PBXSourceControlManager;
-		fallbackIsa = XCSourceControlManager;
-		isSCMEnabled = 0;
-		scmConfiguration = {
-			repositoryNamesForRoots = {
-				"" = "Dellis 4";
-			};
-		};
-	};
-	DC887E6D130C451800CE8482 /* Code sense */ = {
-		isa = PBXCodeSenseManager;
-		indexTemplatePath = "";
 	};
 }
