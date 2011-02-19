@@ -36,14 +36,16 @@ class directoryElement{
     Inode* node;
     bool isFile;
     list<directoryElement> contents;
+	directoryElement* parent;
 public:
     string get_name();
     Inode* get_node();
+	void set_parent(directoryElement* theParent);
     list<directoryElement>* get_contents();
     void set_element(directoryElement*);
 	directoryElement(string n, Inode* nd, bool isNewFile);
-    directoryElement(const directoryElement& d);
     void set_node(Inode* n);
+	string getPathToElement();
 };
 
 typedef struct mirrorEntityStruct {

@@ -15,7 +15,8 @@ using namespace std;
 
 bool compareDirectories (directoryElement first, directoryElement second);
 int getdir(string dir, list<string> &files);
-directoryElement* create_hierarchy(string filename,list<Inode>& ndlist);
+directoryElement create_hierarchy(string filename, list<Inode>& nodeList);
+directoryElement* recurse_hierarchy(string filename, list<Inode>& ndlist);
 void performInitialSync (mirrorEntity source, mirrorEntity target);
 
 #endif	/* FIRST_SYNC_H */
