@@ -43,15 +43,17 @@ File_type create_hierarchy(string filename, string path, list<Inode*>& ndlist){
             if(retval!=0){
                 exit(-1);
             }
-			for(list<string>::iterator it = files.begin(); it!=files.end(); it++){
+	    for(list<string>::iterator it = files.begin(); it!=files.end(); it++){
                 File_type ft;
                 ft.type=-1;
                 ft.obj=NULL;
                 ft.nd=NULL;
                 ft=create_hierarchy(*it,path+'/'+filename+'/',ndlist);
-				dir->set_element(ft.obj);
+		dir->set_element(ft.obj);
+                delete ft.obj;
+                ft.obj=NULL;
             }
-			dir->get_contents()->sort(compareDirectories);
+            dir->get_contents()->sort(compareDirectories);
             ftp.obj=dir;
             ftp.type=0;
             ftp.nd=node;

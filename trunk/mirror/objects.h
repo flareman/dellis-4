@@ -36,7 +36,7 @@ public:
 class directoryElement{
     string name;
     Inode* node;
-	bool isFile;
+    bool isFile;
     list<directoryElement> contents;
 public:
     string get_name();
