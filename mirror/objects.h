@@ -16,20 +16,22 @@
 
 using namespace std;
 
+class directoryElement;
+
 class Inode{
     ino_t serial;
     time_t last_change;
     int size;
-    list<string> names;
+    list<directoryElement*> names;
     int num_of_names;
     Inode* target;
 public:
     int get_size();
     Inode* get_target();
     time_t get_date();
-    list<string>* get_names();
+    list<directoryElement*>* get_names();
     int get_num_of_names();
-    void set_name(string n);
+    void set_element(directoryElement* n);
     Inode(time_t d,int s, ino_t sr);
 };
 

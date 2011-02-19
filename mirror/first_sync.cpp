@@ -15,54 +15,54 @@ int getdir(string dir, list<string>& files){
         return -1;
     }
     while((dirp = readdir(dp)) != NULL){
-        files.push_back(string(dirp->d_name));
+		if ((string(dirp->d_name) != ".") && (string(dirp->d_name) != ".."))
+			files.push_back(string(dirp->d_name));
     }
     closedir(dp);
     return 0;
 }
 
-directoryElement* create_hierarchy(string filename, string path, list<Inode>& ndlist){
+directoryElement* create_hierarchy(string filename, list<Inode>& ndlist){
     struct stat buffer;
     int retval;
-	directoryElement* ftp = NULL;
+	directoryElement* hierarchyBelow = NULL;
     Inode* node = NULL;
     retval=lstat(filename.c_str(),&buffer);
-    if(retval!=0){
-        cerr << "stat() failed on file %s :" << filename << endl;
+    if (retval){
+        cerr << "stat() failed on file " << filename << "." << endl;
         exit(-1);
     }
     else{
         node=new Inode(buffer.st_mtime,buffer.st_size,buffer.st_ino);
-        node->set_name(path+filename);
-        list<Inode>::iterator it= ndlist.push_back(*node);
+        ndlist.push_back(*node);
         delete node;
-        node=&(*it);
-        if(S_ISDIR(buffer.st_mode)!=0){    //file is a directory
+        node=&(ndlist.front());
+        if(S_ISDIR(buffer.st_mode)!=0){
             directoryElement* dir = NULL;
-            dir=new directoryElement(filename,node,false);
+            dir = new directoryElement(filename,node,false);
+			node->set_element(dir);
             list<string> files = list<string>();
             retval=getdir(filename,files);
             if(retval!=0){
                 exit(-1);
             }
-	    for (list<string>::iterator it = files.begin(); it!=files.end(); it++){
-			directoryElement* ft = NULL;
-			ft = create_hierarchy(*it,path+'/'+filename+'/',ndlist);
-			dir->set_element(ft);
-			delete ft;
-			ft = NULL;
+			for (list<string>::iterator it = files.begin(); it!=files.end(); it++){
+				directoryElement* subfolder = NULL;
+				subfolder = create_hierarchy(*it,ndlist);
+				dir->set_element(subfolder);
+				delete subfolder; subfolder = NULL;
             }
             dir->get_contents()->sort(compareDirectories);
-            ftp=dir;
-        }
-        else{
+			hierarchyBelow = dir;
+        } else {
             if(S_ISREG(buffer.st_mode)==0){
                 cout << "File " << filename << "is not a regular file or directory..." << endl;
             }
-            ftp = new directoryElement(filename,node,true);
+            hierarchyBelow = new directoryElement(filename,node,true);
+			node->set_element(hierarchyBelow);
         }
     }
-    return ftp;
+    return hierarchyBelow;
 }
 
 void performInitialSync (mirrorEntity source, mirrorEntity target) {
