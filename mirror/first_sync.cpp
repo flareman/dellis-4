@@ -2,7 +2,7 @@
 
 using namespace std;
 
-int getdir(string dir, vector<string> &files){
+int getdir(string dir, list<string> &files){
     DIR *dp;
     struct dirent *dirp;
     if((dp  = opendir(dir.c_str())) == NULL) {
@@ -16,7 +16,7 @@ int getdir(string dir, vector<string> &files){
     return 0;
 }
 
-File_type create_hierarchy(string path,vector<Inode> &ndlist){
+File_type create_hierarchy(string path,list<Inode> &ndlist){
     struct stat buffer;
     File_type ftp;
     int retval;
@@ -33,7 +33,7 @@ File_type create_hierarchy(string path,vector<Inode> &ndlist){
         if(S_ISDIR(buffer.st_mode)!=0){    //file is a directory
             Directory* dir;
             dir=new Directory(path,node);
-            vector<string> files = vector<string>();
+            list<string> files = list<string>();
             retval=getdir(path,files);
             if(retval!=0){
                 exit(-1);
@@ -51,6 +51,7 @@ File_type create_hierarchy(string path,vector<Inode> &ndlist){
                     dir->set_subfile((File*)ft.obj);
                 }
             }
+            // possible sorting here
             ftp.obj=dir;
             ftp.type=0;
             ftp.nd=node;
