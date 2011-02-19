@@ -17,6 +17,7 @@
 #include <sys/types.h>
 #include <unistd.h>
 
+bool compareDirectories (directoryElement first, directoryElement second);
 int getdir(string dir, list<string> &files);
 File_type create_hierarchy(string path,list<Inode> &ndlist);
 void performInitialSync (mirrorEntity source, mirrorEntity target);

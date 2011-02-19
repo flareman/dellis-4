@@ -1,23 +1,5 @@
 #include "objects.h"
 
-//-------------------File Class Implementation---------------------------------------------------//
-string File::get_name(){
-    return name;
-}
-
-Inode* File::get_node(){
-    return node;
-}
-
-void File::set_node(Inode* nd){
-    node=nd;
-}
-
-File::File(string n, Inode* nd){
-    name=n;
-    node=nd;
-}
-
 //-----------------------------Inode Class Implementation-----------------------------------------//
 
 time_t Inode::get_date(){
@@ -54,42 +36,35 @@ Inode::Inode(time_t d, int s, ino_t sr){
 
 //--------------------------------Directory Class Implementation------------------------------------//
 
-string Directory::get_name(){
+string directoryElement::get_name(){
     return name;
 }
 
-Inode* Directory::get_node(){
+Inode* directoryElement::get_node(){
     return node;
 }
 
-void Directory::set_node(Inode* n){
+void directoryElement::set_node(Inode* n){
     node=n;
 }
 
-list<Directory>* Directory::get_subdir(){
-    return &subdir;
+list<directoryElement>* directoryElement::get_contents(){
+    return &contents;
 }
 
-void Directory::set_subdir(Directory* dir){
-    subdir.push_back((*dir));
+void directoryElement::set_element(directoryElement* dir){
+    contents.push_back(*dir);
 }
 
-list<File>* Directory::get_subfiles(){
-    return &subfiles;
-}
-
-void Directory::set_subfile(File* f){
-    subfiles.push_back((*f));
-}
-
-Directory::Directory(string n, Inode* nd){
+directoryElement::directoryElement(string n, Inode* nd, bool isNewFile){
     name=n;
     node=nd;
+	isFile = isNewFile;
 }
 
-Directory::Directory(const Directory& d){
+directoryElement::directoryElement(const directoryElement& d){
     name = d.name;
     node = d.node;
-    subdir = d.subdir;
-    subfiles = d.subfiles;
+    contents = d.contents;
+	isFile = d.isFile;
 }
