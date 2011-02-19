@@ -31,6 +31,8 @@ public:
     Inode(time_t d,int s, ino_t sr);
 };
 
+typedef list<Inode> iNodeList;
+
 class directoryElement{
     string name;
     Inode* node;
@@ -49,8 +51,8 @@ public:
 };
 
 typedef struct mirrorEntityStruct {
-	directoryElement* parentElement;
-	list<Inode> iNodeList;
+	directoryElement* root;
+	iNodeList nodes;
 } mirrorEntity;
 
 #endif	/* OBJECTS_H */

@@ -25,6 +25,10 @@ int main (int argc, char* argv[]) {
 		exit(1);
 	}
 	
+	iNodeList sourceNodes, targetNodes;
+	directoryElement sourceTree = create_hierarchy(string(argv[1]), sourceNodes);
+	directoryElement targetTree = create_hierarchy(string(argv[2]), sourceNodes);
+	
 	return 0;
 }
 
