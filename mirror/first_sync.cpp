@@ -7,7 +7,7 @@ bool compareDirectories (directoryElement first, directoryElement second) {
 	else return false;
 }
 
-int getdir(string dir, list<string> &files){
+int getdir(string dir, list<string>& files){
     DIR *dp;
     struct dirent *dirp;
     if((dp  = opendir(dir.c_str())) == NULL) {
@@ -21,25 +21,25 @@ int getdir(string dir, list<string> &files){
     return 0;
 }
 
-File_type create_hierarchy(string path,list<Inode> &ndlist){
+File_type create_hierarchy(string filename, string path, list<Inode>& ndlist){
     struct stat buffer;
     File_type ftp;
     int retval;
     Inode* node;
-    retval=lstat(path.c_str(),&buffer);
+    retval=lstat(filename.c_str(),&buffer);
     if(retval!=0){
-        cerr << "stat() failed on file %s :" << path << endl;
+        cerr << "stat() failed on file %s :" << filename << endl;
         exit(-1);
     }
     else{
         node=new Inode(buffer.st_mtime,buffer.st_size,buffer.st_ino);
-        node->set_name(path);
+        node->set_name(path+filename);
         ndlist.push_back((*node));
         if(S_ISDIR(buffer.st_mode)!=0){    //file is a directory
             directoryElement* dir;
-            dir=new directoryElement(path,node,false);
+            dir=new directoryElement(filename,node,false);
             list<string> files = list<string>();
-            retval=getdir(path,files);
+            retval=getdir(filename,files);
             if(retval!=0){
                 exit(-1);
             }
@@ -48,7 +48,7 @@ File_type create_hierarchy(string path,list<Inode> &ndlist){
                 ft.type=-1;
                 ft.obj=NULL;
                 ft.nd=NULL;
-                ft=create_hierarchy(*it,ndlist);
+                ft=create_hierarchy(*it,path+'/'+filename+'/',ndlist);
 				dir->set_element((directoryElement*)ft.obj);
             }
 			dir->get_contents()->sort(compareDirectories);
@@ -58,10 +58,10 @@ File_type create_hierarchy(string path,list<Inode> &ndlist){
         }
         else{
             if(S_ISREG(buffer.st_mode)==0){
-                cout << "File " << path << "is not a regular file or directory..." << endl;
+                cout << "File " << filename << "is not a regular file or directory..." << endl;
             }
             directoryElement* fl;
-            fl=new directoryElement(path,node,true);
+            fl=new directoryElement(filename,node,true);
             ftp.obj=(directoryElement*)fl;
             ftp.type=1;
             ftp.nd=node;
