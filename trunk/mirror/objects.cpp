@@ -14,12 +14,12 @@ int Inode::get_size(){
     return size;
 }
 
-void Inode::set_name(string n){
+void Inode::set_element(directoryElement* n){
     names.push_back(n);
     num_of_names++ ;
 }
 
-list<string>* Inode::get_names(){
+list<directoryElement*>* Inode::get_names(){
     return &names;
 }
 
