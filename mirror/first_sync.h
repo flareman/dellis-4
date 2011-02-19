@@ -18,7 +18,8 @@
 #include <unistd.h>
 
 int getdir(string dir, vector<string> &files);
-File_type create_hierarchy(string path,vector<Inode> ndlist);
+File_type create_hierarchy(string path,vector<Inode> &ndlist);
+void performInitialSync (mirrorEntity source, mirrorEntity target);
 
 #endif	/* FIRST_SYNC_H */
 

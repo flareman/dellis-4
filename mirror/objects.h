@@ -66,5 +66,10 @@ public:
     void set_node(Inode* n);
 };
 
+typedef struct mirrorEntityStruct {
+	Directory* theDirectory;
+	vector<Inode> iNodeList;
+} mirrorEntity;
+
 #endif	/* OBJECTS_H */
 

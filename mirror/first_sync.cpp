@@ -69,6 +69,8 @@ File_type create_hierarchy(string path,vector<Inode> &ndlist){
     return ftp;
 }
 
-void initial_sync(Directory* source,Directory* target){
-
+void performInitialSync (mirrorEntity source, mirrorEntity target) {
+	// Perform sync here
+	
+	return;
 }
