@@ -273,11 +273,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>1</integer>
-									<integer>0</integer>
-								</array>
-								<array>
-									<integer>2</integer>
+									<integer>6</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -319,7 +315,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>rw_functions.cpp</string>
+								<string>first_sync.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -327,23 +323,23 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>rw_functions.cpp</string>
+										<string>first_sync.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>DC22B7D913102C700057F173</string>
+										<string>DC22B7F9131036350057F173</string>
 										<key>history</key>
 										<array>
 											<string>DCB4AB05130F28CB0004C7BF</string>
-											<string>DC22B7D013102C700057F173</string>
-											<string>DC22B7D113102C700057F173</string>
-											<string>DC22B7D213102C700057F173</string>
-											<string>DC22B7D313102C700057F173</string>
-											<string>DC22B7D413102C700057F173</string>
-											<string>DC22B7D513102C700057F173</string>
 											<string>DC22B7D613102C700057F173</string>
 											<string>DC22B7D713102C700057F173</string>
-											<string>DC22B7D813102C700057F173</string>
+											<string>DC22B7DE13102D7E0057F173</string>
+											<string>DC22B7F4131036350057F173</string>
+											<string>DC22B7F5131036350057F173</string>
+											<string>DC22B7F6131036350057F173</string>
+											<string>DC22B7F7131036350057F173</string>
+											<string>DC22B7F8131036350057F173</string>
+											<string>DC22B7E5131034710057F173</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -562,12 +558,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>objects.h</string>
+								<string>first_sync.cpp</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -584,8 +582,6 @@
 							<string>308pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

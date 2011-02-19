@@ -48,6 +48,11 @@ void directoryElement::set_node(Inode* n){
     node=n;
 }
 
+void directoryElement::set_parent(directoryElement* theParent){
+	parent = theParent;
+	return;
+}
+
 list<directoryElement>* directoryElement::get_contents(){
     return &contents;
 }
@@ -60,11 +65,13 @@ directoryElement::directoryElement(string n, Inode* nd, bool isNewFile){
     name=n;
     node=nd;
 	isFile = isNewFile;
+	parent = NULL;
 }
 
-directoryElement::directoryElement(const directoryElement& d){
-    name = d.name;
-    node = d.node;
-    contents = d.contents;
-	isFile = d.isFile;
+string directoryElement::getPathToElement() {
+	string parentPath;
+	if (parent == NULL) parentPath = string("");
+	else parentPath = parent->getPathToElement() + '/';
+	
+	return parentPath + name;
 }

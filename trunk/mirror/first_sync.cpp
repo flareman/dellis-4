@@ -20,7 +20,15 @@ int getdir(string dir, list<string>& files){
     return 0;
 }
 
-directoryElement* create_hierarchy(string filename, list<Inode>& ndlist){
+directoryElement create_hierarchy(string filename, list<Inode>& ndlist){
+	directoryElement* tmp = NULL;
+	tmp = recurse_hierarchy(filename, ndlist);
+	directoryElement rv = *tmp;
+	delete tmp; tmp = NULL;
+	return rv;
+}
+
+directoryElement* recurse_hierarchy(string filename, list<Inode>& ndlist){
     struct stat buffer;
     int retval;
 	directoryElement* hierarchyBelow = NULL;
@@ -46,7 +54,8 @@ directoryElement* create_hierarchy(string filename, list<Inode>& ndlist){
             }
 			for (list<string>::iterator it = files.begin(); it!=files.end(); it++){
 				directoryElement* subfolder = NULL;
-				subfolder = create_hierarchy(*it,ndlist);
+				subfolder = recurse_hierarchy(*it,ndlist);
+				subfolder->set_parent(dir);
 				dir->set_element(subfolder);
 				delete subfolder; subfolder = NULL;
             }
