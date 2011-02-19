@@ -1,5 +1,5 @@
 /*
- *  mirror.h
+ *  rw_functions.cpp
  *  mirror
  *
  *  Created by Σπύρος Σμπαρούνης on 19/02/2011.
@@ -7,9 +7,5 @@
  *
  */
 
-#include "generalHeaders.h"
-#include "first_sync.h"
+#include "rw_functions.h"
 
-using namespace std;
-
-bool isDirectory (char* directoryName);

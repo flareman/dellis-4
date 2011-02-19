@@ -8,14 +8,10 @@
 #ifndef FIRST_SYNC_H
 #define	FIRST_SYNC_H
 
-#define _POSIX_C_SOURCE 199309L
+#include "generalHeaders.h"
+#include "rw_functions.h"
 
-#include "objects.h"
-#include <time.h>
-#include <dirent.h>
-#include <sys/stat.h>
-#include <sys/types.h>
-#include <unistd.h>
+using namespace std;
 
 bool compareDirectories (directoryElement first, directoryElement second);
 int getdir(string dir, list<string> &files);

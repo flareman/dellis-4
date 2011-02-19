@@ -9,8 +9,6 @@
 
 #include "mirror.h"
 
-using namespace std;
-
 int main (int argc, char* argv[]) {
 	if (argc < 3) {
 		cerr << "Error: syntax is mirror <source> <target>" << endl;
