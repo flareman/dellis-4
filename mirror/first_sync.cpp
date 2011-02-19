@@ -2,6 +2,11 @@
 
 using namespace std;
 
+bool compareDirectories (directoryElement first, directoryElement second) {
+	if (first.get_name()<second.get_name()) return true;
+	else return false;
+}
+
 int getdir(string dir, list<string> &files){
     DIR *dp;
     struct dirent *dirp;
@@ -31,28 +36,23 @@ File_type create_hierarchy(string path,list<Inode> &ndlist){
         node->set_name(path);
         ndlist.push_back((*node));
         if(S_ISDIR(buffer.st_mode)!=0){    //file is a directory
-            Directory* dir;
-            dir=new Directory(path,node);
+            directoryElement* dir;
+            dir=new directoryElement(path,node,false);
             list<string> files = list<string>();
             retval=getdir(path,files);
             if(retval!=0){
                 exit(-1);
             }
-            for(int i=0;i<files.size();i++){
+			for(list<string>::iterator it = files.begin(); it!=files.end(); it++){
                 File_type ft;
                 ft.type=-1;
                 ft.obj=NULL;
                 ft.nd=NULL;
-                ft=create_hierarchy(files[i],ndlist);
-                if(ft.type==0){     //files[i] is directory
-                    dir->set_subdir((Directory*)ft.obj);
-                }
-                else if(ft.type==1){
-                    dir->set_subfile((File*)ft.obj);
-                }
+                ft=create_hierarchy(*it,ndlist);
+				dir->set_element((directoryElement*)ft.obj);
             }
-            // possible sorting here
-            ftp.obj=dir;
+			dir->get_contents()->sort(compareDirectories);
+            ftp.obj=(directoryElement*)dir;
             ftp.type=0;
             ftp.nd=node;
         }
@@ -60,9 +60,9 @@ File_type create_hierarchy(string path,list<Inode> &ndlist){
             if(S_ISREG(buffer.st_mode)==0){
                 cout << "File " << path << "is not a regular file or directory..." << endl;
             }
-            File* fl;
-            fl=new File(path,node);
-            ftp.obj=fl;
+            directoryElement* fl;
+            fl=new directoryElement(path,node,true);
+            ftp.obj=(directoryElement*)fl;
             ftp.type=1;
             ftp.nd=node;
         }

@@ -39,35 +39,23 @@ struct File_type{
     Inode* nd;
 };
 
-class File{
+class directoryElement{
     string name;
     Inode* node;
+	bool isFile;
+    list<directoryElement> contents;
 public:
     string get_name();
     Inode* get_node();
-    void set_node(Inode* nd);
-    File(string n,Inode* nd);
-};
-
-class Directory{
-    string name;
-    Inode* node;
-    list<Directory> subdir; // sub-directories list
-    list<File> subfiles; //sub-files list
-public:
-    string get_name();
-    Inode* get_node();
-    list<Directory>* get_subdir();
-    void set_subdir(Directory*);
-    list<File>* get_subfiles();
-    void set_subfile(File*);
-    Directory(string n,Inode* nd);
-    Directory(const Directory& d);
+    list<directoryElement>* get_contents();
+    void set_element(directoryElement*);
+	directoryElement(string n, Inode* nd, bool isNewFile);
+    directoryElement(const directoryElement& d);
     void set_node(Inode* n);
 };
 
 typedef struct mirrorEntityStruct {
-	Directory* theDirectory;
+	directoryElement* parentElement;
 	list<Inode> iNodeList;
 } mirrorEntity;
 
