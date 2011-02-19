@@ -33,12 +33,6 @@ public:
     Inode(time_t d,int s, ino_t sr);
 };
 
-struct File_type{
-    int type;
-    void* obj;
-    Inode* nd;
-};
-
 class directoryElement{
     string name;
     Inode* node;
@@ -52,6 +46,12 @@ public:
 	directoryElement(string n, Inode* nd, bool isNewFile);
     directoryElement(const directoryElement& d);
     void set_node(Inode* n);
+};
+
+struct File_type{
+    int type;
+    directoryElement* obj;
+    Inode* nd;
 };
 
 typedef struct mirrorEntityStruct {
