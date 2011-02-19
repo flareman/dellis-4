@@ -8,11 +8,7 @@
 #ifndef OBJECTS_H
 #define	OBJECTS_H
 
-#include <iostream>
-#include <cstdlib>
-#include <string>
-#include <list>
-#include <sys/stat.h>
+#include "generalHeaders.h"
 
 using namespace std;
 
