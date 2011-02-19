@@ -16,7 +16,7 @@ int getdir(string dir, vector<string> &files){
     return 0;
 }
 
-File_type create_hierarchy(string path,vector<Inode> ndlist){
+File_type create_hierarchy(string path,vector<Inode> &ndlist){
     struct stat buffer;
     File_type ftp;
     int retval;
@@ -69,3 +69,6 @@ File_type create_hierarchy(string path,vector<Inode> ndlist){
     return ftp;
 }
 
+void initial_sync(Directory* source,Directory* target){
+
+}
