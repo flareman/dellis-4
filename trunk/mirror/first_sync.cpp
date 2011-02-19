@@ -22,20 +22,49 @@ int getdir(string dir, list<string>& files){
 
 directoryElement create_hierarchy(string filename, list<Inode>& ndlist){
 	directoryElement* tmp = NULL;
-	tmp = recurse_hierarchy(filename, ndlist);
+	tmp = recurse_hierarchy(filename, string(""), ndlist);
 	directoryElement rv = *tmp;
 	delete tmp; tmp = NULL;
 	return rv;
 }
 
-directoryElement* recurse_hierarchy(string filename, list<Inode>& ndlist){
+directoryElement* recurse_hierarchy(string filename, string path, list<Inode>& ndlist){
     struct stat buffer;
     int retval;
 	directoryElement* hierarchyBelow = NULL;
     Inode* node = NULL;
+	errno = 0;
     retval=lstat(filename.c_str(),&buffer);
     if (retval){
-        cerr << "stat() failed on file " << filename << "." << endl;
+		switch (errno) {
+			case EACCES:
+				cerr << "EACCES" << endl;
+				break;
+			case EFAULT:
+				cerr << "EFAULT" << endl;
+				break;
+			case EIO:
+				cerr << "EIO" << endl;
+				break;
+			case ELOOP:
+				cerr << "ELOOP" << endl;
+				break;
+			case ENAMETOOLONG:
+				cerr << "ENAMETOOLONG" << endl;
+				break;
+			case ENOENT:
+				cerr << "ENOENT" << endl;
+				break;
+			case ENOTDIR:
+				cerr << "ENOTDIR" << endl;
+				break;
+			case EOVERFLOW:
+				cerr << "EOVERFLOW" << endl;
+				break;
+			default:
+				break;
+		}
+        cerr << "stat() failed on file " << filename << " (" << retval << ")." << endl;
         exit(-1);
     }
     else{
@@ -43,7 +72,7 @@ directoryElement* recurse_hierarchy(string filename, list<Inode>& ndlist){
         ndlist.push_back(*node);
         delete node;
         node=&(ndlist.front());
-        if(S_ISDIR(buffer.st_mode)!=0){
+        if(S_ISDIR(buffer.st_mode)){
             directoryElement* dir = NULL;
             dir = new directoryElement(filename,node,false);
 			node->set_element(dir);
@@ -54,7 +83,7 @@ directoryElement* recurse_hierarchy(string filename, list<Inode>& ndlist){
             }
 			for (list<string>::iterator it = files.begin(); it!=files.end(); it++){
 				directoryElement* subfolder = NULL;
-				subfolder = recurse_hierarchy(*it,ndlist);
+				subfolder = recurse_hierarchy(*it,path+'/',ndlist);
 				subfolder->set_parent(dir);
 				dir->set_element(subfolder);
 				delete subfolder; subfolder = NULL;
@@ -63,7 +92,7 @@ directoryElement* recurse_hierarchy(string filename, list<Inode>& ndlist){
 			hierarchyBelow = dir;
         } else {
             if(S_ISREG(buffer.st_mode)==0){
-                cout << "File " << filename << "is not a regular file or directory..." << endl;
+                cout << "File " << filename << " is not a regular file or directory..." << endl;
             }
             hierarchyBelow = new directoryElement(filename,node,true);
 			node->set_element(hierarchyBelow);
@@ -75,8 +104,8 @@ directoryElement* recurse_hierarchy(string filename, list<Inode>& ndlist){
 void performInitialSync (mirrorEntity source, mirrorEntity target) {
 	list<directoryElement>* sourceList = NULL, *targetList = NULL;
 	list<directoryElement>::iterator its, itt;
-	sourceList = source.parentElement->get_contents();
-	targetList = target.parentElement->get_contents();
+	sourceList = source.root->get_contents();
+	targetList = target.root->get_contents();
 	its = sourceList->begin(); itt = targetList->begin();
 
 	while (1) {
