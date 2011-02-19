@@ -29,5 +29,12 @@ int main (int argc, char* argv[]) {
 }
 
 bool isDirectory (char* directoryName) {
-	return true;
+    struct stat buffer;
+    int retval;
+    retval = lstat(directoryName, &buffer);
+    if (retval){
+        cerr << "stat() failed on filename " << directoryName << "." << endl;
+        exit(-1);
+	}
+	return (S_ISDIR(buffer.st_mode));
 }
