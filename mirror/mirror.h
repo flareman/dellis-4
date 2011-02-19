@@ -8,5 +8,6 @@
  */
 
 #include <iostream>
+#include <cstdlib>
 
 bool isDirectory (char* directoryName);

@@ -37,7 +37,7 @@ void Inode::set_name(string n){
     num_of_names++ ;
 }
 
-vector<string>* Inode::get_names(){
+list<string>* Inode::get_names(){
     return &names;
 }
 
@@ -66,7 +66,7 @@ void Directory::set_node(Inode* n){
     node=n;
 }
 
-vector<Directory>* Directory::get_subdir(){
+list<Directory>* Directory::get_subdir(){
     return &subdir;
 }
 
@@ -74,7 +74,7 @@ void Directory::set_subdir(Directory* dir){
     subdir.push_back((*dir));
 }
 
-vector<File>* Directory::get_subfiles(){
+list<File>* Directory::get_subfiles(){
     return &subfiles;
 }
 
