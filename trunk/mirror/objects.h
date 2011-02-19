@@ -11,7 +11,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <string>
-#include <vector>
+#include <list>
 #include <sys/stat.h>
 
 using namespace std;
@@ -20,14 +20,14 @@ class Inode{
     ino_t serial;
     time_t last_change;
     int size;
-    vector<string> names;
+    list<string> names;
     int num_of_names;
     Inode* target;
 public:
     int get_size();
     Inode* get_target();
     time_t get_date();
-    vector<string>* get_names();
+    list<string>* get_names();
     int get_num_of_names();
     void set_name(string n);
     Inode(time_t d,int s, ino_t sr);
@@ -52,14 +52,14 @@ public:
 class Directory{
     string name;
     Inode* node;
-    vector<Directory> subdir; // sub-directories list
-    vector<File> subfiles; //sub-files list
+    list<Directory> subdir; // sub-directories list
+    list<File> subfiles; //sub-files list
 public:
     string get_name();
     Inode* get_node();
-    vector<Directory>* get_subdir();
+    list<Directory>* get_subdir();
     void set_subdir(Directory*);
-    vector<File>* get_subfiles();
+    list<File>* get_subfiles();
     void set_subfile(File*);
     Directory(string n,Inode* nd);
     Directory(const Directory& d);
@@ -68,7 +68,7 @@ public:
 
 typedef struct mirrorEntityStruct {
 	Directory* theDirectory;
-	vector<Inode> iNodeList;
+	list<Inode> iNodeList;
 } mirrorEntity;
 
 #endif	/* OBJECTS_H */
