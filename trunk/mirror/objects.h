@@ -48,12 +48,6 @@ public:
     void set_node(Inode* n);
 };
 
-struct File_type{
-    int type;
-    directoryElement* obj;
-    Inode* nd;
-};
-
 typedef struct mirrorEntityStruct {
 	directoryElement* parentElement;
 	list<Inode> iNodeList;

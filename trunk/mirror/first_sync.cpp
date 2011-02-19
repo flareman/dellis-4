@@ -21,10 +21,10 @@ int getdir(string dir, list<string>& files){
     return 0;
 }
 
-File_type create_hierarchy(string filename, string path, list<Inode*>& ndlist){
+directoryElement* create_hierarchy(string filename, string path, list<Inode*>& ndlist){
     struct stat buffer;
-    File_type ftp;
     int retval;
+	directoryElement* ftp = NULL;
     Inode* node = NULL;
     retval=lstat(filename.c_str(),&buffer);
     if(retval!=0){
@@ -43,30 +43,21 @@ File_type create_hierarchy(string filename, string path, list<Inode*>& ndlist){
             if(retval!=0){
                 exit(-1);
             }
-	    for(list<string>::iterator it = files.begin(); it!=files.end(); it++){
-                File_type ft;
-                ft.type=-1;
-                ft.obj=NULL;
-                ft.nd=NULL;
-                ft=create_hierarchy(*it,path+'/'+filename+'/',ndlist);
-		dir->set_element(ft.obj);
-                delete ft.obj;
-                ft.obj=NULL;
+	    for (list<string>::iterator it = files.begin(); it!=files.end(); it++){
+			directoryElement* ft = NULL;
+			ft = create_hierarchy(*it,path+'/'+filename+'/',ndlist);
+			dir->set_element(ft);
+			delete ft;
+			ft = NULL;
             }
             dir->get_contents()->sort(compareDirectories);
-            ftp.obj=dir;
-            ftp.type=0;
-            ftp.nd=node;
+            ftp=dir;
         }
         else{
             if(S_ISREG(buffer.st_mode)==0){
                 cout << "File " << filename << "is not a regular file or directory..." << endl;
             }
-            directoryElement* fl = NULL;
-            fl=new directoryElement(filename,node,true);
-            ftp.obj=fl;
-            ftp.type=1;
-            ftp.nd=node;
+            ftp = new directoryElement(filename,node,true);
         }
     }
     return ftp;
