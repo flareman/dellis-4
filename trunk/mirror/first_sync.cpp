@@ -21,7 +21,7 @@ int getdir(string dir, list<string>& files){
     return 0;
 }
 
-directoryElement* create_hierarchy(string filename, string path, list<Inode*>& ndlist){
+directoryElement* create_hierarchy(string filename, string path, list<Inode>& ndlist){
     struct stat buffer;
     int retval;
 	directoryElement* ftp = NULL;
@@ -34,7 +34,9 @@ directoryElement* create_hierarchy(string filename, string path, list<Inode*>& n
     else{
         node=new Inode(buffer.st_mtime,buffer.st_size,buffer.st_ino);
         node->set_name(path+filename);
-        ndlist.push_back(node);
+        list<Inode>::iterator it= ndlist.push_back(*node);
+        delete node;
+        node=&(*it);
         if(S_ISDIR(buffer.st_mode)!=0){    //file is a directory
             directoryElement* dir = NULL;
             dir=new directoryElement(filename,node,false);
