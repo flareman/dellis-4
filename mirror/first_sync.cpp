@@ -21,7 +21,7 @@ File_type create_hierarchy(string path,vector<Inode> ndlist){
     File_type ftp;
     int retval;
     Inode* node;
-    retval=stat(path.c_str(),&buffer);
+    retval=lstat(path.c_str(),&buffer);
     if(retval!=0){
         cerr << "stat() failed on file %s :" << path << endl;
         exit(-1);
