@@ -75,3 +75,27 @@ string directoryElement::getPathToElement() {
 	
 	return parentPath + name;
 }
+
+void directoryElement::printOutTreeBelow() {
+	cout << name << endl;
+	if (!isFile)
+		for (list<directoryElement>::iterator it = contents.begin(); it != contents.end(); it++)
+		{
+			cout << "|";
+			(*it).printOutTreeBelow(2);
+		}
+	
+	return;
+}
+
+void directoryElement::printOutTreeBelow(int depth) {
+	cout << name << endl;
+	if (!isFile)
+		for (list<directoryElement>::iterator it = contents.begin(); it != contents.end(); it++)
+		{
+			for (int i = 0; i < depth; i++) cout << "|";
+			(*it).printOutTreeBelow(depth+1);
+		}
+	
+	return;
+}

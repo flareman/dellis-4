@@ -29,6 +29,12 @@ int main (int argc, char* argv[]) {
 	directoryElement sourceTree = create_hierarchy(string(argv[1]), sourceNodes);
 	directoryElement targetTree = create_hierarchy(string(argv[2]), sourceNodes);
 	
+	cout << "SOURCE:" << endl;
+	sourceTree.printOutTreeBelow();
+	cout << endl;
+	cout << "TARGET:" << endl;
+	targetTree.printOutTreeBelow();
+	
 	return 0;
 }
 

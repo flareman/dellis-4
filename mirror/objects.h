@@ -15,6 +15,7 @@ using namespace std;
 class directoryElement;
 
 class Inode{
+private:
     ino_t serial;
     time_t last_change;
     int size;
@@ -25,7 +26,7 @@ public:
     int get_size();
     Inode* get_target();
     time_t get_date();
-    list<directoryElement*>* get_names();
+    list<directoryElement*> *get_names();
     int get_num_of_names();
     void set_element(directoryElement* n);
     Inode(time_t d,int s, ino_t sr);
@@ -34,6 +35,7 @@ public:
 typedef list<Inode> iNodeList;
 
 class directoryElement{
+private:
     string name;
     Inode* node;
     bool isFile;
@@ -48,6 +50,8 @@ public:
 	directoryElement(string n, Inode* nd, bool isNewFile);
     void set_node(Inode* n);
 	string getPathToElement();
+	void printOutTreeBelow();
+	void printOutTreeBelow(int depth);
 };
 
 typedef struct mirrorEntityStruct {
