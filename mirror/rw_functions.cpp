@@ -78,6 +78,7 @@ bool createElement(directoryElement* theElement, directoryElement* destination, 
 			delete newNode; newNode = NULL;
 			theElement->get_node()->set_target(node);
             newElement = new directoryElement(theElement->get_name(),node,false);
+			node->set_element(newElement);
 			newElement->set_parent(destination);
 			for (list<directoryElement>::iterator it = theElement->get_contents()->begin();it!=theElement->get_contents()->end();it++)
 				createElement(&(*it), newElement, (*it).get_name(), destNodeMap);
@@ -102,13 +103,14 @@ bool createElement(directoryElement* theElement, directoryElement* destination, 
 				delete newNode; newNode = NULL;
 				theElement->get_node()->set_target(node);
 				newElement = new directoryElement(theElement->get_name(),node,true);
+				node->set_element(newElement);
 				newElement->set_parent(destination);
 			}
 		}
 	} else newElement = theElement;
 	
 	destination->set_element(newElement);
-//	delete newElement; newElement = NULL;
+	delete newElement; newElement = NULL;
 	
 	return true;
 }
