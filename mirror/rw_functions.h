@@ -14,6 +14,6 @@
 
 using namespace std;
 
-bool unlinkElement(directoryElement* theElement, iNodeMap& nodeSet);
+bool unlinkElement(directoryElement* theElement, iNodeMap& nodeSet, bool commitRemove);
 
 #endif
