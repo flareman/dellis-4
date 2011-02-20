@@ -14,9 +14,22 @@ int Inode::get_size(){
     return size;
 }
 
+ino_t Inode::get_serial(){
+    return serial;
+}
+
 void Inode::set_element(directoryElement* n){
     names.push_back(n);
-    num_of_names++ ;
+    num_of_names++;
+}
+
+int Inode::remove_element(directoryElement* n){
+	list<directoryElement*>::iterator it = find(names.begin(), names.end(), n);
+	if (it != names.end()) {
+		num_of_names--;
+		names.erase(it);
+	}
+    return num_of_names;
 }
 
 list<directoryElement*>* Inode::get_names(){
@@ -32,12 +45,17 @@ Inode::Inode(time_t d, int s, ino_t sr){
     size=s;
     num_of_names=0;
     serial=sr;
+	target = NULL;
 }
 
 //--------------------------------Directory Class Implementation------------------------------------//
 
 string directoryElement::get_name(){
     return name;
+}
+
+bool directoryElement::isDirectory(){
+    return (!isFile);
 }
 
 Inode* directoryElement::get_node(){
@@ -98,4 +116,21 @@ void directoryElement::printOutTreeBelow(int depth) {
 		}
 	
 	return;
+}
+
+Inode* iNodeMap::nodeWithID(ino_t theID) {
+	map<ino_t, Inode>::iterator it;
+	it = nodes.find(theID);
+	if (it == nodes.end()) return NULL;
+	return &(it->second);
+}
+
+void iNodeMap::deleteNode(Inode* theNode) {
+	nodes.erase(nodes.find(theNode->get_serial()));
+	return;
+}
+
+Inode* iNodeMap::addNode(Inode* newNode) {
+	pair<map<ino_t, Inode>::iterator,bool> res = nodes.insert(pair<ino_t,Inode>(newNode->get_serial(),*newNode));	
+	return &(res.first->second);
 }

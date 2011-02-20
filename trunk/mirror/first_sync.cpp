@@ -20,58 +20,28 @@ int getdir(string dir, list<string>& files){
     return 0;
 }
 
-directoryElement create_hierarchy(string filename, list<Inode>& ndlist){
+directoryElement create_hierarchy(string filename, iNodeMap& nodeMap){
 	directoryElement* tmp = NULL;
-	tmp = recurse_hierarchy(filename, string(""), ndlist);
+	tmp = recurse_hierarchy(filename, string(""), nodeMap);
 	directoryElement rv = *tmp;
 	delete tmp; tmp = NULL;
 	return rv;
 }
 
-directoryElement* recurse_hierarchy(string filename, string path, list<Inode>& ndlist){
+directoryElement* recurse_hierarchy(string filename, string path, iNodeMap& nodeMap){
     struct stat buffer;
     int retval;
 	directoryElement* hierarchyBelow = NULL;
-    Inode* node = NULL;
-	errno = 0;
+    Inode* tmpNode, *node = NULL;
     retval=lstat((path+filename).c_str(),&buffer);
     if (retval){
-		switch (errno) {
-			case EACCES:
-				cerr << "EACCES" << endl;
-				break;
-			case EFAULT:
-				cerr << "EFAULT" << endl;
-				break;
-			case EIO:
-				cerr << "EIO" << endl;
-				break;
-			case ELOOP:
-				cerr << "ELOOP" << endl;
-				break;
-			case ENAMETOOLONG:
-				cerr << "ENAMETOOLONG" << endl;
-				break;
-			case ENOENT:
-				cerr << "ENOENT" << endl;
-				break;
-			case ENOTDIR:
-				cerr << "ENOTDIR" << endl;
-				break;
-			case EOVERFLOW:
-				cerr << "EOVERFLOW" << endl;
-				break;
-			default:
-				break;
-		}
         cerr << "stat() failed on file " << filename << " (" << retval << ")." << endl;
         exit(-1);
     }
     else{
-        node=new Inode(buffer.st_mtime,buffer.st_size,buffer.st_ino);
-        ndlist.push_back(*node);
-        delete node;
-        node=&(ndlist.front());
+        tmpNode = new Inode(buffer.st_mtime,buffer.st_size,buffer.st_ino);
+        node = nodeMap.addNode(tmpNode);
+        delete tmpNode; tmpNode = NULL;
         if(S_ISDIR(buffer.st_mode)){
             directoryElement* dir = NULL;
             dir = new directoryElement(filename,node,false);
@@ -83,7 +53,7 @@ directoryElement* recurse_hierarchy(string filename, string path, list<Inode>& n
             }
 			for (list<string>::iterator it = files.begin(); it!=files.end(); it++){
 				directoryElement* subfolder = NULL;
-				subfolder = recurse_hierarchy(*it,path+filename+'/',ndlist);
+				subfolder = recurse_hierarchy(*it,path+filename+'/',nodeMap);
 				subfolder->set_parent(dir);
 				dir->set_element(subfolder);
 				delete subfolder; subfolder = NULL;

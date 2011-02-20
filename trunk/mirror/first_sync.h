@@ -10,14 +10,13 @@
 
 #include "generalHeaders.h"
 #include "rw_functions.h"
-#include <cerrno>
 
 using namespace std;
 
 bool compareDirectories (directoryElement first, directoryElement second);
 int getdir(string dir, list<string> &files);
-directoryElement create_hierarchy(string filename, list<Inode>& nodeList);
-directoryElement* recurse_hierarchy(string filename, string path, list<Inode>& ndlist);
+directoryElement create_hierarchy(string filename, iNodeMap& nodeMap);
+directoryElement* recurse_hierarchy(string filename, string path, iNodeMap& nodeMap);
 void performInitialSync (mirrorEntity source, mirrorEntity target);
 
 #endif	/* FIRST_SYNC_H */

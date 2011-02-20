@@ -19,6 +19,8 @@
 #include <time.h>
 #include <string>
 #include <list>
+#include <map>
+#include <algorithm>
 
 #include "objects.h"
 

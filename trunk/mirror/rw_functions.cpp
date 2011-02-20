@@ -9,3 +9,17 @@
 
 #include "rw_functions.h"
 
+bool unlinkElement(directoryElement* theElement, iNodeMap& nodeSet) {
+	if (theElement->isDirectory()) {
+		for (list<directoryElement>::iterator it = theElement->get_contents()->begin();it!=theElement->get_contents()->end();it++) {
+			unlinkElement(&(*it),nodeSet);
+		}
+		theElement->get_contents()->clear();
+		rmdir((theElement->getPathToElement()).c_str());
+	} else unlink((theElement->getPathToElement()).c_str());
+	
+	if (theElement->get_node()->remove_element(theElement) == 0)
+		nodeSet.deleteNode(theElement->get_node());
+	
+	return true;
+}
