@@ -25,11 +25,13 @@ private:
 public:
     int get_size();
     Inode* get_target();
+    void set_target(Inode* newTarget);
     time_t get_date();
 	ino_t get_serial();
     list<directoryElement*> *get_names();
     int get_num_of_names();
     void set_element(directoryElement* n);
+	directoryElement* get_an_element();
 	int remove_element(directoryElement* n);
     Inode(time_t d,int s, ino_t sr);
 };

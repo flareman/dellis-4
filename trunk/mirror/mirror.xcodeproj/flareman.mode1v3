@@ -271,7 +271,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>3</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -315,7 +315,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>objects.cpp</string>
+								<string>rw_functions.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,26 +323,28 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>objects.cpp</string>
+										<string>rw_functions.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>DC9F69D31311785A00D91619</string>
+										<string>DC9F6A2813119C2D00D91619</string>
 										<key>history</key>
 										<array>
-											<string>DCB4AB05130F28CB0004C7BF</string>
 											<string>DCEC997613113E9000E1060D</string>
 											<string>DCEC997713113E9000E1060D</string>
 											<string>DC9F694613116A5300D91619</string>
 											<string>DC9F697A1311714800D91619</string>
 											<string>DC9F699A131173BB00D91619</string>
-											<string>DC9F699B131173BB00D91619</string>
 											<string>DC9F699C131173BB00D91619</string>
-											<string>DC9F69BE1311750700D91619</string>
-											<string>DC9F69CF1311785A00D91619</string>
-											<string>DC9F69D01311785A00D91619</string>
-											<string>DC9F69D11311785A00D91619</string>
-											<string>DC9F69D21311785A00D91619</string>
+											<string>DC9F6A1713119AB000D91619</string>
+											<string>DC9F6A1813119AB000D91619</string>
+											<string>DC9F6A1B13119AB000D91619</string>
+											<string>DC9F6A1C13119AB000D91619</string>
+											<string>DC9F6A2213119C2D00D91619</string>
+											<string>DC9F6A2313119C2D00D91619</string>
+											<string>DC9F6A2513119C2D00D91619</string>
+											<string>DC9F6A2613119C2D00D91619</string>
+											<string>DC9F6A2713119C2D00D91619</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -569,7 +571,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>rw_functions.cpp</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
@@ -586,6 +588,8 @@
 							<string>308pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
