@@ -53,6 +53,7 @@ public:
 	directoryElement(string n, Inode* nd, bool isNewFile);
 	~directoryElement() {};
 	bool operator==(const directoryElement &x) const;
+	bool operator!=(const directoryElement &x) const;
     void set_node(Inode* n);
 	string getPathToElement();
 	void printOutTreeBelow();
