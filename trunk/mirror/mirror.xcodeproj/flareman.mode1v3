@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -271,7 +273,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>3</integer>
+									<integer>9</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -308,14 +310,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>objects.cpp</string>
+								<string>mirror.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,11 +323,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>objects.cpp</string>
+										<string>mirror.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>DC9F6B791311B6A100D91619</string>
+										<string>DC9F6BD61311BA3600D91619</string>
 										<key>history</key>
 										<array>
 											<string>DC9F694613116A5300D91619</string>
@@ -336,7 +336,6 @@
 											<string>DC9F6A2313119C2D00D91619</string>
 											<string>DC9F6A651311A9CC00D91619</string>
 											<string>DC9F6AD01311B22300D91619</string>
-											<string>DC9F6AD11311B22300D91619</string>
 											<string>DC9F6AD21311B22300D91619</string>
 											<string>DC9F6AD41311B22300D91619</string>
 											<string>DC9F6AD61311B22300D91619</string>
@@ -345,11 +344,12 @@
 											<string>DC9F6ADC1311B22300D91619</string>
 											<string>DC9F6ADD1311B22300D91619</string>
 											<string>DC9F6B191311B42800D91619</string>
-											<string>DC9F6B471311B5A400D91619</string>
 											<string>DC9F6B481311B5A400D91619</string>
-											<string>DC9F6B491311B5A400D91619</string>
-											<string>DC9F6B771311B6A100D91619</string>
-											<string>DC9F6B781311B6A100D91619</string>
+											<string>DC9F6BCA1311BA0000D91619</string>
+											<string>DC9F6BD21311BA3600D91619</string>
+											<string>DC9F6BD31311BA3600D91619</string>
+											<string>DC9F6BD41311BA3600D91619</string>
+											<string>DC9F6BD51311BA3600D91619</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -547,13 +547,14 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>DC9F6A8F1311AD7600D91619</string>
 		<string>DC9F69D41311785A00D91619</string>
 		<string>DC9F69D51311785A00D91619</string>
-		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>DC887EA9130C495C00CE8482</string>
 		<string>/Users/flareman/Documents/Dropbox/DI/3ο Έτος/ΛΣ/Άσκηση 4/mirror/mirror.xcodeproj</string>
+		<string>1C78EAAD065D492600B07095</string>
 	</array>
 	<key>WindowString</key>
 	<string>131 55 957 723 0 0 1280 778 </string>
@@ -790,14 +791,12 @@
 							<key>Dock</key>
 							<array>
 								<dict>
-									<key>BecomeActive</key>
-									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>objects.cpp</string>
+										<string>first_sync.cpp</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -818,6 +817,8 @@
 							<string>212pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -853,8 +854,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>DC9F692A131167CF00D91619</string>
-				<string>DC9F692B131167CF00D91619</string>
+				<string>DC9F6B7F1311B72900D91619</string>
+				<string>DC9F6B801311B72900D91619</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -929,7 +930,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C78EAAD065D492600B07095</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
