@@ -33,7 +33,8 @@ int main (int argc, char* argv[]) {
 	target.root = &targetTree;
 	source.nodes = sourceNodes;
 	target.nodes = targetNodes;
-		
+	performInitialSync(source, target);
+	
 	return 0;
 }
 
