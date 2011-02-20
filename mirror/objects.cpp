@@ -71,12 +71,34 @@ void directoryElement::set_parent(directoryElement* theParent){
 	return;
 }
 
+directoryElement* directoryElement::get_parent() {
+	return parent;
+}
+
 list<directoryElement>* directoryElement::get_contents(){
     return &contents;
 }
 
 void directoryElement::set_element(directoryElement* dir){
     contents.push_back(*dir);
+}
+
+void directoryElement::remove_element(directoryElement* theElement) {
+	list<directoryElement>::iterator it = find(contents.begin(), contents.end(), *theElement);
+	if (it != contents.end()) {
+		contents.erase(it);
+	}
+    return;	
+}
+
+bool directoryElement::operator==(const directoryElement &x) const {
+    if (name != x.name) return false;
+    if (node != x.node) return false;
+    if (isFile != x.isFile) return false;
+    if (contents != x.contents) return false;
+	if (parent != x.parent) return false;
+	
+	return true;
 }
 
 directoryElement::directoryElement(string n, Inode* nd, bool isNewFile){
