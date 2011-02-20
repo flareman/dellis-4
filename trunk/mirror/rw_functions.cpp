@@ -12,12 +12,9 @@
 bool unlinkElement(directoryElement* theElement, iNodeMap& nodeSet) {
 	if (theElement->get_parent() == NULL) return false;
 	
-	if (theElement->isDirectory()) {
-		for (list<directoryElement>::iterator it = theElement->get_contents()->begin();it!=theElement->get_contents()->end();it++) {
+	if (theElement->isDirectory())
+		for (list<directoryElement>::iterator it = theElement->get_contents()->begin();it!=theElement->get_contents()->end();it++)
 			unlinkElement(&(*it),nodeSet);
-		}
-		theElement->get_contents()->clear();
-	}
 	
 	remove((theElement->getPathToElement()).c_str());
 	
