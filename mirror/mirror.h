@@ -9,6 +9,7 @@
 
 #include "generalHeaders.h"
 #include "first_sync.h"
+#include "rw_functions.h"
 
 using namespace std;
 
