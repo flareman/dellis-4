@@ -19,8 +19,12 @@ ino_t Inode::get_serial(){
 }
 
 void Inode::set_element(directoryElement* n){
-    names.push_back(n);
+    names.push_front(n);
     num_of_names++;
+}
+
+directoryElement* Inode::get_an_element() {
+	return names.front();
 }
 
 int Inode::remove_element(directoryElement* n){
@@ -38,6 +42,10 @@ list<directoryElement*>* Inode::get_names(){
 
 Inode* Inode::get_target(){
     return target;
+}
+
+void Inode::set_target(Inode* newTarget) {
+	target = newTarget;
 }
 
 Inode::Inode(time_t d, int s, ino_t sr){
@@ -80,7 +88,7 @@ list<directoryElement>* directoryElement::get_contents(){
 }
 
 void directoryElement::set_element(directoryElement* dir){
-    contents.push_back(*dir);
+    contents.push_front(*dir);
 }
 
 void directoryElement::remove_element(directoryElement* theElement) {
