@@ -26,13 +26,13 @@ public:
     int get_size();
     Inode* get_target();
     time_t get_date();
+	ino_t get_serial();
     list<directoryElement*> *get_names();
     int get_num_of_names();
     void set_element(directoryElement* n);
+	int remove_element(directoryElement* n);
     Inode(time_t d,int s, ino_t sr);
 };
-
-typedef list<Inode> iNodeList;
 
 class directoryElement{
 private:
@@ -44,19 +44,32 @@ private:
 public:
     string get_name();
     Inode* get_node();
+	bool isDirectory();
 	void set_parent(directoryElement* theParent);
     list<directoryElement>* get_contents();
     void set_element(directoryElement*);
 	directoryElement(string n, Inode* nd, bool isNewFile);
+	~directoryElement() {};
     void set_node(Inode* n);
 	string getPathToElement();
 	void printOutTreeBelow();
 	void printOutTreeBelow(int depth);
 };
 
+class iNodeMap {
+private:
+	map<ino_t,Inode> nodes;
+public:
+	iNodeMap() {};
+	~iNodeMap() { nodes.clear(); };
+	Inode* nodeWithID(ino_t theID);
+	void deleteNode(Inode* theNode);
+	Inode* addNode(Inode* newNode);
+};
+
 typedef struct mirrorEntityStruct {
 	directoryElement* root;
-	iNodeList nodes;
+	iNodeMap nodes;
 } mirrorEntity;
 
 #endif	/* OBJECTS_H */
