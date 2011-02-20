@@ -72,28 +72,51 @@ directoryElement* recurse_hierarchy(string filename, string path, iNodeMap& node
 }
 
 void performInitialSync (mirrorEntity source, mirrorEntity target) {
-	list<directoryElement>* sourceList = NULL, *targetList = NULL;
-	list<directoryElement>::iterator its, itt;
-	sourceList = source.root->get_contents();
-	targetList = target.root->get_contents();
-	its = sourceList->begin(); itt = targetList->begin();
+	recursiveSync(source.root, target.root, target.nodes);
+	
+	return;
+}
 
+void recursiveSync (directoryElement* source, directoryElement* target, iNodeMap& targetNodes) {
+	list<directoryElement>::iterator its, itt;
+	list<directoryElement>* sourceList = NULL, *targetList = NULL;
+	sourceList = source->get_contents();
+	targetList = target->get_contents();
+	its = sourceList->begin(); itt = targetList->begin();
+	
 	while (1) {
 		if ((its == sourceList->end()) && (itt == targetList->end())) break;
-		if (its == sourceList->end()) {itt++; continue;}
-		if (itt == targetList->end()) {its++; continue;}
+		if (its == sourceList->end()) {
+			unlinkElement(&(*itt), targetNodes, true);
+			itt++; continue;
+		}
+		if (itt == targetList->end()) {
+			createElement(&(*its), target, (*its).get_name(), &targetNodes);
+			its++; continue;
+		}
 		if ((*itt).get_name() < (*its).get_name()) {
-			// Element is reduntant; needs removal
+			unlinkElement(&(*itt), targetNodes, true);
+			continue;
 		} else {
 			if ((*itt).get_name() == (*its).get_name()) {
-				// Same filename; do checks
+				if ((*its).isDirectory() != (*itt).isDirectory()) {
+					unlinkElement(&(*itt), targetNodes, true);
+					createElement(&(*its), target, (*its).get_name(), &targetNodes);
+				} else {
+					if ((*its).isDirectory()) {
+						recursiveSync(&(*its),&(*itt),targetNodes);
+					} else {
+						if (((*its).get_node()->get_size() != (*itt).get_node()->get_size()) || ((*its).get_node()->get_date() > (*itt).get_node()->get_date())) {
+							unlinkElement(&(*itt), targetNodes, true);
+							createElement(&(*its), target, (*its).get_name(), &targetNodes);
+						}
+					}
+				}
 			} else {
-				// Element does not exist in target; replicate
+				createElement(&(*its), target, (*its).get_name(), &targetNodes);
+				continue;
 			}
-
 		}
 		its++; itt++;
 	}
-	
-	return;
 }

@@ -28,13 +28,12 @@ int main (int argc, char* argv[]) {
 	iNodeMap sourceNodes, targetNodes;
 	directoryElement sourceTree = create_hierarchy(string(argv[1]), sourceNodes);
 	directoryElement targetTree = create_hierarchy(string(argv[2]), sourceNodes);
-	
-	cout << "SOURCE:" << endl;
-	sourceTree.printOutTreeBelow();
-	cout << endl;
-	cout << "TARGET:" << endl;
-	targetTree.printOutTreeBelow();
-	
+	mirrorEntity source; mirrorEntity target;
+	source.root = &sourceTree;
+	target.root = &targetTree;
+	source.nodes = sourceNodes;
+	target.nodes = targetNodes;
+		
 	return 0;
 }
 
