@@ -108,7 +108,7 @@ bool createElement(directoryElement* theElement, directoryElement* destination, 
 	} else newElement = theElement;
 	
 	destination->set_element(newElement);
-	delete newElement; newElement = NULL;
+//	delete newElement; newElement = NULL;
 	
 	return true;
 }
