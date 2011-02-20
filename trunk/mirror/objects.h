@@ -44,12 +44,15 @@ private:
 public:
     string get_name();
     Inode* get_node();
+    directoryElement* get_parent();
 	bool isDirectory();
 	void set_parent(directoryElement* theParent);
     list<directoryElement>* get_contents();
-    void set_element(directoryElement*);
+    void set_element(directoryElement* newElement);
+	void remove_element(directoryElement* theElement);
 	directoryElement(string n, Inode* nd, bool isNewFile);
 	~directoryElement() {};
+	bool operator==(const directoryElement &x) const;
     void set_node(Inode* n);
 	string getPathToElement();
 	void printOutTreeBelow();
