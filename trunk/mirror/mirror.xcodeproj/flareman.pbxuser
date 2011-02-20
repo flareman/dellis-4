@@ -1,6 +1,7 @@
 // !$*UTF8*$!
 {
 	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeArchitecturePreference = x86_64;
 		activeBuildConfigurationName = Debug;
 		activeExecutable = DCB4AAB0130F07A80004C7BF /* mirror */;
 		activeTarget = 8DD76F620486A84900D96B5E /* mirror */;
@@ -151,6 +152,11 @@
 			DC9F69BE1311750700D91619 /* PBXTextBookmark */ = DC9F69BE1311750700D91619 /* PBXTextBookmark */;
 			DC9F69BF1311750700D91619 /* PBXTextBookmark */ = DC9F69BF1311750700D91619 /* PBXTextBookmark */;
 			DC9F69C01311750700D91619 /* PBXTextBookmark */ = DC9F69C01311750700D91619 /* PBXTextBookmark */;
+			DC9F69CF1311785A00D91619 /* PBXTextBookmark */ = DC9F69CF1311785A00D91619 /* PBXTextBookmark */;
+			DC9F69D01311785A00D91619 /* PBXTextBookmark */ = DC9F69D01311785A00D91619 /* PBXTextBookmark */;
+			DC9F69D11311785A00D91619 /* PBXTextBookmark */ = DC9F69D11311785A00D91619 /* PBXTextBookmark */;
+			DC9F69D21311785A00D91619 /* PBXTextBookmark */ = DC9F69D21311785A00D91619 /* PBXTextBookmark */;
+			DC9F69D31311785A00D91619 /* PBXTextBookmark */ = DC9F69D31311785A00D91619 /* PBXTextBookmark */;
 			DCB4AB05130F28CB0004C7BF = DCB4AB05130F28CB0004C7BF /* PBXTextBookmark */;
 			DCEC997613113E9000E1060D = DCEC997613113E9000E1060D /* PBXTextBookmark */;
 			DCEC997713113E9000E1060D = DCEC997713113E9000E1060D /* PBXTextBookmark */;
@@ -175,9 +181,9 @@
 	};
 	DC22B7BE13102B190057F173 /* rw_functions.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {922, 480}}";
-			sepNavSelRange = "{526, 0}";
-			sepNavVisRange = "{3, 868}";
+			sepNavIntBoundsRect = "{{0, 0}, {922, 645}}";
+			sepNavSelRange = "{364, 0}";
+			sepNavVisRange = "{0, 871}";
 		};
 	};
 	DC22B7C013102B2B0057F173 /* generalHeaders.h */ = {
@@ -196,9 +202,9 @@
 	};
 	DC3D9BA2130E962400A85AE2 /* first_sync.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {688, 1648}}";
+			sepNavIntBoundsRect = "{{0, 0}, {688, 1632}}";
 			sepNavSelRange = "{762, 0}";
-			sepNavVisRange = "{0, 833}";
+			sepNavVisRange = "{0, 1226}";
 			sepNavWindowFrame = "{{65, 0}, {1002, 778}}";
 		};
 	};
@@ -211,16 +217,16 @@
 	};
 	DC4BEC01130C613C00BED0F7 /* objects.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {824, 2496}}";
-			sepNavSelRange = "{1641, 0}";
-			sepNavVisRange = "{2663, 746}";
+			sepNavIntBoundsRect = "{{0, 0}, {726, 2624}}";
+			sepNavSelRange = "{2062, 0}";
+			sepNavVisRange = "{1370, 1000}";
 		};
 	};
 	DC4BEC02130C613C00BED0F7 /* objects.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {688, 1248}}";
-			sepNavSelRange = "{797, 0}";
-			sepNavVisRange = "{524, 835}";
+			sepNavIntBoundsRect = "{{0, 0}, {688, 1280}}";
+			sepNavSelRange = "{1251, 0}";
+			sepNavVisRange = "{316, 1112}";
 			sepNavWindowFrame = "{{67, 0}, {1002, 778}}";
 		};
 	};
@@ -397,6 +403,56 @@
 		rType = 0;
 		vrLen = 868;
 		vrLoc = 3;
+	};
+	DC9F69CF1311785A00D91619 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DC3D9BA2130E962400A85AE2 /* first_sync.cpp */;
+		name = "first_sync.cpp: 25";
+		rLen = 0;
+		rLoc = 762;
+		rType = 0;
+		vrLen = 1226;
+		vrLoc = 0;
+	};
+	DC9F69D01311785A00D91619 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DC22B7BE13102B190057F173 /* rw_functions.cpp */;
+		name = "rw_functions.cpp: 16";
+		rLen = 0;
+		rLoc = 364;
+		rType = 0;
+		vrLen = 871;
+		vrLoc = 0;
+	};
+	DC9F69D11311785A00D91619 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DC4BEC02130C613C00BED0F7 /* objects.h */;
+		name = "objects.h: 56";
+		rLen = 0;
+		rLoc = 1251;
+		rType = 0;
+		vrLen = 1112;
+		vrLoc = 316;
+	};
+	DC9F69D21311785A00D91619 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DC4BEC01130C613C00BED0F7 /* objects.cpp */;
+		name = "objects.cpp: 103";
+		rLen = 69;
+		rLoc = 2064;
+		rType = 0;
+		vrLen = 1000;
+		vrLoc = 1370;
+	};
+	DC9F69D31311785A00D91619 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DC4BEC01130C613C00BED0F7 /* objects.cpp */;
+		name = "objects.cpp: 101";
+		rLen = 0;
+		rLoc = 2062;
+		rType = 0;
+		vrLen = 1000;
+		vrLoc = 1370;
 	};
 	DCB4AAB0130F07A80004C7BF /* mirror */ = {
 		isa = PBXExecutable;
