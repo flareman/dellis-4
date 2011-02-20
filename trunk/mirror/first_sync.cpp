@@ -34,7 +34,7 @@ directoryElement* recurse_hierarchy(string filename, string path, list<Inode>& n
 	directoryElement* hierarchyBelow = NULL;
     Inode* node = NULL;
 	errno = 0;
-    retval=lstat(filename.c_str(),&buffer);
+    retval=lstat((path+filename).c_str(),&buffer);
     if (retval){
 		switch (errno) {
 			case EACCES:
@@ -77,13 +77,13 @@ directoryElement* recurse_hierarchy(string filename, string path, list<Inode>& n
             dir = new directoryElement(filename,node,false);
 			node->set_element(dir);
             list<string> files = list<string>();
-            retval=getdir(filename,files);
+            retval=getdir(path+filename,files);
             if(retval!=0){
                 exit(-1);
             }
 			for (list<string>::iterator it = files.begin(); it!=files.end(); it++){
 				directoryElement* subfolder = NULL;
-				subfolder = recurse_hierarchy(*it,path+'/',ndlist);
+				subfolder = recurse_hierarchy(*it,path+filename+'/',ndlist);
 				subfolder->set_parent(dir);
 				dir->set_element(subfolder);
 				delete subfolder; subfolder = NULL;
