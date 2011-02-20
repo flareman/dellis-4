@@ -128,7 +128,7 @@ string directoryElement::getPathToElement() {
 }
 
 void directoryElement::printOutTreeBelow() {
-	cout << name << endl;
+	cout << getPathToElement() << endl;
 	if (!isFile)
 		for (list<directoryElement>::iterator it = contents.begin(); it != contents.end(); it++)
 		{
@@ -140,7 +140,7 @@ void directoryElement::printOutTreeBelow() {
 }
 
 void directoryElement::printOutTreeBelow(int depth) {
-	cout << name << endl;
+	cout << getPathToElement() << endl;
 	if (!isFile)
 		for (list<directoryElement>::iterator it = contents.begin(); it != contents.end(); it++)
 		{
