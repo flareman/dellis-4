@@ -11,6 +11,7 @@
 #define _GENERAL_HEADERS
 
 #include <iostream>
+#include <stdio.h>
 #include <cstdlib>
 #include <dirent.h>
 #include <sys/stat.h>
