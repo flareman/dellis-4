@@ -56,7 +56,7 @@ directoryElement* recurse_hierarchy(string filename, string path, iNodeMap& node
 				subfolder = recurse_hierarchy(*it,path+filename+'/',nodeMap);
 				subfolder->set_parent(dir);
 				dir->set_element(subfolder);
-				delete subfolder; subfolder = NULL;
+//				delete subfolder; subfolder = NULL;
             }
             dir->get_contents()->sort(compareDirectories);
 			hierarchyBelow = dir;
