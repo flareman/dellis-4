@@ -34,12 +34,10 @@ int copyFile(string initialFilePath, string outputFilePath){
 	return 0;
 }
 
-bool unlinkElement(directoryElement* theElement, iNodeMap& nodeSet, bool commitRemove) {
-	if (theElement->get_parent() == NULL) return false;
-	
+list<directoryElement*>::iterator unlinkElement(directoryElement* theElement, iNodeMap& nodeSet, bool commitRemove) {
 	if (theElement->isDirectory())
 		for (list<directoryElement*>::iterator it = theElement->get_contents()->begin();it!=theElement->get_contents()->end();it++)
-			unlinkElement((*it), nodeSet, commitRemove);
+			it = unlinkElement((*it), nodeSet, commitRemove);
 	
 	if ((commitRemove) && (remove((theElement->getPathToElement()).c_str()))) {
 		cerr << "Could not remove " << theElement->get_name() << endl;
@@ -49,9 +47,7 @@ bool unlinkElement(directoryElement* theElement, iNodeMap& nodeSet, bool commitR
 	if (theElement->get_node()->remove_element(theElement) == 0)
 		nodeSet.deleteNode(theElement->get_node());
 	
-	theElement->get_parent()->remove_element(theElement);
-	
-	return true;
+	return theElement->get_parent()->remove_element(theElement);
 }
 
 bool createElement(directoryElement* theElement, directoryElement* destination, string newName, iNodeMap* destNodeMap) {

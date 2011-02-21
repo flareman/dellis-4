@@ -14,7 +14,7 @@
 
 using namespace std;
 
-bool unlinkElement(directoryElement* theElement, iNodeMap& nodeSet, bool commitRemove);
+list<directoryElement*>::iterator unlinkElement(directoryElement* theElement, iNodeMap& nodeSet, bool commitRemove);
 bool createElement(directoryElement* theElement, directoryElement* destination, string newName, iNodeMap* destNodeMap);
 int copyFile(string initialFilePath, string outputFilePath);
 
