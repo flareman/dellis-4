@@ -51,7 +51,7 @@ public:
 	void set_parent(directoryElement* theParent);
     list<directoryElement*>* get_contents();
     directoryElement* set_element(directoryElement* newElement);
-	void remove_element(directoryElement* theElement);
+	list<directoryElement*>::iterator remove_element(directoryElement* theElement);
 	directoryElement(string n, Inode* nd, bool isNewFile);
 	~directoryElement();
 	bool operator==(const directoryElement &x) const;

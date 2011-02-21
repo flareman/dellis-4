@@ -92,13 +92,12 @@ directoryElement* directoryElement::set_element(directoryElement* dir){
 	return contents.front();
 }
 
-void directoryElement::remove_element(directoryElement* theElement) {
+list<directoryElement*>::iterator directoryElement::remove_element(directoryElement* theElement) {
 	list<directoryElement*>::iterator it = find(contents.begin(), contents.end(), theElement);
 	if (it != contents.end()) {
 		delete (*it);
-		contents.erase(it);
-	}
-    return;	
+		return contents.erase(it);
+	} else return contents.end();
 }
 
 bool directoryElement::operator==(const directoryElement &x) const {

@@ -79,35 +79,37 @@ void recursiveSync (directoryElement* source, directoryElement* target, iNodeMap
 		if ((its == sourceList->end()) && (itt == targetList->end())) break;
 		if (its == sourceList->end()) {
 			unlinkElement((*itt), targetNodes, true);
-			itt++; continue;
+			continue;
 		}
 		if (itt == targetList->end()) {
 			createElement((*its), target, (*its)->get_name(), &targetNodes);
 			its++; continue;
 		}
 		if ((*itt)->get_name() < (*its)->get_name()) {
-			unlinkElement((*itt), targetNodes, true);
-			continue;
+			itt = unlinkElement((*itt), targetNodes, true);
 		} else {
 			if ((*itt)->get_name() == (*its)->get_name()) {
 				if ((*its)->isDirectory() != (*itt)->isDirectory()) {
-					unlinkElement((*itt), targetNodes, true);
+					itt = unlinkElement((*itt), targetNodes, true);
 					createElement((*its), target, (*its)->get_name(), &targetNodes);
+					its++;
 				} else {
 					if ((*its)->isDirectory()) {
 						recursiveSync((*its),(*itt),targetNodes);
 					} else {
 						if (((*its)->get_node()->get_size() != (*itt)->get_node()->get_size()) || ((*its)->get_node()->get_date() > (*itt)->get_node()->get_date())) {
-							unlinkElement((*itt), targetNodes, true);
+							itt = unlinkElement((*itt), targetNodes, true);
 							createElement((*its), target, (*its)->get_name(), &targetNodes);
+							its++;
+						} else {
+							itt++; its++;
 						}
 					}
 				}
 			} else {
 				createElement((*its), target, (*its)->get_name(), &targetNodes);
-				continue;
+				its++;
 			}
 		}
-		its++; itt++;
 	}
 }
