@@ -29,6 +29,8 @@ int main (int argc, char* argv[]) {
 	source.root = recurse_hierarchy(string(argv[1]), string(""), source.nodes);
 	target.root = recurse_hierarchy(string(argv[2]), string(""), target.nodes);
 	performInitialSync(source, target);
+	delete source.root;
+	delete target.root;
 	
 	return 0;
 }

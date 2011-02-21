@@ -96,6 +96,7 @@ list<directoryElement*>::iterator directoryElement::remove_element(directoryElem
 	list<directoryElement*>::iterator it = find(contents.begin(), contents.end(), theElement);
 	if (it != contents.end()) {
 		delete (*it);
+		*it = NULL;
 		return contents.erase(it);
 	} else return contents.end();
 }
