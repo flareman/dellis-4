@@ -10,12 +10,11 @@
 #include "mirror.h"
 
 int main (int argc, char* argv[]) {
-        argc=3;
 	if (argc < 3) {
 		cerr << "Error: syntax is mirror <source> <target>" << endl;
 		exit(1);
 	}
-        argv[1]="a";argv[2]="b";
+
 	if (!isDirectory(argv[1])) {
 		cerr << "Error: specified source \"" << argv[1] << "\" is not a valid directory." << endl;
 		exit(1);
@@ -25,17 +24,23 @@ int main (int argc, char* argv[]) {
 		cerr << "Error: specified target \"" << argv[1] << "\" is not a valid directory." << endl;
 		exit(1);
 	}
-        cout << "Creating file hierarchy structure..." ;
+	
+	cout << "Creating file hierarchy structure...";
+	
 	mirrorEntity source; mirrorEntity target;
 	source.root = recurse_hierarchy(string(argv[1]), string(""), source.nodes);
 	target.root = recurse_hierarchy(string(argv[2]), string(""), target.nodes);
-        cout << "Done." << endl;
-        cout << "Performing initial syncing of files(DO NOT alter any files in the source directory until done)...";
+	cout << "Hierarchies prepared." << endl;
+	
+	cout << "Performing initial syncing of files now." << endl;
+	cout << "DO NOT alter any files in the source directory until done!" << endl;
 	performInitialSync(source, target);
-        cout << "Done." << endl;
+	cout << "Sync complete." << endl;
+	
 	delete source.root;
 	delete target.root;
-        cout << "Mirror Process finished execution" << endl;
+
+	cout << "Mirror process complete." << endl;
 	return 0;
 }
 
