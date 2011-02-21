@@ -41,7 +41,7 @@ private:
     string name;
     Inode* node;
     bool isFile;
-    list<directoryElement> contents;
+    list<directoryElement*> contents;
 	directoryElement* parent;
 public:
     string get_name();
@@ -49,11 +49,11 @@ public:
     directoryElement* get_parent();
 	bool isDirectory();
 	void set_parent(directoryElement* theParent);
-    list<directoryElement>* get_contents();
-    void set_element(directoryElement* newElement);
+    list<directoryElement*>* get_contents();
+    directoryElement* set_element(directoryElement* newElement);
 	void remove_element(directoryElement* theElement);
 	directoryElement(string n, Inode* nd, bool isNewFile);
-	~directoryElement() {};
+	~directoryElement();
 	bool operator==(const directoryElement &x) const;
 	bool operator!=(const directoryElement &x) const;
     void set_node(Inode* n);

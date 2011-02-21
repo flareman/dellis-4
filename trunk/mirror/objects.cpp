@@ -83,17 +83,19 @@ directoryElement* directoryElement::get_parent() {
 	return parent;
 }
 
-list<directoryElement>* directoryElement::get_contents(){
+list<directoryElement*>* directoryElement::get_contents(){
     return &contents;
 }
 
-void directoryElement::set_element(directoryElement* dir){
-    contents.push_front(*dir);
+directoryElement* directoryElement::set_element(directoryElement* dir){
+    contents.push_front(dir);
+	return contents.front();
 }
 
 void directoryElement::remove_element(directoryElement* theElement) {
-	list<directoryElement>::iterator it = find(contents.begin(), contents.end(), *theElement);
+	list<directoryElement*>::iterator it = find(contents.begin(), contents.end(), theElement);
 	if (it != contents.end()) {
+		delete (*it);
 		contents.erase(it);
 	}
     return;	
@@ -119,6 +121,14 @@ directoryElement::directoryElement(string n, Inode* nd, bool isNewFile){
 	parent = NULL;
 }
 
+directoryElement::~directoryElement() {
+	for (list<directoryElement*>::iterator it = contents.begin(); it != contents.end(); it++) {
+		delete (*it);
+		*it = NULL;
+	}
+	contents.clear();
+}
+
 string directoryElement::getPathToElement() {
 	string parentPath;
 	if (parent == NULL) parentPath = string("");
@@ -130,10 +140,10 @@ string directoryElement::getPathToElement() {
 void directoryElement::printOutTreeBelow() {
 	cout << getPathToElement() << endl;
 	if (!isFile)
-		for (list<directoryElement>::iterator it = contents.begin(); it != contents.end(); it++)
+		for (list<directoryElement*>::iterator it = contents.begin(); it != contents.end(); it++)
 		{
 			cout << "|";
-			(*it).printOutTreeBelow(2);
+			(*it)->printOutTreeBelow(2);
 		}
 	
 	return;
@@ -142,10 +152,10 @@ void directoryElement::printOutTreeBelow() {
 void directoryElement::printOutTreeBelow(int depth) {
 	cout << getPathToElement() << endl;
 	if (!isFile)
-		for (list<directoryElement>::iterator it = contents.begin(); it != contents.end(); it++)
+		for (list<directoryElement*>::iterator it = contents.begin(); it != contents.end(); it++)
 		{
 			for (int i = 0; i < depth; i++) cout << "|";
-			(*it).printOutTreeBelow(depth+1);
+			(*it)->printOutTreeBelow(depth+1);
 		}
 	
 	return;

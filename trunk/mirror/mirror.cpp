@@ -25,17 +25,9 @@ int main (int argc, char* argv[]) {
 		exit(1);
 	}
 	
-	iNodeMap sourceNodes, targetNodes;
-	directoryElement sourceTree = create_hierarchy(string(argv[1]), sourceNodes);
-	directoryElement targetTree = create_hierarchy(string(argv[2]), sourceNodes);
 	mirrorEntity source; mirrorEntity target;
-	source.root = &sourceTree;	
-	target.root = &targetTree;
-//	source.root = recurse_hierarchy(string(argv[1]), string(""), sourceNodes);
-//	target.root = recurse_hierarchy(string(argv[2]), string(""), targetNodes);
-	
-	source.nodes = sourceNodes;
-	target.nodes = targetNodes;
+	source.root = recurse_hierarchy(string(argv[1]), string(""), source.nodes);
+	target.root = recurse_hierarchy(string(argv[2]), string(""), target.nodes);
 	performInitialSync(source, target);
 	
 	return 0;
