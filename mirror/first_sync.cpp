@@ -1,7 +1,7 @@
 #include "first_sync.h"
 
-bool compareDirectories (directoryElement first, directoryElement second) {
-	if (first.get_name()<second.get_name()) return true;
+bool compareDirectories (directoryElement* first, directoryElement* second) {
+	if (first->get_name()<second->get_name()) return true;
 	else return false;
 }
 
@@ -20,19 +20,11 @@ int getdir(string dir, list<string>& files){
     return 0;
 }
 
-directoryElement create_hierarchy(string filename, iNodeMap& nodeMap){
-	directoryElement* tmp = NULL;
-	tmp = recurse_hierarchy(filename, string(""), nodeMap);
-	directoryElement rv = *tmp;
-	delete tmp; tmp = NULL;
-	return rv;
-}
-
 directoryElement* recurse_hierarchy(string filename, string path, iNodeMap& nodeMap){
     struct stat buffer;
     int retval;
 	directoryElement* hierarchyBelow = NULL;
-    Inode* tmpNode, *node = NULL;
+    Inode* tmpNode = NULL, *node = NULL;
     retval=lstat((path+filename).c_str(),&buffer);
     if (retval){
         cerr << "stat() failed on file " << filename << " (" << retval << ")." << endl;
@@ -56,7 +48,6 @@ directoryElement* recurse_hierarchy(string filename, string path, iNodeMap& node
 				subfolder = recurse_hierarchy(*it,path+filename+'/',nodeMap);
 				subfolder->set_parent(dir);
 				dir->set_element(subfolder);
-				delete subfolder; subfolder = NULL;
             }
             dir->get_contents()->sort(compareDirectories);
 			hierarchyBelow = dir;
@@ -78,8 +69,8 @@ void performInitialSync (mirrorEntity source, mirrorEntity target) {
 }
 
 void recursiveSync (directoryElement* source, directoryElement* target, iNodeMap& targetNodes) {
-	list<directoryElement>::iterator its, itt;
-	list<directoryElement>* sourceList = NULL, *targetList = NULL;
+	list<directoryElement*>::iterator its, itt;
+	list<directoryElement*>* sourceList = NULL, *targetList = NULL;
 	sourceList = source->get_contents();
 	targetList = target->get_contents();
 	its = sourceList->begin(); itt = targetList->begin();
@@ -87,33 +78,33 @@ void recursiveSync (directoryElement* source, directoryElement* target, iNodeMap
 	while (1) {
 		if ((its == sourceList->end()) && (itt == targetList->end())) break;
 		if (its == sourceList->end()) {
-			unlinkElement(&(*itt), targetNodes, true);
+			unlinkElement((*itt), targetNodes, true);
 			itt++; continue;
 		}
 		if (itt == targetList->end()) {
-			createElement(&(*its), target, (*its).get_name(), &targetNodes);
+			createElement((*its), target, (*its)->get_name(), &targetNodes);
 			its++; continue;
 		}
-		if ((*itt).get_name() < (*its).get_name()) {
-			unlinkElement(&(*itt), targetNodes, true);
+		if ((*itt)->get_name() < (*its)->get_name()) {
+			unlinkElement((*itt), targetNodes, true);
 			continue;
 		} else {
-			if ((*itt).get_name() == (*its).get_name()) {
-				if ((*its).isDirectory() != (*itt).isDirectory()) {
-					unlinkElement(&(*itt), targetNodes, true);
-					createElement(&(*its), target, (*its).get_name(), &targetNodes);
+			if ((*itt)->get_name() == (*its)->get_name()) {
+				if ((*its)->isDirectory() != (*itt)->isDirectory()) {
+					unlinkElement((*itt), targetNodes, true);
+					createElement((*its), target, (*its)->get_name(), &targetNodes);
 				} else {
-					if ((*its).isDirectory()) {
-						recursiveSync(&(*its),&(*itt),targetNodes);
+					if ((*its)->isDirectory()) {
+						recursiveSync((*its),(*itt),targetNodes);
 					} else {
-						if (((*its).get_node()->get_size() != (*itt).get_node()->get_size()) || ((*its).get_node()->get_date() > (*itt).get_node()->get_date())) {
-							unlinkElement(&(*itt), targetNodes, true);
-							createElement(&(*its), target, (*its).get_name(), &targetNodes);
+						if (((*its)->get_node()->get_size() != (*itt)->get_node()->get_size()) || ((*its)->get_node()->get_date() > (*itt)->get_node()->get_date())) {
+							unlinkElement((*itt), targetNodes, true);
+							createElement((*its), target, (*its)->get_name(), &targetNodes);
 						}
 					}
 				}
 			} else {
-				createElement(&(*its), target, (*its).get_name(), &targetNodes);
+				createElement((*its), target, (*its)->get_name(), &targetNodes);
 				continue;
 			}
 		}

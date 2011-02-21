@@ -38,8 +38,8 @@ bool unlinkElement(directoryElement* theElement, iNodeMap& nodeSet, bool commitR
 	if (theElement->get_parent() == NULL) return false;
 	
 	if (theElement->isDirectory())
-		for (list<directoryElement>::iterator it = theElement->get_contents()->begin();it!=theElement->get_contents()->end();it++)
-			unlinkElement(&(*it), nodeSet, commitRemove);
+		for (list<directoryElement*>::iterator it = theElement->get_contents()->begin();it!=theElement->get_contents()->end();it++)
+			unlinkElement((*it), nodeSet, commitRemove);
 	
 	if ((commitRemove) && (remove((theElement->getPathToElement()).c_str()))) {
 		cerr << "Could not remove " << theElement->get_name() << endl;
@@ -80,8 +80,8 @@ bool createElement(directoryElement* theElement, directoryElement* destination, 
             newElement = new directoryElement(theElement->get_name(),node,false);
 			node->set_element(newElement);
 			newElement->set_parent(destination);
-			for (list<directoryElement>::iterator it = theElement->get_contents()->begin();it!=theElement->get_contents()->end();it++)
-				createElement(&(*it), newElement, (*it).get_name(), destNodeMap);
+			for (list<directoryElement*>::iterator it = theElement->get_contents()->begin();it!=theElement->get_contents()->end();it++)
+				createElement((*it), newElement, (*it)->get_name(), destNodeMap);
 		} else {
 			if ((node = theElement->get_node()->get_target()) != NULL) {
 				newElement = new directoryElement(newName,node,true);
@@ -110,7 +110,6 @@ bool createElement(directoryElement* theElement, directoryElement* destination, 
 	} else newElement = theElement;
 	
 	destination->set_element(newElement);
-	delete newElement; newElement = NULL;
 	
 	return true;
 }
