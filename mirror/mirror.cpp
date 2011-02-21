@@ -33,7 +33,6 @@ int main (int argc, char* argv[]) {
         cout << "Performing initial syncing of files(DO NOT alter any files in the source directory until done)...";
 	performInitialSync(source, target);
         cout << "Done." << endl;
-        cout <<
 	delete source.root;
 	delete target.root;
         cout << "Mirror Process finished execution" << endl;
