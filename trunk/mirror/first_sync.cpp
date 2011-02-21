@@ -78,7 +78,7 @@ void recursiveSync (directoryElement* source, directoryElement* target, iNodeMap
 	while (1) {
 		if ((its == sourceList->end()) && (itt == targetList->end())) break;
 		if (its == sourceList->end()) {
-			unlinkElement((*itt), targetNodes, true);
+			itt = unlinkElement((*itt), targetNodes, true);
 			continue;
 		}
 		if (itt == targetList->end()) {
@@ -96,6 +96,7 @@ void recursiveSync (directoryElement* source, directoryElement* target, iNodeMap
 				} else {
 					if ((*its)->isDirectory()) {
 						recursiveSync((*its),(*itt),targetNodes);
+						its++; itt++;
 					} else {
 						if (((*its)->get_node()->get_size() != (*itt)->get_node()->get_size()) || ((*its)->get_node()->get_date() > (*itt)->get_node()->get_date())) {
 							itt = unlinkElement((*itt), targetNodes, true);
