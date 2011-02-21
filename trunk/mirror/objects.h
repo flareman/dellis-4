@@ -16,47 +16,47 @@ class directoryElement;
 
 class Inode{
 private:
-    ino_t serial;
-    time_t last_change;
-    int size;
-    list<directoryElement*> names;
-    int num_of_names;
-    Inode* target;
+	ino_t serial;
+	time_t last_change;
+	int size;
+	list<directoryElement*> names;
+	int num_of_names;
+	Inode* target;
 public:
-    int get_size();
-    Inode* get_target();
-    void set_target(Inode* newTarget);
-    time_t get_date();
+	int get_size();
+	Inode* get_target();
+	void set_target(Inode* newTarget);
+	time_t get_date();
 	ino_t get_serial();
-    list<directoryElement*> *get_names();
-    int get_num_of_names();
-    void set_element(directoryElement* n);
+	list<directoryElement*> *get_names();
+	int get_num_of_names();
+	void set_element(directoryElement* n);
 	directoryElement* get_an_element();
 	int remove_element(directoryElement* n);
-    Inode(time_t d,int s, ino_t sr);
+	Inode(time_t d,int s, ino_t sr);
 };
 
 class directoryElement{
 private:
-    string name;
-    Inode* node;
-    bool isFile;
-    list<directoryElement*> contents;
+	string name;
+	Inode* node;
+	bool isFile;
+	list<directoryElement*> contents;
 	directoryElement* parent;
 public:
-    string get_name();
-    Inode* get_node();
-    directoryElement* get_parent();
+	string get_name();
+	Inode* get_node();
+	directoryElement* get_parent();
 	bool isDirectory();
 	void set_parent(directoryElement* theParent);
-    list<directoryElement*>* get_contents();
-    directoryElement* set_element(directoryElement* newElement);
+	list<directoryElement*>* get_contents();
+	directoryElement* set_element(directoryElement* newElement);
 	list<directoryElement*>::iterator remove_element(directoryElement* theElement);
 	directoryElement(string n, Inode* nd, bool isNewFile);
 	~directoryElement();
 	bool operator==(const directoryElement &x) const;
 	bool operator!=(const directoryElement &x) const;
-    void set_node(Inode* n);
+	void set_node(Inode* n);
 	string getPathToElement();
 	void printOutTreeBelow();
 	void printOutTreeBelow(int depth);
@@ -79,4 +79,3 @@ typedef struct mirrorEntityStruct {
 } mirrorEntity;
 
 #endif	/* OBJECTS_H */
-
