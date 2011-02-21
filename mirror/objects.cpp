@@ -3,24 +3,24 @@
 //-----------------------------Inode Class Implementation-----------------------------------------//
 
 time_t Inode::get_date(){
-    return last_change;
+	return last_change;
 }
 
 int Inode::get_num_of_names(){
-    return num_of_names;
+	return num_of_names;
 }
 
 int Inode::get_size(){
-    return size;
+	return size;
 }
 
 ino_t Inode::get_serial(){
-    return serial;
+	return serial;
 }
 
 void Inode::set_element(directoryElement* n){
-    names.push_front(n);
-    num_of_names++;
+	names.push_front(n);
+	num_of_names++;
 }
 
 directoryElement* Inode::get_an_element() {
@@ -33,15 +33,15 @@ int Inode::remove_element(directoryElement* n){
 		num_of_names--;
 		names.erase(it);
 	}
-    return num_of_names;
+	return num_of_names;
 }
 
 list<directoryElement*>* Inode::get_names(){
-    return &names;
+	return &names;
 }
 
 Inode* Inode::get_target(){
-    return target;
+	return target;
 }
 
 void Inode::set_target(Inode* newTarget) {
@@ -49,29 +49,29 @@ void Inode::set_target(Inode* newTarget) {
 }
 
 Inode::Inode(time_t d, int s, ino_t sr){
-    last_change=d;
-    size=s;
-    num_of_names=0;
-    serial=sr;
+	last_change=d;
+	size=s;
+	num_of_names=0;
+	serial=sr;
 	target = NULL;
 }
 
 //--------------------------------Directory Class Implementation------------------------------------//
 
 string directoryElement::get_name(){
-    return name;
+	return name;
 }
 
 bool directoryElement::isDirectory(){
-    return (!isFile);
+	return (!isFile);
 }
 
 Inode* directoryElement::get_node(){
-    return node;
+	return node;
 }
 
 void directoryElement::set_node(Inode* n){
-    node=n;
+	node=n;
 }
 
 void directoryElement::set_parent(directoryElement* theParent){
@@ -84,11 +84,11 @@ directoryElement* directoryElement::get_parent() {
 }
 
 list<directoryElement*>* directoryElement::get_contents(){
-    return &contents;
+	return &contents;
 }
 
 directoryElement* directoryElement::set_element(directoryElement* dir){
-    contents.push_front(dir);
+	contents.push_front(dir);
 	return contents.front();
 }
 
@@ -102,21 +102,21 @@ list<directoryElement*>::iterator directoryElement::remove_element(directoryElem
 }
 
 bool directoryElement::operator==(const directoryElement &x) const {
-    if (name != x.name) return false;
-    if (node != x.node) return false;
-    if (isFile != x.isFile) return false;
+	if (name != x.name) return false;
+	if (node != x.node) return false;
+	if (isFile != x.isFile) return false;
 	if (parent != x.parent) return false;
-	
-    return (contents == x.contents);
+
+	return (contents == x.contents);
 }
 
 bool directoryElement::operator!=(const directoryElement &x) const {
-    return (!((*this) == x));
+	return (!((*this) == x));
 }
 
 directoryElement::directoryElement(string n, Inode* nd, bool isNewFile){
-    name=n;
-    node=nd;
+	name=n;
+	node=nd;
 	isFile = isNewFile;
 	parent = NULL;
 }

@@ -24,47 +24,47 @@ directoryElement* recurse_hierarchy(string filename, string path, iNodeMap& node
     struct stat buffer;
     int retval;
 	directoryElement* hierarchyBelow = NULL;
-    Inode* tmpNode = NULL, *node = NULL;
-    retval=lstat((path+filename).c_str(),&buffer);
-    if (retval){
-        cerr << "stat() failed on file " << filename << " (" << retval << ")." << endl;
-        exit(-1);
-    }
-    else{
-        tmpNode = new Inode(buffer.st_mtime,buffer.st_size,buffer.st_ino);
-        node = nodeMap.addNode(tmpNode);
+	Inode* tmpNode = NULL, *node = NULL;
+	retval=lstat((path+filename).c_str(),&buffer);
+	if (retval){
+		cerr << "stat() failed on file " << filename << " (" << retval << ")." << endl;
+		exit(-1);
+	}
+	else{
+		tmpNode = new Inode(buffer.st_mtime,buffer.st_size,buffer.st_ino);
+		node = nodeMap.addNode(tmpNode);
 		delete tmpNode; tmpNode = NULL;
-        if(S_ISDIR(buffer.st_mode)){
-            directoryElement* dir = NULL;
-            dir = new directoryElement(filename,node,false);
+		if(S_ISDIR(buffer.st_mode)){
+			directoryElement* dir = NULL;
+			dir = new directoryElement(filename,node,false);
 			node->set_element(dir);
-            list<string> files = list<string>();
-            retval=getdir(path+filename,files);
-            if(retval!=0){
-                exit(-1);
-            }
+			list<string> files = list<string>();
+			retval=getdir(path+filename,files);
+			if(retval!=0){
+				exit(-1);
+			}
 			for (list<string>::iterator it = files.begin(); it!=files.end(); it++){
 				directoryElement* subfolder = NULL;
 				subfolder = recurse_hierarchy(*it,path+filename+'/',nodeMap);
 				subfolder->set_parent(dir);
 				dir->set_element(subfolder);
-            }
-            dir->get_contents()->sort(compareDirectories);
+			}
+			dir->get_contents()->sort(compareDirectories);
 			hierarchyBelow = dir;
-        } else {
-            if(S_ISREG(buffer.st_mode)==0){
-                cout << "File " << filename << " is not a regular file or directory..." << endl;
-            }
-            hierarchyBelow = new directoryElement(filename,node,true);
+		} else {
+			if(S_ISREG(buffer.st_mode)==0){
+				cout << "File " << filename << " is not a regular file or directory..." << endl;
+			}
+			hierarchyBelow = new directoryElement(filename,node,true);
 			node->set_element(hierarchyBelow);
-        }
-    }
-    return hierarchyBelow;
+		}
+	}
+	return hierarchyBelow;
 }
 
 void performInitialSync (mirrorEntity source, mirrorEntity target) {
 	recursiveSync(source.root, target.root, target.nodes);
-	
+
 	return;
 }
 
@@ -74,7 +74,7 @@ void recursiveSync (directoryElement* source, directoryElement* target, iNodeMap
 	sourceList = source->get_contents();
 	targetList = target->get_contents();
 	its = sourceList->begin(); itt = targetList->begin();
-	
+
 	while (1) {
 		if ((its == sourceList->end()) && (itt == targetList->end())) break;
 		if (its == sourceList->end()) {
