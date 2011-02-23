@@ -433,15 +433,15 @@
 	DC93699C1315859F0087E98A /* notificationMonitor.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {698, 544}}";
-			sepNavSelRange = "{691, 0}";
-			sepNavVisRange = "{91, 874}";
+			sepNavSelRange = "{818, 0}";
+			sepNavVisRange = "{91, 894}";
 		};
 	};
 	DC93699D1315859F0087E98A /* notificationMonitor.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1174, 2656}}";
-			sepNavSelRange = "{5182, 0}";
-			sepNavVisRange = "{4443, 740}";
+			sepNavIntBoundsRect = "{{0, 0}, {1174, 2672}}";
+			sepNavSelRange = "{812, 0}";
+			sepNavVisRange = "{544, 720}";
 		};
 	};
 	DC9369AF131589430087E98A /* PBXTextBookmark */ = {
