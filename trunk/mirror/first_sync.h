@@ -8,16 +8,5 @@
 #ifndef FIRST_SYNC_H
 #define	FIRST_SYNC_H
 
-#include "generalHeaders.h"
-#include "rw_functions.h"
-
-using namespace std;
-
-bool compareDirectories (directoryElement* first, directoryElement* second);
-int getdir(string dir, list<string> &files);
-directoryElement* recurse_hierarchy(string filename, string path, iNodeMap& nodeMap);
-void performInitialSync (mirrorEntity source, mirrorEntity target);
-void recursiveSync (directoryElement* source, directoryElement* target, iNodeMap& targetNodes);
-
 #endif	/* FIRST_SYNC_H */
 

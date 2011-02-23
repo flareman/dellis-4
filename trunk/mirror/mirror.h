@@ -8,8 +8,7 @@
  */
 
 #include "generalHeaders.h"
-#include "first_sync.h"
-#include "rw_functions.h"
+#include "notificationMonitor.h"
 
 using namespace std;
 

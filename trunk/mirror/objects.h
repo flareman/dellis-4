@@ -13,6 +13,7 @@
 using namespace std;
 
 class directoryElement;
+typedef list<directoryElement*>::iterator delIterator;
 
 class Inode{
 private:
@@ -51,7 +52,7 @@ public:
 	void set_parent(directoryElement* theParent);
 	list<directoryElement*>* get_contents();
 	directoryElement* set_element(directoryElement* newElement);
-	list<directoryElement*>::iterator remove_element(directoryElement* theElement);
+	delIterator remove_element(directoryElement* theElement);
 	directoryElement(string n, Inode* nd, bool isNewFile);
 	~directoryElement();
 	bool operator==(const directoryElement &x) const;
@@ -60,6 +61,8 @@ public:
 	string getPathToElement();
 	void printOutTreeBelow();
 	void printOutTreeBelow(int depth);
+	directoryElement* getCorrespondingElement();
+	directoryElement* elementWithName(string theName);
 };
 
 class iNodeMap {
