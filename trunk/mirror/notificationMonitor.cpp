@@ -31,9 +31,6 @@ void notificationMonitor::clearMonitor() {
 	close(notificationSocket);
 }
 
-notificationMonitor::~notificationMonitor() {
-};
-
 bool compareDirectories (directoryElement* first, directoryElement* second) {
 	if (first->get_name()<second->get_name()) return true;
 	else return false;
