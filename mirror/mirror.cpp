@@ -27,19 +27,16 @@ int main (int argc, char* argv[]) {
 	
 	cout << "Creating file hierarchy structure...";
 	
-	mirrorEntity source; mirrorEntity target;
-	source.root = recurse_hierarchy(string(argv[1]), string(""), source.nodes);
-	target.root = recurse_hierarchy(string(argv[2]), string(""), target.nodes);
+	notificationMonitor theMonitor;
+	theMonitor.initializeMonitor(argv[1], argv[2]);
 	cout << "Hierarchies prepared." << endl;
-	
 	cout << "Performing initial syncing of files now." << endl;
 	cout << "DO NOT alter any files in the source directory until done!" << endl;
-	performInitialSync(source, target);
+	theMonitor.performInitialSync();
 	cout << "Sync complete." << endl;
-	
-	delete source.root;
-	delete target.root;
-
+	cout << "Performing initial watch assigments..." << endl;
+	theMonitor.assignWatches();
+	cout << "Initial watch assigments performed." << endl;
 	cout << "Mirror process complete." << endl;
 	return 0;
 }

@@ -23,6 +23,7 @@
 #include <map>
 #include <algorithm>
 #include <fstream>
+#include <sys/inotify.h>
 
 #include "objects.h"
 

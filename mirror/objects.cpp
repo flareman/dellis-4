@@ -28,7 +28,7 @@ directoryElement* Inode::get_an_element() {
 }
 
 int Inode::remove_element(directoryElement* n){
-	list<directoryElement*>::iterator it = find(names.begin(), names.end(), n);
+	delIterator it = find(names.begin(), names.end(), n);
 	if (it != names.end()) {
 		num_of_names--;
 		names.erase(it);
@@ -92,8 +92,8 @@ directoryElement* directoryElement::set_element(directoryElement* dir){
 	return contents.front();
 }
 
-list<directoryElement*>::iterator directoryElement::remove_element(directoryElement* theElement) {
-	list<directoryElement*>::iterator it = find(contents.begin(), contents.end(), theElement);
+delIterator directoryElement::remove_element(directoryElement* theElement) {
+	delIterator it = find(contents.begin(), contents.end(), theElement);
 	if (it != contents.end()) {
 		delete (*it);
 		*it = NULL;
@@ -122,7 +122,7 @@ directoryElement::directoryElement(string n, Inode* nd, bool isNewFile){
 }
 
 directoryElement::~directoryElement() {
-	for (list<directoryElement*>::iterator it = contents.begin(); it != contents.end(); it++) {
+	for (delIterator it = contents.begin(); it != contents.end(); it++) {
 		delete (*it);
 		*it = NULL;
 	}
@@ -140,7 +140,7 @@ string directoryElement::getPathToElement() {
 void directoryElement::printOutTreeBelow() {
 	cout << getPathToElement() << endl;
 	if (!isFile)
-		for (list<directoryElement*>::iterator it = contents.begin(); it != contents.end(); it++)
+		for (delIterator it = contents.begin(); it != contents.end(); it++)
 		{
 			cout << "|";
 			(*it)->printOutTreeBelow(2);
@@ -152,13 +152,30 @@ void directoryElement::printOutTreeBelow() {
 void directoryElement::printOutTreeBelow(int depth) {
 	cout << getPathToElement() << endl;
 	if (!isFile)
-		for (list<directoryElement*>::iterator it = contents.begin(); it != contents.end(); it++)
+		for (delIterator it = contents.begin(); it != contents.end(); it++)
 		{
 			for (int i = 0; i < depth; i++) cout << "|";
 			(*it)->printOutTreeBelow(depth+1);
 		}
 	
 	return;
+}
+
+directoryElement* directoryElement::getCorrespondingElement() {
+	if (node == NULL) return NULL;
+	
+	if (node->get_target() == NULL) return NULL;
+	
+	if (node->get_target()->get_num_of_names() < 1) return NULL;
+	
+	return node->get_target()->get_an_element();
+}
+
+directoryElement* directoryElement::elementWithName(string theName) {
+	for (delIterator it = contents.begin(); it != contents.end(); it++) {
+		if ((*it)->get_name() == theName) return (*it);
+	}
+	return NULL;
 }
 
 Inode* iNodeMap::nodeWithID(ino_t theID) {
