@@ -25,7 +25,7 @@ public:
 	void performInitialSync();
 	void clearMonitor();
 	notificationMonitor() { source.root = NULL; target.root = NULL; };
-	~notificationMonitor();
+	~notificationMonitor() { clearMonitor(); };
 	bool initializeMonitor(char* sourcePath, char* targetPath);
 	void assignWatches();
 };
