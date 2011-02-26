@@ -24,11 +24,15 @@ bool notificationMonitor::initializeMonitor(char* sourcePath, char* targetPath) 
 }
 
 void notificationMonitor::clearMonitor() {
+	map<int,directoryElement*>::iterator it;
+	for (it = assignments.begin(); it !=assignments.end(); it++)
+		inotify_rm_watch(notificationSocket, it->second);
+	assignments.clear();
+	close(notificationSocket);
 	delete source.root;
 	delete target.root;
 	source.root = NULL;
 	target.root = NULL;
-	close(notificationSocket);
 }
 
 bool compareDirectories (directoryElement* first, directoryElement* second) {
@@ -161,5 +165,44 @@ void notificationMonitor::recursiveWatch(directoryElement* theElement) {
 		if ((*it)->isDirectory())
 			recursiveWatch(*it);
 	
+	return;
+}
+
+int notificationMonitor::fetchEvents() {
+	int theMagicSauce = 0;
+	if (currentPosition > 0)
+		memcpy(eventBuffer, eventBuffer + currentPosition, eventBufferSize - currentPosition);
+	theMagicSauce = read(notificationSocket, eventBuffer + currentPosition, eventBufferSize - currentPosition);
+	currentPosition = 0;
+	
+	return theMagicSauce;
+}
+
+bool notificationMonitor::parseEventBuffer() {
+	iNotifyEvent *theEvent = NULL;
+	while (currentPosition + eventSize <= eventBufferSize) {
+		theEvent = (struct inotify_event*) &eventBuffer[currentPosition];
+		if (currentPosition + eventSize + theEvent->len > eventBufferSize) break;
+		processEvent(theEvent);
+		currentPosition += eventBuffer + theEvent->len;
+	}
+	if (currentPosition == eventBufferSize) {
+		currentPosition = 0;
+		return true;
+	} else return false;
+}
+
+void notificationMonitor::watchForChanges() {
+	int bytesRead = 0;
+	currentPosition = 0;
+	while (1) {
+		bytesRead = fetchEvents();
+		if (bytesRead > 0) parseEventBuffer();
+		else break;
+	}
+	return;
+}
+
+void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 	return;
 }
