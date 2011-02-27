@@ -157,7 +157,7 @@ void notificationMonitor::assignWatches() {
 void notificationMonitor::recursiveWatch(directoryElement* theElement) {
 	if (theElement == NULL) return;
 	int wd = inotify_add_watch(notificationSocket,theElement->getPathToElement().c_str(),
-							   IN_CREATE|IN_DELETE|IN_MOVE|IN_ATTRIB|IN_MODIFY|IN_CLOSE|IN_OPEN);
+							   IN_CREATE|IN_DELETE|IN_MOVE|IN_ATTRIB|IN_CLOSE_WRITE);
 	
 	if (wd < 0) return;
 	else {
@@ -214,6 +214,43 @@ void notificationMonitor::watchForChanges() {
 }
 
 void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
+//	Υπάρχουν οι εξής περιπτώσεις:
+//	- Αλλαγή attributes
+//		- σε αρχείο
+//		- σε φάκελο
+//	- Δημιουργία
+//		- νέου αρχείου
+//		- νέου φακέλου
+//	- Διαγραφή
+//		- φακέλου
+//		- αρχείου
+//			- που είναι το τελευταίο hardlink σε inode
+//	- Μετακίνηση από->σε/από->[_]/[_]->σε
+//		- φακέλου
+//		- αρχείου
+//	- Δημιουργία νέου hardlink
+//	
+//	Το IN_OPEN δεν το χρειαζόμαστε, αρκεί να βλέπουμε μόνο το IN_CREATE και το
+//	IN_CLOSE_WRITE και ξέρουμε πότε δημιουργείται κάτι και πότε αποθηκεύεται.
+//	
+//	Επίσης, π.χ σε chmod αρχείου αναφέρει IN_ATTRIB και το παιδί και ο πατέρας.
+//	
+//	Τρίτον, στη δημιουργία hardlink σε ήδη υπάρχον αρχείο αναφέρονται 2 events:
+//	ένα IN_CREATE για το νέο hardlink και ένα IN_ATTRIB για το πρωτότυπο αρχείο
+//	όπου αλλάζει το πλήθος των hardlinks. Αντίστοιχα, όταν διαγράφεται αρχείο
+//	που δεν είναι το τελευταίο hardlink απλώς αναφέρεται IN_ATTRIB στα υπόλοιπα
+//	hardlinks (μείωση του αριθμού των ονομάτων στο ίδιο inode, η inotify δουλεύ-
+//	ει με inodes). Αν είναι το τελευταίο hardlink τότε στέλνει IN_DELETE.
+//			   
+//	Τέταρτον, δε χρειάζεται εκ νέου παρακολούθηση κάποιου στοιχείου, ακόμη κι αν
+//	μετακινηθεί. Μόνο η διαγραφή αναφέρει IN_IGNORED οπότε αφαιρείται αυτομάτως
+//	η παρακολούθηση, και η μετακίνηση εκτός παρακολουθούμενης δομής θέλει αφαί-
+//	ρεση με το χέρι, όλα τα άλλα είναι οκέι.
+//	
+//	Πέμπτον, στις αλλαγές αναφέρουν IN_OPEN/IN_CLOSE_WRITE κι ίσως και IN_ATTRIB
+//	και το αλλασσόμενο στοιχείο και ο περιέχων φάκελος (ίσως και ο παραπάνω, δεν
+//	το έχω ψάξει).
+	
 	return;
 }
 
