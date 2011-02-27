@@ -12,6 +12,7 @@
 
 #include "generalHeaders.h"
 #include "rw_functions.h"
+#include <signal.h>
 
 typedef struct inotify_event iNotifyEvent;
 
@@ -27,6 +28,7 @@ private:
 	int notificationSocket;
 	char eventBuffer[eventBufferSize];
 	int currentPosition;
+	int watchedItems;
 	
 	int getdir(string dir, list<string>& files);
 	directoryElement* recurse_hierarchy(string filename, string path, iNodeMap& nodeMap);
@@ -35,11 +37,13 @@ private:
 	int fetchEvents();
 	bool parseEventBuffer();
 	void processEvent(iNotifyEvent* theEvent);
+	int checkForEvents();
 public:
 	void performInitialSync();
 	void clearMonitor();
 	notificationMonitor() {
 		source.root = NULL; target.root = NULL;
+		watchedItems = 0;
 		memset(&eventBuffer, 0, eventBufferSize); currentPosition = 0;
 	};
 	~notificationMonitor() { clearMonitor(); };
@@ -49,5 +53,8 @@ public:
 };
 
 bool compareDirectories (directoryElement* first, directoryElement* second);
+bool keepProcessing = true;
+void processSignal(int signum);
+
 
 #endif

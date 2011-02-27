@@ -26,9 +26,10 @@ bool notificationMonitor::initializeMonitor(char* sourcePath, char* targetPath) 
 void notificationMonitor::clearMonitor() {
 	map<int,directoryElement*>::iterator it;
 	for (it = assignments.begin(); it !=assignments.end(); it++)
-		inotify_rm_watch(notificationSocket, it->second);
+		inotify_rm_watch(notificationSocket, it->first);
 	assignments.clear();
 	close(notificationSocket);
+	watchedItems = 0;
 	delete source.root;
 	delete target.root;
 	source.root = NULL;
@@ -159,7 +160,10 @@ void notificationMonitor::recursiveWatch(directoryElement* theElement) {
 							   IN_CREATE|IN_DELETE|IN_MOVE|IN_ATTRIB|IN_MODIFY|IN_CLOSE|IN_OPEN);
 	
 	if (wd < 0) return;
-	else assignments.insert(pair<int,directoryElement*>(wd,theElement));
+	else {
+		assignments.insert(pair<int,directoryElement*>(wd,theElement));
+		watchedItems++;
+	}
 	
 	for (delIterator it = theElement->get_contents()->begin(); it != theElement->get_contents()->end(); it++)
 		if ((*it)->isDirectory())
@@ -195,14 +199,32 @@ bool notificationMonitor::parseEventBuffer() {
 void notificationMonitor::watchForChanges() {
 	int bytesRead = 0;
 	currentPosition = 0;
-	while (1) {
-		bytesRead = fetchEvents();
-		if (bytesRead > 0) parseEventBuffer();
-		else break;
+	keepProcessing = true;
+	if (signal (SIGINT, processSignal) == SIG_IGN) {
+		signal (SIGINT, SIG_IGN);
+	}
+	while (keepProcessing && (watchedItems > 0)) {
+		if (checkForEvents()) {
+			bytesRead = fetchEvents();
+			if (bytesRead < 0) break;
+			else parseEventBuffer();
+		}
 	}
 	return;
 }
 
 void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 	return;
+}
+
+int notificationMonitor::checkForEvents() {
+	fd_set rfds;
+	FD_ZERO (&rfds);
+	FD_SET (notificationSocket, &rfds);
+	return select (FD_SETSIZE, &rfds, NULL, NULL, NULL);
+}
+
+void processSignal (int signum)
+{
+	keepProcessing = false;
 }
