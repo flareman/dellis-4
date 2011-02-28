@@ -9,6 +9,8 @@
 
 #include "notificationMonitor.h"
 
+bool keepProcessing;
+
 bool notificationMonitor::initializeMonitor(char* sourcePath, char* targetPath) {
 	source.root = recurse_hierarchy(string(sourcePath), string(""), source.nodes);
 	target.root = recurse_hierarchy(string(targetPath), string(""), target.nodes);
