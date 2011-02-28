@@ -28,6 +28,8 @@
 
 #include "objects.h"
 
+bool keepProcessing = true;
+
 #define _POSIX_C_SOURCE 199309L
 
 #endif
