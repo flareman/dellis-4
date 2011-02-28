@@ -271,6 +271,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
+									<integer>9</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -314,7 +315,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>generalHeaders.h</string>
+								<string>mirror.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -322,11 +323,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>generalHeaders.h</string>
+										<string>mirror.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>DCE0DE58131C4C0E0097AEF3</string>
+										<string>DCE0DE66131C4E2F0097AEF3</string>
 										<key>history</key>
 										<array>
 											<string>DC9F694613116A5300D91619</string>
@@ -340,14 +341,14 @@
 											<string>DC9F6BCA1311BA0000D91619</string>
 											<string>DC578A801312EF36006C98C9</string>
 											<string>DCC87F4E131948270078F879</string>
-											<string>DCC87F51131948270078F879</string>
 											<string>DCC87F961319CC090078F879</string>
-											<string>DCE0DE4F131C4BE00097AEF3</string>
-											<string>DCE0DE50131C4BE00097AEF3</string>
-											<string>DCE0DE51131C4BE00097AEF3</string>
-											<string>DCE0DE52131C4BE00097AEF3</string>
-											<string>DCE0DE53131C4BE00097AEF3</string>
-											<string>DCE0DE54131C4BE00097AEF3</string>
+											<string>DCE0DE5F131C4E2F0097AEF3</string>
+											<string>DCE0DE60131C4E2F0097AEF3</string>
+											<string>DCE0DE61131C4E2F0097AEF3</string>
+											<string>DCE0DE62131C4E2F0097AEF3</string>
+											<string>DCE0DE63131C4E2F0097AEF3</string>
+											<string>DCE0DE64131C4E2F0097AEF3</string>
+											<string>DCE0DE65131C4E2F0097AEF3</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
