@@ -83,7 +83,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFindDataSource_LocationID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					200,
-					524,
+					567,
 				);
 				PBXFileTableDataSourceColumnsKey = (
 					PBXFindDataSource_MessageID,
@@ -169,6 +169,7 @@
 			DCE0DE53131C4BE00097AEF3 /* PBXTextBookmark */ = DCE0DE53131C4BE00097AEF3 /* PBXTextBookmark */;
 			DCE0DE54131C4BE00097AEF3 /* PBXTextBookmark */ = DCE0DE54131C4BE00097AEF3 /* PBXTextBookmark */;
 			DCE0DE55131C4BE00097AEF3 /* PBXTextBookmark */ = DCE0DE55131C4BE00097AEF3 /* PBXTextBookmark */;
+			DCE0DE58131C4C0E0097AEF3 /* PBXTextBookmark */ = DCE0DE58131C4C0E0097AEF3 /* PBXTextBookmark */;
 		};
 		sourceControlManager = DC887E6C130C451800CE8482 /* Source Control */;
 		userBuildSettings = {
@@ -182,7 +183,7 @@
 	};
 	DC22B7BD13102B190057F173 /* rw_functions.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {845, 668}}";
+			sepNavIntBoundsRect = "{{0, 0}, {845, 645}}";
 			sepNavSelRange = "{0, 0}";
 			sepNavVisRange = "{0, 530}";
 			sepNavWindowFrame = "{{67, 0}, {1002, 778}}";
@@ -199,8 +200,8 @@
 	DC22B7C013102B2B0057F173 /* generalHeaders.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {731, 645}}";
-			sepNavSelRange = "{550, 0}";
-			sepNavVisRange = "{0, 591}";
+			sepNavSelRange = "{521, 0}";
+			sepNavVisRange = "{0, 562}";
 		};
 	};
 	DC22B87F131049A40057F173 /* basic_string.h */ = {
@@ -221,7 +222,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {731, 1360}}";
 			sepNavSelRange = "{1703, 10}";
-			sepNavVisRange = "{800, 1117}";
+			sepNavVisRange = "{0, 772}";
 			sepNavWindowFrame = "{{67, 0}, {1002, 778}}";
 		};
 	};
@@ -252,15 +253,15 @@
 	DC93699C1315859F0087E98A /* notificationMonitor.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {731, 944}}";
-			sepNavSelRange = "{1513, 0}";
-			sepNavVisRange = "{342, 1211}";
+			sepNavSelRange = "{1277, 0}";
+			sepNavVisRange = "{0, 1072}";
 		};
 	};
 	DC93699D1315859F0087E98A /* notificationMonitor.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1174, 4384}}";
-			sepNavSelRange = "{5683, 0}";
-			sepNavVisRange = "{6770, 1578}";
+			sepNavIntBoundsRect = "{{0, 0}, {731, 4416}}";
+			sepNavSelRange = "{222, 0}";
+			sepNavVisRange = "{0, 1115}";
 			sepNavWindowFrame = "{{68, 0}, {1002, 778}}";
 		};
 	};
@@ -279,7 +280,7 @@
 		fRef = DC93699D1315859F0087E98A /* notificationMonitor.cpp */;
 		name = "notificationMonitor.cpp: 160";
 		rLen = 0;
-		rLoc = 5049;
+		rLoc = 5071;
 		rType = 0;
 		vrLen = 1729;
 		vrLoc = 6621;
@@ -479,7 +480,7 @@
 		fRef = DC93699D1315859F0087E98A /* notificationMonitor.cpp */;
 		name = "notificationMonitor.cpp: 59";
 		rLen = 0;
-		rLoc = 1647;
+		rLoc = 1669;
 		rType = 0;
 		vrLen = 1430;
 		vrLoc = 1283;
@@ -606,7 +607,7 @@
 		fRef = DC93699D1315859F0087E98A /* notificationMonitor.cpp */;
 		name = "notificationMonitor.cpp: 184";
 		rLen = 0;
-		rLoc = 5683;
+		rLoc = 5705;
 		rType = 0;
 		vrLen = 1578;
 		vrLoc = 6770;
@@ -636,7 +637,17 @@
 		fRef = DC22B7C013102B2B0057F173 /* generalHeaders.h */;
 		name = "generalHeaders.h: 32";
 		rLen = 0;
-		rLoc = 550;
+		rLoc = 521;
+		rType = 0;
+		vrLen = 591;
+		vrLoc = 0;
+	};
+	DCE0DE58131C4C0E0097AEF3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DC22B7C013102B2B0057F173 /* generalHeaders.h */;
+		name = "generalHeaders.h: 18";
+		rLen = 0;
+		rLoc = 314;
 		rType = 0;
 		vrLen = 591;
 		vrLoc = 0;
