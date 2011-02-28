@@ -188,7 +188,7 @@ bool notificationMonitor::parseEventBuffer() {
 		theEvent = (struct inotify_event*) &eventBuffer[currentPosition];
 		if (currentPosition + eventSize + theEvent->len > eventBufferSize) break;
 		processEvent(theEvent);
-		currentPosition += eventBuffer + theEvent->len;
+		currentPosition += eventSize + theEvent->len;
 	}
 	if (currentPosition == eventBufferSize) {
 		currentPosition = 0;
