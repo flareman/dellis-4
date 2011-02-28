@@ -37,6 +37,8 @@ int main (int argc, char* argv[]) {
 	cout << "Performing initial watch assigments..." << endl;
 	theMonitor.assignWatches();
 	cout << "Initial watch assigments performed." << endl;
+	cout << "Monitoring changes now." << endl;
+	theMonitor.watchForChanges();
 	cout << "Mirror process complete." << endl;
 	return 0;
 }

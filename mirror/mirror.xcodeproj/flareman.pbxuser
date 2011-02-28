@@ -170,6 +170,14 @@
 			DCE0DE54131C4BE00097AEF3 /* PBXTextBookmark */ = DCE0DE54131C4BE00097AEF3 /* PBXTextBookmark */;
 			DCE0DE55131C4BE00097AEF3 /* PBXTextBookmark */ = DCE0DE55131C4BE00097AEF3 /* PBXTextBookmark */;
 			DCE0DE58131C4C0E0097AEF3 /* PBXTextBookmark */ = DCE0DE58131C4C0E0097AEF3 /* PBXTextBookmark */;
+			DCE0DE5F131C4E2F0097AEF3 /* PBXTextBookmark */ = DCE0DE5F131C4E2F0097AEF3 /* PBXTextBookmark */;
+			DCE0DE60131C4E2F0097AEF3 /* PBXTextBookmark */ = DCE0DE60131C4E2F0097AEF3 /* PBXTextBookmark */;
+			DCE0DE61131C4E2F0097AEF3 /* PBXTextBookmark */ = DCE0DE61131C4E2F0097AEF3 /* PBXTextBookmark */;
+			DCE0DE62131C4E2F0097AEF3 /* PBXTextBookmark */ = DCE0DE62131C4E2F0097AEF3 /* PBXTextBookmark */;
+			DCE0DE63131C4E2F0097AEF3 /* PBXTextBookmark */ = DCE0DE63131C4E2F0097AEF3 /* PBXTextBookmark */;
+			DCE0DE64131C4E2F0097AEF3 /* PBXTextBookmark */ = DCE0DE64131C4E2F0097AEF3 /* PBXTextBookmark */;
+			DCE0DE65131C4E2F0097AEF3 /* PBXTextBookmark */ = DCE0DE65131C4E2F0097AEF3 /* PBXTextBookmark */;
+			DCE0DE66131C4E2F0097AEF3 /* PBXTextBookmark */ = DCE0DE66131C4E2F0097AEF3 /* PBXTextBookmark */;
 		};
 		sourceControlManager = DC887E6C130C451800CE8482 /* Source Control */;
 		userBuildSettings = {
@@ -259,9 +267,9 @@
 	};
 	DC93699D1315859F0087E98A /* notificationMonitor.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {731, 4416}}";
-			sepNavSelRange = "{222, 0}";
-			sepNavVisRange = "{0, 1115}";
+			sepNavIntBoundsRect = "{{0, 0}, {1174, 4352}}";
+			sepNavSelRange = "{674, 0}";
+			sepNavVisRange = "{5367, 1241}";
 			sepNavWindowFrame = "{{68, 0}, {1002, 778}}";
 		};
 	};
@@ -462,9 +470,9 @@
 	};
 	DCB4AAB5130F247E0004C7BF /* mirror.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {731, 864}}";
-			sepNavSelRange = "{1048, 0}";
-			sepNavVisRange = "{0, 1161}";
+			sepNavIntBoundsRect = "{{0, 0}, {731, 896}}";
+			sepNavSelRange = "{1179, 0}";
+			sepNavVisRange = "{139, 1162}";
 			sepNavWindowFrame = "{{68, 0}, {1002, 778}}";
 		};
 	};
@@ -651,6 +659,86 @@
 		rType = 0;
 		vrLen = 591;
 		vrLoc = 0;
+	};
+	DCE0DE5F131C4E2F0097AEF3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DCB4AAB4130F247E0004C7BF /* mirror.h */;
+		name = "mirror.h: 20";
+		rLen = 0;
+		rLoc = 313;
+		rType = 0;
+		vrLen = 313;
+		vrLoc = 0;
+	};
+	DCE0DE60131C4E2F0097AEF3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DC4BEC02130C613C00BED0F7 /* objects.h */;
+		name = "objects.h: 74";
+		rLen = 10;
+		rLoc = 1703;
+		rType = 0;
+		vrLen = 772;
+		vrLoc = 0;
+	};
+	DCE0DE61131C4E2F0097AEF3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DC22B7BD13102B190057F173 /* rw_functions.h */;
+		name = "rw_functions.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 530;
+		vrLoc = 0;
+	};
+	DCE0DE62131C4E2F0097AEF3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DC22B7C013102B2B0057F173 /* generalHeaders.h */;
+		name = "generalHeaders.h: 30";
+		rLen = 0;
+		rLoc = 521;
+		rType = 0;
+		vrLen = 562;
+		vrLoc = 0;
+	};
+	DCE0DE63131C4E2F0097AEF3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DC93699C1315859F0087E98A /* notificationMonitor.h */;
+		name = "notificationMonitor.h: 48";
+		rLen = 0;
+		rLoc = 1277;
+		rType = 0;
+		vrLen = 1072;
+		vrLoc = 0;
+	};
+	DCE0DE64131C4E2F0097AEF3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DC93699D1315859F0087E98A /* notificationMonitor.cpp */;
+		name = "notificationMonitor.cpp: 26";
+		rLen = 0;
+		rLoc = 674;
+		rType = 0;
+		vrLen = 1241;
+		vrLoc = 5367;
+	};
+	DCE0DE65131C4E2F0097AEF3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DCB4AAB5130F247E0004C7BF /* mirror.cpp */;
+		name = "mirror.cpp: 38";
+		rLen = 0;
+		rLoc = 1048;
+		rType = 0;
+		vrLen = 1161;
+		vrLoc = 0;
+	};
+	DCE0DE66131C4E2F0097AEF3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DCB4AAB5130F247E0004C7BF /* mirror.cpp */;
+		name = "mirror.cpp: 41";
+		rLen = 0;
+		rLoc = 1179;
+		rType = 0;
+		vrLen = 1162;
+		vrLoc = 139;
 	};
 	DCEC997813113E9000E1060D /* stl_list.h */ = {
 		isa = PBXFileReference;
