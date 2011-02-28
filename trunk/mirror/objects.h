@@ -29,6 +29,8 @@ public:
 	void set_target(Inode* newTarget);
 	time_t get_date();
 	ino_t get_serial();
+	void set_date(time_t newDate);
+	void set_size(int newSize);
 	list<directoryElement*> *get_names();
 	int get_num_of_names();
 	void set_element(directoryElement* n);
