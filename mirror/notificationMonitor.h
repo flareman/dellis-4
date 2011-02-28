@@ -53,8 +53,6 @@ public:
 };
 
 bool compareDirectories (directoryElement* first, directoryElement* second);
-bool keepProcessing = true;
 void processSignal(int signum);
-
 
 #endif
