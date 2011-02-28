@@ -192,16 +192,16 @@
 	DC22B7BD13102B190057F173 /* rw_functions.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {845, 645}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 530}";
+			sepNavSelRange = "{531, 0}";
+			sepNavVisRange = "{0, 630}";
 			sepNavWindowFrame = "{{67, 0}, {1002, 778}}";
 		};
 	};
 	DC22B7BE13102B190057F173 /* rw_functions.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {852, 1456}}";
-			sepNavSelRange = "{830, 0}";
-			sepNavVisRange = "{1947, 2026}";
+			sepNavIntBoundsRect = "{{0, 0}, {852, 2272}}";
+			sepNavSelRange = "{2393, 0}";
+			sepNavVisRange = "{1495, 1447}";
 			sepNavWindowFrame = "{{67, 0}, {1002, 778}}";
 		};
 	};
@@ -221,16 +221,16 @@
 	};
 	DC4BEC01130C613C00BED0F7 /* objects.cpp */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {824, 2561}}";
-			sepNavSelRange = "{3770, 43}";
-			sepNavVisRange = "{2967, 1259}";
+			sepNavIntBoundsRect = "{{0, 0}, {731, 3568}}";
+			sepNavSelRange = "{964, 0}";
+			sepNavVisRange = "{448, 738}";
 		};
 	};
 	DC4BEC02130C613C00BED0F7 /* objects.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {731, 1360}}";
-			sepNavSelRange = "{1703, 10}";
-			sepNavVisRange = "{0, 772}";
+			sepNavIntBoundsRect = "{{0, 0}, {731, 1520}}";
+			sepNavSelRange = "{518, 61}";
+			sepNavVisRange = "{4, 820}";
 			sepNavWindowFrame = "{{67, 0}, {1002, 778}}";
 		};
 	};
@@ -268,8 +268,8 @@
 	DC93699D1315859F0087E98A /* notificationMonitor.cpp */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1174, 4352}}";
-			sepNavSelRange = "{674, 0}";
-			sepNavVisRange = "{5367, 1241}";
+			sepNavSelRange = "{6166, 0}";
+			sepNavVisRange = "{6542, 1596}";
 			sepNavWindowFrame = "{{68, 0}, {1002, 778}}";
 		};
 	};
@@ -548,7 +548,7 @@
 		fRef = DC4BEC02130C613C00BED0F7 /* objects.h */;
 		name = "objects.h: 74";
 		rLen = 10;
-		rLoc = 1703;
+		rLoc = 1764;
 		rType = 0;
 		vrLen = 1360;
 		vrLoc = 557;
@@ -558,7 +558,7 @@
 		fRef = DC4BEC01130C613C00BED0F7 /* objects.cpp */;
 		name = "objects.cpp: 181";
 		rLen = 43;
-		rLoc = 3770;
+		rLoc = 3892;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 2967;
@@ -585,7 +585,7 @@
 		fRef = DC4BEC02130C613C00BED0F7 /* objects.h */;
 		name = "objects.h: 74";
 		rLen = 10;
-		rLoc = 1703;
+		rLoc = 1764;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 800;
@@ -675,7 +675,7 @@
 		fRef = DC4BEC02130C613C00BED0F7 /* objects.h */;
 		name = "objects.h: 74";
 		rLen = 10;
-		rLoc = 1703;
+		rLoc = 1764;
 		rType = 0;
 		vrLen = 772;
 		vrLoc = 0;

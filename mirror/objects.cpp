@@ -48,6 +48,14 @@ void Inode::set_target(Inode* newTarget) {
 	target = newTarget;
 }
 
+void Inode::set_date(time_t newDate) {
+	last_change = newDate;
+}
+
+void Inode::set_size(int newSize) {
+	size = newSize;
+}
+
 Inode::Inode(time_t d, int s, ino_t sr){
 	last_change=d;
 	size=s;

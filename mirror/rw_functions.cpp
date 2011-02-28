@@ -50,6 +50,37 @@ delIterator unlinkElement(directoryElement* theElement, iNodeMap& nodeSet, bool 
 	return theElement->get_parent()->remove_element(theElement);
 }
 
+void updateAttributes(directoryElement* theElement) {
+	struct stat buffer;
+	directoryElement* lefty = theElement, *righty = NULL;
+	righty = lefty->getCorrespondingElement();
+	if (lstat(lefty->getPathToElement().c_str(),&buffer)) {
+		cerr << "stat() failed on file " << lefty->get_name() << endl;
+		exit(-1);
+	}
+	lefty->get_node()->set_date(buffer.st_mtime);
+	lefty->get_node()->set_size(buffer.st_size);
+	if (lstat(righty->getPathToElement().c_str(),&buffer)) {
+		cerr << "stat() failed on file " << righty->get_name() << endl;
+		exit(-1);
+	}
+	righty->get_node()->set_date(buffer.st_mtime);
+	righty->get_node()->set_size(buffer.st_size);
+	
+	return;
+}
+
+void updateFile(directoryElement* theElement) {
+	if (theElement == NULL) return;
+	
+	if (theElement->isDirectory() == false)
+		copyFile(theElement->getPathToElement(), theElement->getCorrespondingElement()->getPathToElement());
+
+	updateAttributes(theElement);
+	
+	return;
+}
+
 bool createElement(directoryElement* theElement, directoryElement* destination, string newName, iNodeMap* destNodeMap) {
 	if (theElement->get_parent() == NULL) return false;
 	
