@@ -290,14 +290,14 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			
 		case IN_DELETE:
 			if ((theChild != NULL) && (theChild->isDirectory() == false)) {
-				unlinkElement(theChild, target.nodes, true);
+				unlinkElement(theChild->getCorrespondingElement(), target.nodes, true);
 				removeWatch(theChild);
 				unlinkElement(theChild, source.nodes, false);
 			}
 			break;
 			
 		case IN_DELETE_SELF:
-			unlinkElement(theElement, target.nodes, true);
+			unlinkElement(theElement->getCorrespondingElement(), target.nodes, true);
 			removeWatch(theElement);
 			unlinkElement(theElement, source.nodes, false);
 			break;
