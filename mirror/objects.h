@@ -14,6 +14,7 @@ using namespace std;
 
 class directoryElement;
 typedef list<directoryElement*>::iterator delIterator;
+typedef list<directoryElement*>::const_iterator delConstIterator;
 
 class Inode{
 private:
@@ -57,6 +58,7 @@ public:
 	directoryElement* set_element(directoryElement* newElement);
 	delIterator remove_element(directoryElement* theElement);
 	directoryElement(string n, Inode* nd, bool isNewFile);
+        directoryElement(const directoryElement &theElement);
 	~directoryElement();
 	bool operator==(const directoryElement &x) const;
 	bool operator!=(const directoryElement &x) const;
