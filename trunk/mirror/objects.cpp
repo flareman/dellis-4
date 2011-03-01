@@ -135,6 +135,20 @@ directoryElement::directoryElement(string n, Inode* nd, bool isNewFile){
 	wasModified = false;
 }
 
+directoryElement::directoryElement(const directoryElement &theElement) {
+    name = theElement.name;
+    node = theElement.node;
+    isFile = theElement.isFile;
+    parent = theElement.parent;
+    watchDescriptor = theElement.watchDescriptor;
+    wasModified = theElement.wasModified;
+    directoryElement* newSubelement = NULL;
+    for (delConstIterator it = theElement.contents.begin(); it != theElement.contents.end(); it++) {
+        newSubelement = new directoryElement(*(*it));
+        this->set_element(newSubelement);
+    }
+}
+
 directoryElement::~directoryElement() {
 	for (delIterator it = contents.begin(); it != contents.end(); it++) {
 		delete (*it);

@@ -134,7 +134,7 @@ bool createElement(directoryElement* theElement, directoryElement* destination, 
 			}
 		}
 	} else {
-		newElement = theElement;
+                newElement = new directoryElement(*theElement);
 		newElement->set_parent(destination);
 		newElement->set_name(newName);
 	}
