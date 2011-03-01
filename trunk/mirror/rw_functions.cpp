@@ -82,7 +82,7 @@ void updateFile(directoryElement* theElement) {
 	return;
 }
 
-bool createElement(directoryElement* theElement, directoryElement* destination, string newName, iNodeMap* destNodeMap) {
+directoryElement* createElement(directoryElement* theElement, directoryElement* destination, string newName, iNodeMap* destNodeMap) {
 	directoryElement* newElement = NULL;
 	Inode* newNode = NULL, *node = NULL;
 	struct stat buffer;
@@ -141,5 +141,5 @@ bool createElement(directoryElement* theElement, directoryElement* destination, 
 	
 	destination->set_element(newElement);
 	
-	return true;
+	return newElement;
 }
