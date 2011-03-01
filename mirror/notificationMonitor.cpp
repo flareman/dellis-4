@@ -134,6 +134,7 @@ void notificationMonitor::recursiveSync (directoryElement* source, directoryElem
 				} else {
 					if ((*its)->isDirectory()) {
 						recursiveSync((*its),(*itt),targetNodes);
+                                                (*its)->get_node()->set_target((*itt)->get_node());
 						its++; itt++;
 					} else {
 						if (((*its)->get_node()->get_size() != (*itt)->get_node()->get_size()) || ((*its)->get_node()->get_date() > (*itt)->get_node()->get_date())) {
