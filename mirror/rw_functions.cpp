@@ -73,7 +73,9 @@ void updateAttributes(directoryElement* theElement) {
 
 void updateFile(directoryElement* theElement) {
 	if (theElement == NULL) return;
-	
+
+        cout << theElement->get_node()->get_target()->names.size() << endl;
+
 	if (theElement->isDirectory() == false)
 		copyFile(theElement->getPathToElement(), theElement->getCorrespondingElement()->getPathToElement());
 
@@ -112,6 +114,7 @@ directoryElement* createElement(directoryElement* theElement, directoryElement* 
 			if ((node = theElement->get_node()->get_target()) != NULL) {
 				newElement = new directoryElement(newName,node,true);
 				newElement->set_parent(destination);
+                                cout << node->names.size() << endl;
 				link(node->get_an_element()->getPathToElement().c_str(), newPath.c_str());
 			} else {
 				if (lstat((theElement->getPathToElement()).c_str(),&buffer)) {

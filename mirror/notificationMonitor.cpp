@@ -244,6 +244,7 @@ void notificationMonitor::watchForChanges() {
 
 void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 	if (theEvent == NULL) return;
+        if (theEvent->mask == 0) return;
 	
 	directoryElement* theElement = (assignments.find(theEvent->wd))->second;
 	directoryElement* theChild = NULL;
@@ -296,17 +297,18 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
                     cout << "Found cookie." << endl;
 				moveCookie = -1;
 				createElement(moveElement->elementWithName(moveName), theElement, string(theEvent->name), NULL);
-				unlinkElement(moveElement->elementWithName(moveName)->getCorrespondingElement(), target.nodes, true);
-
-                                unlinkElement(moveElement->elementWithName(moveName), source.nodes, false);
 				createElement(theElement->elementWithName(string(theEvent->name)), theElement->getCorrespondingElement(), string(theEvent->name), &target.nodes);
+				unlinkElement(moveElement->elementWithName(moveName)->getCorrespondingElement(), target.nodes, true);
+                                unlinkElement(moveElement->elementWithName(moveName), source.nodes, false);
 			} else {
                     cout << "Cookie not found." << endl;
-				theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
-				createElement(theChild, theElement, theChild->get_name(), NULL);
-				createElement(theChild, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes);
-				recursiveWatch(theChild);
-			}
+			theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
+                        directoryElement* newElement = NULL;
+                        newElement = createElement(theChild, theElement, theChild->get_name(), NULL);
+			createElement(newElement, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes);
+			recursiveWatch(newElement);
+                        delete theChild;
+                    }
 			break;
 			
 		case IN_DELETE:
