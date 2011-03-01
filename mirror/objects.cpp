@@ -127,6 +127,8 @@ directoryElement::directoryElement(string n, Inode* nd, bool isNewFile){
 	node=nd;
 	isFile = isNewFile;
 	parent = NULL;
+	watchDescriptor = -1;
+	wasModified = false;
 }
 
 directoryElement::~directoryElement() {

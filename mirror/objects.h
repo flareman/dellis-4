@@ -65,6 +65,8 @@ public:
 	void printOutTreeBelow(int depth);
 	directoryElement* getCorrespondingElement();
 	directoryElement* elementWithName(string theName);
+	int watchDescriptor;
+	bool wasModified;
 };
 
 class iNodeMap {

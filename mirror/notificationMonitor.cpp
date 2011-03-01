@@ -159,10 +159,11 @@ void notificationMonitor::assignWatches() {
 void notificationMonitor::recursiveWatch(directoryElement* theElement) {
 	if (theElement == NULL) return;
 	int wd = inotify_add_watch(notificationSocket,theElement->getPathToElement().c_str(),
-							   IN_CREATE|IN_DELETE|IN_MOVE|IN_ATTRIB|IN_CLOSE_WRITE);
+							   IN_CREATE|IN_DELETE|IN_MOVE|IN_MODIFY|IN_DELETE_SELF|IN_ATTRIB|IN_CLOSE_WRITE);
 	
 	if (wd < 0) return;
 	else {
+		theElement->watchDescriptor = wd;
 		assignments.insert(pair<int,directoryElement*>(wd,theElement));
 		watchedItems++;
 	}

@@ -60,6 +60,7 @@ void updateAttributes(directoryElement* theElement) {
 	}
 	lefty->get_node()->set_date(buffer.st_mtime);
 	lefty->get_node()->set_size(buffer.st_size);
+	chmod(righty->getPathToElement().c_str(), buffer.st_mode & 0000777);
 	if (lstat(righty->getPathToElement().c_str(),&buffer)) {
 		cerr << "stat() failed on file " << righty->get_name() << endl;
 		exit(-1);

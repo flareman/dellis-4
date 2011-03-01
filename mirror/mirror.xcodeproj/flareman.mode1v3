@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -271,7 +273,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>9</integer>
+									<integer>3</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -308,14 +310,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>mirror.cpp</string>
+								<string>objects.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,11 +323,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>mirror.cpp</string>
+										<string>objects.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>DCE0DE66131C4E2F0097AEF3</string>
+										<string>DCE0DE80131C6FB80097AEF3</string>
 										<key>history</key>
 										<array>
 											<string>DC9F694613116A5300D91619</string>
@@ -340,15 +340,15 @@
 											<string>DC9F6B191311B42800D91619</string>
 											<string>DC9F6BCA1311BA0000D91619</string>
 											<string>DC578A801312EF36006C98C9</string>
-											<string>DCC87F4E131948270078F879</string>
-											<string>DCC87F961319CC090078F879</string>
 											<string>DCE0DE5F131C4E2F0097AEF3</string>
-											<string>DCE0DE60131C4E2F0097AEF3</string>
-											<string>DCE0DE61131C4E2F0097AEF3</string>
-											<string>DCE0DE62131C4E2F0097AEF3</string>
-											<string>DCE0DE63131C4E2F0097AEF3</string>
-											<string>DCE0DE64131C4E2F0097AEF3</string>
-											<string>DCE0DE65131C4E2F0097AEF3</string>
+											<string>DCE0DE78131C6FB80097AEF3</string>
+											<string>DCE0DE79131C6FB80097AEF3</string>
+											<string>DCE0DE7A131C6FB80097AEF3</string>
+											<string>DCE0DE7B131C6FB80097AEF3</string>
+											<string>DCE0DE7C131C6FB80097AEF3</string>
+											<string>DCE0DE7D131C6FB80097AEF3</string>
+											<string>DCE0DE7E131C6FB80097AEF3</string>
+											<string>DCE0DE7F131C6FB80097AEF3</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -573,7 +573,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CD0528F0623707200166675</string>
 								<key>PBXProjectModuleLabel</key>
-								<string></string>
+								<string>generalHeaders.h</string>
 								<key>StatusBarVisibility</key>
 								<true/>
 							</dict>
