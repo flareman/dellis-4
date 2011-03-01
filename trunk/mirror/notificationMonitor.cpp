@@ -175,6 +175,18 @@ void notificationMonitor::recursiveWatch(directoryElement* theElement) {
 	return;
 }
 
+void notificationMonitor::removeWatch(directoryElement* theElement) {
+	if (theElement == NULL) return;
+	
+	assignments.erase(assignments.find(theElement->watchDescriptor));
+
+	for (delIterator it = theElement->get_contents()->begin(); it != theElement->get_contents()->end(); it++)
+		if ((*it)->isDirectory())
+			removeWatch(*it);
+	
+	return;
+}
+
 int notificationMonitor::fetchEvents() {
 	int theMagicSauce = 0;
 	if (currentPosition > 0)
@@ -217,42 +229,47 @@ void notificationMonitor::watchForChanges() {
 }
 
 void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
-//	Υπάρχουν οι εξής περιπτώσεις:
-//	- Αλλαγή attributes
-//		- σε αρχείο
-//		- σε φάκελο
-//	- Δημιουργία
-//		- νέου αρχείου
-//		- νέου φακέλου
-//	- Διαγραφή
-//		- φακέλου
-//		- αρχείου
-//			- που είναι το τελευταίο hardlink σε inode
-//	- Μετακίνηση από->σε/από->[_]/[_]->σε
-//		- φακέλου
-//		- αρχείου
-//	- Δημιουργία νέου hardlink
-//	
-//	Το IN_OPEN δεν το χρειαζόμαστε, αρκεί να βλέπουμε μόνο το IN_CREATE και το
-//	IN_CLOSE_WRITE και ξέρουμε πότε δημιουργείται κάτι και πότε αποθηκεύεται.
-//	
-//	Επίσης, π.χ σε chmod αρχείου αναφέρει IN_ATTRIB και το παιδί και ο πατέρας.
-//	
-//	Τρίτον, στη δημιουργία hardlink σε ήδη υπάρχον αρχείο αναφέρονται 2 events:
-//	ένα IN_CREATE για το νέο hardlink και ένα IN_ATTRIB για το πρωτότυπο αρχείο
-//	όπου αλλάζει το πλήθος των hardlinks. Αντίστοιχα, όταν διαγράφεται αρχείο
-//	που δεν είναι το τελευταίο hardlink απλώς αναφέρεται IN_ATTRIB στα υπόλοιπα
-//	hardlinks (μείωση του αριθμού των ονομάτων στο ίδιο inode, η inotify δουλεύ-
-//	ει με inodes). Αν είναι το τελευταίο hardlink τότε στέλνει IN_DELETE.
-//			   
-//	Τέταρτον, δε χρειάζεται εκ νέου παρακολούθηση κάποιου στοιχείου, ακόμη κι αν
-//	μετακινηθεί. Μόνο η διαγραφή αναφέρει IN_IGNORED οπότε αφαιρείται αυτομάτως
-//	η παρακολούθηση, και η μετακίνηση εκτός παρακολουθούμενης δομής θέλει αφαί-
-//	ρεση με το χέρι, όλα τα άλλα είναι οκέι.
-//	
-//	Πέμπτον, στις αλλαγές αναφέρουν IN_OPEN/IN_CLOSE_WRITE κι ίσως και IN_ATTRIB
-//	και το αλλασσόμενο στοιχείο και ο περιέχων φάκελος (ίσως και ο παραπάνω, δεν
-//	το έχω ψάξει).
+	switch (theEvent->mask & (IN_ALL_EVENTS | IN_UNMOUNT | IN_Q_OVERFLOW | IN_IGNORED)) {
+	/* File was modified */
+		case IN_MODIFY:
+			break;
+
+	/* File changed attributes */
+		case IN_ATTRIB:
+			break;
+			
+	/* File open for writing was closed */
+		case IN_CLOSE_WRITE:
+			break;
+			
+	/* File was moved from X */
+		case IN_MOVED_FROM:
+			break;
+			
+	/* File was moved from X */
+		case IN_MOVED_TO:
+			break;
+			
+	/* File was moved from X */
+		case IN_DELETE:
+			break;
+			
+	/* File was moved from X */
+		case IN_DELETE_SELF:
+			break;
+			
+	/* File was moved from X */
+		case IN_CREATE:
+			break;
+			
+	/* Watch was removed explicitly by inotify_rm_watch or automatically
+	because file was deleted, or file system was unmounted.  */
+		case IN_IGNORED:
+			watchedItems--;
+			break;
+		default:
+			break;
+    }
 	
 	return;
 }
