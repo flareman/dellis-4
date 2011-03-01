@@ -256,17 +256,20 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 	
 	switch (theEvent->mask & IN_ALL_EVENTS) {
 		case IN_MODIFY:
+                    cout << "MODIFY" << endl;
 			if ((theChild != NULL)&&(theChild->isDirectory() == false))
 				theChild->wasModified = true;
 			break;
 
 		case IN_ATTRIB:
+                    cout << "ATTRIB" << endl;
 			if (theChild != NULL)
 				updateAttributes(theChild);
 			else updateAttributes(theElement);
 			break;
 			
 		case IN_CLOSE_WRITE:
+                    cout << "CLOSE AND WRITE" << endl;
 			if ((theChild != NULL)&&(theChild->isDirectory() == false)&&(theChild->wasModified)) {
 				theChild->wasModified = false;
 				updateFile(theChild);
@@ -274,13 +277,16 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			break;
 			
 		case IN_MOVED_FROM:
+                    cout << "MOVED FROM" << endl;
 			moveCookie = theEvent->cookie;
 			moveElement = theElement;
 			moveName = string(theEvent->name);
 			break;
 			
 		case IN_MOVED_TO:
+                    cout << "MOVED TO" << endl;
 			if (moveCookie != -1) {
+                    cout << "Found cookie." << endl;
 				moveCookie = -1;
 				createElement(moveElement->elementWithName(moveName), theElement, string(theEvent->name), NULL);
 				unlinkElement(moveElement->elementWithName(moveName)->getCorrespondingElement(), target.nodes, true);
@@ -288,6 +294,7 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
                                 unlinkElement(moveElement->elementWithName(moveName), source.nodes, false);
 				createElement(theElement->elementWithName(string(theEvent->name)), theElement->getCorrespondingElement(), string(theEvent->name), &target.nodes);
 			} else {
+                    cout << "Cookie not found." << endl;
 				theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
 				createElement(theChild, theElement, theChild->get_name(), NULL);
 				createElement(theChild, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes);
@@ -296,6 +303,7 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			break;
 			
 		case IN_DELETE:
+                    cout << "DELETE" << endl;
 			if ((theChild != NULL) && (theChild->isDirectory() == false)) {
 				removeWatch(theChild);
 				unlinkElement(theChild->getCorrespondingElement(), target.nodes, true);
@@ -304,12 +312,14 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			break;
 			
 		case IN_DELETE_SELF:
+                    cout << "DELETE SELF" << endl;
 			removeWatch(theElement);
 			unlinkElement(theElement->getCorrespondingElement(), target.nodes, true);
 			unlinkElement(theElement, source.nodes, false);
 			break;
 			
 		case IN_CREATE:
+                    cout << "CREATE" << endl;
 			theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
 			recursiveWatch(theChild);
                         theChild->set_parent(theElement);
