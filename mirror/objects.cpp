@@ -70,7 +70,7 @@ string directoryElement::get_name(){
 	return name;
 }
 
-void set_name(string newName) {
+void directoryElement::set_name(string newName) {
 	name = newName;
 }
 
