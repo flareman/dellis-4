@@ -48,6 +48,7 @@ private:
 	directoryElement* parent;
 public:
 	string get_name();
+	void set_name(string newName);
 	Inode* get_node();
 	directoryElement* get_parent();
 	bool isDirectory();

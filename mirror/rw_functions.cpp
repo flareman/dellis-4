@@ -83,8 +83,6 @@ void updateFile(directoryElement* theElement) {
 }
 
 bool createElement(directoryElement* theElement, directoryElement* destination, string newName, iNodeMap* destNodeMap) {
-	if (theElement->get_parent() == NULL) return false;
-	
 	directoryElement* newElement = NULL;
 	Inode* newNode = NULL, *node = NULL;
 	struct stat buffer;
@@ -135,7 +133,11 @@ bool createElement(directoryElement* theElement, directoryElement* destination, 
 				newElement->set_parent(destination);
 			}
 		}
-	} else newElement = theElement;
+	} else {
+		newElement = theElement;
+		newElement->set_parent(destination);
+		newElement->set_name(newName);
+	}
 	
 	destination->set_element(newElement);
 	
