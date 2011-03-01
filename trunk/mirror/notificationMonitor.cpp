@@ -179,6 +179,7 @@ void notificationMonitor::removeWatch(directoryElement* theElement) {
 	if (theElement == NULL) return;
 	
 	assignments.erase(assignments.find(theElement->watchDescriptor));
+	inotify_rm_watch(notificationSocket,theElement->watchDescriptor);
 
 	for (delIterator it = theElement->get_contents()->begin(); it != theElement->get_contents()->end(); it++)
 		if ((*it)->isDirectory())
@@ -229,43 +230,83 @@ void notificationMonitor::watchForChanges() {
 }
 
 void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
-	switch (theEvent->mask & (IN_ALL_EVENTS | IN_UNMOUNT | IN_Q_OVERFLOW | IN_IGNORED)) {
-	/* File was modified */
+	if (theEvent == NULL) return;
+	
+	directoryElement* theElement = (assignments.find(theEvent->wd))->second;
+	directoryElement* theChild = NULL;
+	if (theEvent->len > 0) theChild = theElement->elementWithName(string(theEvent->name));
+	
+	if (moveCookie != -1) {
+		if ((theEvent->mask & IN_MOVED_TO)&&(moveCookie == theEvent->cookie));
+		else {
+			unlinkElement(moveElement->elementWithName(moveName)->getCorrespondingElement(), target.nodes, true);
+			removeWatch(moveElement->elementWithName(moveName));
+			unlinkElement(moveElement->elementWithName(moveName), source.nodes, false);
+			moveCookie = -1;
+			moveName = string("");
+			moveElement = NULL;
+		}
+	}
+	
+	switch (theEvent->mask & IN_ALL_EVENTS) {
 		case IN_MODIFY:
+			if ((theChild != NULL)&&(theChild->isDirectory() == false))
+				theChild->wasModified = true;
 			break;
 
-	/* File changed attributes */
 		case IN_ATTRIB:
+			if (theChild != NULL)
+				updateAttributes(theChild);
+			else updateAttributes(theElement);
 			break;
 			
-	/* File open for writing was closed */
 		case IN_CLOSE_WRITE:
+			if ((theChild != NULL)&&(theChild->isDirectory() == false)&&(theChild->wasModified)) {
+				theChild->wasModified = false;
+				updateFile(theChild);
+			}
 			break;
 			
-	/* File was moved from X */
 		case IN_MOVED_FROM:
+			moveCookie = theEvent->cookie;
+			moveElement = theElement;
+			moveName = string(theEvent->name);
 			break;
 			
-	/* File was moved from X */
 		case IN_MOVED_TO:
+			if (moveCookie != -1) {
+				moveCookie = -1;
+				createElement(moveElement->elementWithName(moveName), theElement, string(theEvent->name), NULL);
+				createElement(moveElement->elementWithName(moveName), theElement->getCorrespondingElement(), string(theEvent->name), &target.nodes);
+				unlinkElement(moveElement->elementWithName(moveName)->getCorrespondingElement(), target.nodes, true);
+				unlinkElement(moveElement->elementWithName(moveName), source.nodes, false);
+			} else {
+				theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
+				createElement(theChild, theElement, theChild->get_name(), NULL);
+				createElement(theChild, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes);
+				recursiveWatch(theChild);
+			}
 			break;
 			
-	/* File was moved from X */
 		case IN_DELETE:
+			if ((theChild != NULL) && (theChild->isDirectory() == false)) {
+				unlinkElement(theChild, target.nodes, true);
+				removeWatch(theChild);
+				unlinkElement(theChild, source.nodes, false);
+			}
 			break;
 			
-	/* File was moved from X */
 		case IN_DELETE_SELF:
+			unlinkElement(theElement, target.nodes, true);
+			removeWatch(theElement);
+			unlinkElement(theElement, source.nodes, false);
 			break;
 			
-	/* File was moved from X */
 		case IN_CREATE:
-			break;
-			
-	/* Watch was removed explicitly by inotify_rm_watch or automatically
-	because file was deleted, or file system was unmounted.  */
-		case IN_IGNORED:
-			watchedItems--;
+			theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
+			createElement(theChild, theElement, theChild->get_name(), NULL);
+			createElement(theChild, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes);
+			recursiveWatch(theChild);
 			break;
 		default:
 			break;

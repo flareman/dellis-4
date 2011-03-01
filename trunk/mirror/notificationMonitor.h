@@ -29,7 +29,10 @@ private:
 	char eventBuffer[eventBufferSize];
 	int currentPosition;
 	int watchedItems;
-	int cookie;
+
+	string moveName;
+	int moveCookie;
+	directoryElement* moveElement;
 	
 	int getdir(string dir, list<string>& files);
 	directoryElement* recurse_hierarchy(string filename, string path, iNodeMap& nodeMap);
@@ -47,7 +50,9 @@ public:
 		source.root = NULL; target.root = NULL;
 		watchedItems = 0;
 		memset(&eventBuffer, 0, eventBufferSize); currentPosition = 0;
-		cookie = -1;
+		moveCookie = -1;
+		moveElement = NULL;
+		moveName = string("");
 	};
 	~notificationMonitor() { clearMonitor(); };
 	bool initializeMonitor(char* sourcePath, char* targetPath);
