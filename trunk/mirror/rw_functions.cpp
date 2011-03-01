@@ -103,7 +103,7 @@ bool createElement(directoryElement* theElement, directoryElement* destination, 
 			node = destNodeMap->addNode(newNode);
 			delete newNode; newNode = NULL;
 			theElement->get_node()->set_target(node);
-            newElement = new directoryElement(theElement->get_name(),node,false);
+			newElement = new directoryElement(theElement->get_name(),node,false);
 			node->set_element(newElement);
 			newElement->set_parent(destination);
 			for (delIterator it = theElement->get_contents()->begin();it!=theElement->get_contents()->end();it++)

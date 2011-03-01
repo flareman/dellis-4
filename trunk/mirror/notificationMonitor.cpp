@@ -101,6 +101,7 @@ directoryElement* notificationMonitor::recurse_hierarchy(string filename, string
 
 void notificationMonitor::performInitialSync () {
 	recursiveSync(source.root, target.root, target.nodes);
+        source.root->get_node()->set_target(target.root->get_node());
 	
 	return;
 }
@@ -140,6 +141,7 @@ void notificationMonitor::recursiveSync (directoryElement* source, directoryElem
 							createElement((*its), target, (*its)->get_name(), &targetNodes);
 							its++;
 						} else {
+                                                        (*its)->get_node()->set_target((*itt)->get_node());
 							itt++; its++;
 						}
 					}
@@ -177,14 +179,18 @@ void notificationMonitor::recursiveWatch(directoryElement* theElement) {
 
 void notificationMonitor::removeWatch(directoryElement* theElement) {
 	if (theElement == NULL) return;
-	
-	assignments.erase(assignments.find(theElement->watchDescriptor));
-	inotify_rm_watch(notificationSocket,theElement->watchDescriptor);
 
-	for (delIterator it = theElement->get_contents()->begin(); it != theElement->get_contents()->end(); it++)
-		if ((*it)->isDirectory())
-			removeWatch(*it);
-	
+        map<int,directoryElement*>::iterator it = assignments.find(theElement->watchDescriptor);
+	if (it != assignments.end()) {
+            assignments.erase(it);
+            inotify_rm_watch(notificationSocket,theElement->watchDescriptor);
+
+            for (delIterator it = theElement->get_contents()->begin(); it != theElement->get_contents()->end(); it++)
+                    if ((*it)->isDirectory()) {
+                            removeWatch(*it);
+                            watchedItems--;
+                    }
+            }
 	return;
 }
 
@@ -239,8 +245,8 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 	if (moveCookie != -1) {
 		if ((theEvent->mask & IN_MOVED_TO)&&(moveCookie == theEvent->cookie));
 		else {
-			unlinkElement(moveElement->elementWithName(moveName)->getCorrespondingElement(), target.nodes, true);
 			removeWatch(moveElement->elementWithName(moveName));
+			unlinkElement(moveElement->elementWithName(moveName)->getCorrespondingElement(), target.nodes, true);
 			unlinkElement(moveElement->elementWithName(moveName), source.nodes, false);
 			moveCookie = -1;
 			moveName = string("");
@@ -290,15 +296,15 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			
 		case IN_DELETE:
 			if ((theChild != NULL) && (theChild->isDirectory() == false)) {
-				unlinkElement(theChild->getCorrespondingElement(), target.nodes, true);
 				removeWatch(theChild);
+				unlinkElement(theChild->getCorrespondingElement(), target.nodes, true);
 				unlinkElement(theChild, source.nodes, false);
 			}
 			break;
 			
 		case IN_DELETE_SELF:
-			unlinkElement(theElement->getCorrespondingElement(), target.nodes, true);
 			removeWatch(theElement);
+			unlinkElement(theElement->getCorrespondingElement(), target.nodes, true);
 			unlinkElement(theElement, source.nodes, false);
 			break;
 			
