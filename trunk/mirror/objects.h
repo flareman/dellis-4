@@ -21,11 +21,12 @@ private:
 	ino_t serial;
 	time_t last_change;
 	int size;
-	list<directoryElement*> names;
 	int num_of_names;
 	Inode* target;
 public:
-	int get_size();
+	list<directoryElement*> names;
+
+        int get_size();
 	Inode* get_target();
 	void set_target(Inode* newTarget);
 	time_t get_date();
