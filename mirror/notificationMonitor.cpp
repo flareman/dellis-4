@@ -163,7 +163,10 @@ void notificationMonitor::recursiveWatch(directoryElement* theElement) {
 	int wd = inotify_add_watch(notificationSocket,theElement->getPathToElement().c_str(),
 							   IN_CREATE|IN_DELETE|IN_MOVE|IN_MODIFY|IN_DELETE_SELF|IN_ATTRIB|IN_CLOSE_WRITE);
 	
-	if (wd < 0) return;
+	if (wd < 0) {
+            cerr << wd << endl;
+            return;
+        }
 	else {
 		theElement->watchDescriptor = wd;
 		assignments.insert(pair<int,directoryElement*>(wd,theElement));
@@ -321,8 +324,9 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 		case IN_CREATE:
                     cout << "CREATE" << endl;
 			theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
-			recursiveWatch(theChild);
                         theChild->set_parent(theElement);
+                        theChild->set_name(string(theEvent->name));
+			recursiveWatch(theChild);
 			createElement(theChild, theElement, theChild->get_name(), NULL);
 			createElement(theChild, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes);
                         delete theChild;
