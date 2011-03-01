@@ -116,6 +116,7 @@ directoryElement* createElement(directoryElement* theElement, directoryElement* 
 				newElement->set_parent(destination);
                                 cout << node->names.size() << endl;
 				link(node->get_an_element()->getPathToElement().c_str(), newPath.c_str());
+                                node->set_element(newElement);
 			} else {
 				if (lstat((theElement->getPathToElement()).c_str(),&buffer)) {
 					cerr << "stat() failed on file " << theElement->getPathToElement() << endl;
