@@ -29,10 +29,12 @@ private:
 	char eventBuffer[eventBufferSize];
 	int currentPosition;
 	int watchedItems;
+	int cookie;
 	
 	int getdir(string dir, list<string>& files);
 	directoryElement* recurse_hierarchy(string filename, string path, iNodeMap& nodeMap);
 	void recursiveWatch(directoryElement* theElement);
+	void removeWatch(directoryElement* theElement);
 	void recursiveSync(directoryElement* source, directoryElement* target, iNodeMap& targetNodes);
 	int fetchEvents();
 	bool parseEventBuffer();
@@ -45,6 +47,7 @@ public:
 		source.root = NULL; target.root = NULL;
 		watchedItems = 0;
 		memset(&eventBuffer, 0, eventBufferSize); currentPosition = 0;
+		cookie = -1;
 	};
 	~notificationMonitor() { clearMonitor(); };
 	bool initializeMonitor(char* sourcePath, char* targetPath);

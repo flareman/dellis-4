@@ -273,7 +273,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>3</integer>
+									<integer>6</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -315,7 +315,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>objects.cpp</string>
+								<string>notificationMonitor.cpp</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,11 +323,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>objects.cpp</string>
+										<string>notificationMonitor.cpp</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>DCE0DE80131C6FB80097AEF3</string>
+										<string>DCE0DE9D131C74C00097AEF3</string>
 										<key>history</key>
 										<array>
 											<string>DC9F694613116A5300D91619</string>
@@ -344,11 +344,11 @@
 											<string>DCE0DE78131C6FB80097AEF3</string>
 											<string>DCE0DE79131C6FB80097AEF3</string>
 											<string>DCE0DE7A131C6FB80097AEF3</string>
-											<string>DCE0DE7B131C6FB80097AEF3</string>
-											<string>DCE0DE7C131C6FB80097AEF3</string>
-											<string>DCE0DE7D131C6FB80097AEF3</string>
-											<string>DCE0DE7E131C6FB80097AEF3</string>
-											<string>DCE0DE7F131C6FB80097AEF3</string>
+											<string>DCE0DE88131C72300097AEF3</string>
+											<string>DCE0DE8C131C735E0097AEF3</string>
+											<string>DCE0DE9A131C74C00097AEF3</string>
+											<string>DCE0DE9B131C74C00097AEF3</string>
+											<string>DCE0DE9C131C74C00097AEF3</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
