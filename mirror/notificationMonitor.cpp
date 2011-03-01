@@ -283,9 +283,10 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			if (moveCookie != -1) {
 				moveCookie = -1;
 				createElement(moveElement->elementWithName(moveName), theElement, string(theEvent->name), NULL);
-				createElement(moveElement->elementWithName(moveName), theElement->getCorrespondingElement(), string(theEvent->name), &target.nodes);
 				unlinkElement(moveElement->elementWithName(moveName)->getCorrespondingElement(), target.nodes, true);
-				unlinkElement(moveElement->elementWithName(moveName), source.nodes, false);
+
+                                unlinkElement(moveElement->elementWithName(moveName), source.nodes, false);
+				createElement(theElement->elementWithName(string(theEvent->name)), theElement->getCorrespondingElement(), string(theEvent->name), &target.nodes);
 			} else {
 				theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
 				createElement(theChild, theElement, theChild->get_name(), NULL);
@@ -310,9 +311,11 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			
 		case IN_CREATE:
 			theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
+			recursiveWatch(theChild);
+                        theChild->set_parent(theElement);
 			createElement(theChild, theElement, theChild->get_name(), NULL);
 			createElement(theChild, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes);
-			recursiveWatch(theChild);
+                        delete theChild;
 			break;
 		default:
 			break;
