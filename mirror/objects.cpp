@@ -29,7 +29,6 @@ directoryElement* Inode::getAnyElement() {
 
 directoryElement* Inode::getCounterpart(string relativePath) {
     for (list<directoryElement*>::iterator it = names.begin(); it != names.end(); it++) {
-        cout << (*it)->getPathToElement() << endl;
         if ((*it)->getRelativePathToElement() == relativePath) return (*it);
     }
 
