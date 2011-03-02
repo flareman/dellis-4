@@ -100,8 +100,8 @@ directoryElement* notificationMonitor::recurse_hierarchy(string filename, string
 }
 
 void notificationMonitor::performInitialSync () {
-	recursiveSync(source.root, target.root, target.nodes);
         source.root->get_node()->set_target(target.root->get_node());
+	recursiveSync(source.root, target.root, target.nodes);
 	
 	return;
 }
@@ -297,7 +297,7 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
                     cout << "Found cookie." << endl;
 				moveCookie = -1;
 				createElement(moveElement->elementWithName(moveName), theElement, string(theEvent->name), NULL);
-				createElement(theElement->elementWithName(string(theEvent->name)), theElement->getCorrespondingElement(), string(theEvent->name), &target.nodes);
+				createElement(moveElement->elementWithName(moveName), theElement->getCorrespondingElement(), string(theEvent->name), &target.nodes);
 				unlinkElement(moveElement->elementWithName(moveName)->getCorrespondingElement(), target.nodes, true);
                                 unlinkElement(moveElement->elementWithName(moveName), source.nodes, false);
 			} else {
@@ -332,6 +332,8 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
                         directoryElement* newElement = NULL;
                         newElement = createElement(theChild, theElement, theChild->get_name(), NULL);
+                        newElement->get_node()->set_element(newElement);
+                        newElement->get_node()->remove_element(theChild);
 			createElement(newElement, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes);
 			recursiveWatch(newElement);
                         delete theChild;
