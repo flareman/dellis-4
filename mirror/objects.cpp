@@ -37,11 +37,6 @@ directoryElement* Inode::getCounterpart(string relativePath) {
 }
 
 int Inode::remove_element(directoryElement* n){
-//	delIterator it = find(names.begin(), names.end(), n);
-//	if (it != names.end()) {
-//		num_of_names--;
-//		names.erase(it);
-//	}
     for (delIterator it = names.begin(); it != names.end(); it++)
         if (n == (*it)) {
             num_of_names--;
@@ -120,12 +115,13 @@ directoryElement* directoryElement::set_element(directoryElement* dir){
 }
 
 delIterator directoryElement::remove_element(directoryElement* theElement) {
-	delIterator it = find(contents.begin(), contents.end(), theElement);
-	if (it != contents.end()) {
-		delete (*it);
-		*it = NULL;
-		return contents.erase(it);
-	} else return contents.end();
+    for (delIterator it = contents.begin(); it != contents.end(); it++)
+        if (theElement == (*it)) {
+            delete (*it);
+            *it = NULL;
+            return contents.erase(it);
+        }
+	return contents.end();
 }
 
 bool directoryElement::operator==(const directoryElement &x) const {

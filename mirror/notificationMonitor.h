@@ -11,7 +11,6 @@
 #define _NOTIFICATION_MONITOR_H
 
 #include "generalHeaders.h"
-#include "rw_functions.h"
 #include <signal.h>
 
 typedef struct inotify_event iNotifyEvent;
@@ -58,9 +57,12 @@ public:
 	bool initializeMonitor(char* sourcePath, char* targetPath);
 	void assignWatches();
 	void watchForChanges();
+        bool swapWatch(int wd, directoryElement* newElement);
 };
 
 bool compareDirectories (directoryElement* first, directoryElement* second);
 void processSignal(int signum);
+
+#include "rw_functions.h"
 
 #endif
