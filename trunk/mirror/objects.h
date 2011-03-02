@@ -36,7 +36,7 @@ public:
 	list<directoryElement*> *get_names();
 	int get_num_of_names();
 	void set_element(directoryElement* n);
-	directoryElement* get_an_element();
+	directoryElement* getCounterpart(string relativePath);
 	int remove_element(directoryElement* n);
 	Inode(time_t d,int s, ino_t sr);
 };
@@ -65,6 +65,7 @@ public:
 	bool operator!=(const directoryElement &x) const;
 	void set_node(Inode* n);
 	string getPathToElement();
+	string getRelativePathToElement();
 	void printOutTreeBelow();
 	void printOutTreeBelow(int depth);
 	directoryElement* getCorrespondingElement();

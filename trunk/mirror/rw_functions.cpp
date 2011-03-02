@@ -118,7 +118,7 @@ directoryElement* createElement(directoryElement* theElement, directoryElement* 
 				newElement = new directoryElement(newName,node,true);
 				newElement->set_parent(destination);
                                 cout << node->names.size() << endl;
-				link(node->get_an_element()->getPathToElement().c_str(), newPath.c_str());
+				link(node->getCounterpart(theElement->getRelativePathToElement())->getPathToElement().c_str(), newPath.c_str());
                                 node->set_element(newElement);
 			} else {
 				if (lstat((theElement->getPathToElement()).c_str(),&buffer)) {
