@@ -96,12 +96,12 @@ directoryElement* createElement(directoryElement* theElement, directoryElement* 
 	if (destNodeMap != NULL) {
 		if (theElement->isDirectory()) {
 			if(lstat((theElement->getPathToElement()).c_str(),&buffer)) {
-				cerr << "stat() failed on file " << theElement->getPathToElement() << endl;
+				cerr << "stat() failed on opening directory " << theElement->getPathToElement() << endl;
 				exit(-1);
 			}
 			mkdir(newPath.c_str(), buffer.st_mode & 0000777);
 			if (lstat(newPath.c_str(),&buffer)) {
-				cerr << "stat() failed on file " << newPath << endl;
+				cerr << "stat() failed on creating directory " << newPath << endl;
 				exit(-1);
 			}
 			newNode = new Inode(buffer.st_mtime,buffer.st_size,buffer.st_ino);
@@ -122,13 +122,13 @@ directoryElement* createElement(directoryElement* theElement, directoryElement* 
                                 node->set_element(newElement);
 			} else {
 				if (lstat((theElement->getPathToElement()).c_str(),&buffer)) {
-					cerr << "stat() failed on file " << theElement->getPathToElement() << endl;
+					cerr << "stat() failed on reading file " << theElement->getPathToElement() << endl;
 					exit(-1);
 				}
 				copyFile(theElement->getPathToElement(), newPath);
 				chmod(newPath.c_str(), buffer.st_mode & 0000777);
 				if (lstat(newPath.c_str(),&buffer)) {
-					cerr << "stat() failed on file " << newPath << endl;
+					cerr << "stat() failed on creating file " << newPath << endl;
 					exit(-1);
 				}
 				newNode = new Inode(buffer.st_mtime,buffer.st_size,buffer.st_ino);

@@ -303,8 +303,12 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			} else {
                     cout << "Cookie not found." << endl;
 			theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
+                        theChild->set_parent(theElement);
                         directoryElement* newElement = NULL;
                         newElement = createElement(theChild, theElement, theChild->get_name(), NULL);
+                        newElement->get_node()->set_element(newElement);
+                        newElement->get_node()->remove_element(theChild);
+                        cout << "Second createElement." << endl;
 			createElement(newElement, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes);
 			recursiveWatch(newElement);
                         delete theChild;
