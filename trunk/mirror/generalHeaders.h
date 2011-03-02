@@ -22,7 +22,6 @@
 #include <string>
 #include <list>
 #include <map>
-#include <algorithm>
 #include <fstream>
 #include <sys/inotify.h>
 

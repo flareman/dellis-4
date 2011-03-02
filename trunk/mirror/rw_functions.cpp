@@ -8,6 +8,7 @@
  */
 
 #include "rw_functions.h"
+#include "notificationMonitor.h"
 
 int copyFile(string initialFilePath, string outputFilePath){
 	ifstream initialFile(initialFilePath.c_str(), ios::in|ios::binary);
@@ -85,7 +86,7 @@ void updateFile(directoryElement* theElement) {
 	return;
 }
 
-directoryElement* createElement(directoryElement* theElement, directoryElement* destination, string newName, iNodeMap* nodeMap, bool commitCreate) {
+directoryElement* createElement(notificationMonitor* theMonitor, directoryElement* theElement, directoryElement* destination, string newName, iNodeMap* nodeMap, bool commitCreate) {
 	directoryElement* newElement = NULL;
 	Inode* newNode = NULL, *node = NULL;
 	struct stat buffer;
@@ -111,7 +112,7 @@ directoryElement* createElement(directoryElement* theElement, directoryElement* 
 			newElement->set_parent(destination);
                         newElement->set_name(newName);
 			for (delIterator it = theElement->get_contents()->begin();it!=theElement->get_contents()->end();it++)
-				createElement((*it), newElement, (*it)->get_name(), nodeMap, true);
+				createElement(theMonitor, (*it), newElement, (*it)->get_name(), nodeMap, true);
 		} else {
 			if ((node = theElement->get_node()->get_target()) != NULL) {
 				newElement = new directoryElement(newName,node,true);
@@ -151,8 +152,11 @@ directoryElement* createElement(directoryElement* theElement, directoryElement* 
 		newElement = new directoryElement(newName,node,false);
 		node->set_element(newElement);
 		newElement->set_parent(destination);
+                newElement->set_name(newName);
+                newElement->watchDescriptor = theElement->watchDescriptor;
+                theMonitor->swapWatch(theElement->watchDescriptor, newElement);
 		for (delIterator it = theElement->get_contents()->begin();it!=theElement->get_contents()->end();it++)
-			createElement((*it), newElement, (*it)->get_name(), nodeMap, false);
+			createElement(theMonitor, (*it), newElement, (*it)->get_name(), nodeMap, false);
             } else {
                 newElement = new directoryElement(*theElement);
                 newElement->set_parent(destination);
