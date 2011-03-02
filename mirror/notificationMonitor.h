@@ -32,7 +32,7 @@ private:
 
 	string moveName;
 	int moveCookie;
-	directoryElement* moveElement;
+	directoryElement* moveElement, *moveTarget;
 	
 	int getdir(string dir, list<string>& files);
 	directoryElement* recurse_hierarchy(string filename, string path, iNodeMap& nodeMap);
@@ -51,7 +51,7 @@ public:
 		watchedItems = 0;
 		memset(&eventBuffer, 0, eventBufferSize); currentPosition = 0;
 		moveCookie = -1;
-		moveElement = NULL;
+		moveElement = NULL; moveTarget = NULL;
 		moveName = string("");
 	};
 	~notificationMonitor() { clearMonitor(); };

@@ -23,19 +23,31 @@ void Inode::set_element(directoryElement* n){
 	num_of_names++;
 }
 
+directoryElement* Inode::getAnyElement() {
+    return names.front();
+}
+
 directoryElement* Inode::getCounterpart(string relativePath) {
-    for (list<directoryElement*>::iterator it = names.begin(); it != names.end(); it++)
+    for (list<directoryElement*>::iterator it = names.begin(); it != names.end(); it++) {
+        cout << (*it)->getPathToElement() << endl;
         if ((*it)->getRelativePathToElement() == relativePath) return (*it);
+    }
 
     return NULL;
 }
 
 int Inode::remove_element(directoryElement* n){
-	delIterator it = find(names.begin(), names.end(), n);
-	if (it != names.end()) {
-		num_of_names--;
-		names.erase(it);
-	}
+//	delIterator it = find(names.begin(), names.end(), n);
+//	if (it != names.end()) {
+//		num_of_names--;
+//		names.erase(it);
+//	}
+    for (delIterator it = names.begin(); it != names.end(); it++)
+        if (n == (*it)) {
+            num_of_names--;
+            names.erase(it);
+            break;
+        }
 	return num_of_names;
 }
 
