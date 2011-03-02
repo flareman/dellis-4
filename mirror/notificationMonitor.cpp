@@ -297,7 +297,8 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
                     cout << "Found cookie." << endl;
 				moveCookie = -1;
 				createElement(moveElement->elementWithName(moveName), theElement, string(theEvent->name), NULL);
-				createElement(moveElement->elementWithName(moveName), theElement->getCorrespondingElement(), string(theEvent->name), &target.nodes);
+                                cout << "Second createElement." << endl;
+				createElement(theElement->elementWithName(string(theEvent->name)), theElement->getCorrespondingElement(), string(theEvent->name), &target.nodes);
 				unlinkElement(moveElement->elementWithName(moveName)->getCorrespondingElement(), target.nodes, true);
                                 unlinkElement(moveElement->elementWithName(moveName), source.nodes, false);
 			} else {

@@ -23,8 +23,11 @@ void Inode::set_element(directoryElement* n){
 	num_of_names++;
 }
 
-directoryElement* Inode::get_an_element() {
-	return names.front();
+directoryElement* Inode::getCounterpart(string relativePath) {
+    for (list<directoryElement*>::iterator it = names.begin(); it != names.end(); it++)
+        if ((*it)->getRelativePathToElement() == relativePath) return (*it);
+
+    return NULL;
 }
 
 int Inode::remove_element(directoryElement* n){
@@ -165,6 +168,14 @@ string directoryElement::getPathToElement() {
 	return parentPath + name;
 }
 
+string directoryElement::getRelativePathToElement() {
+	string parentPath;
+	if (parent == NULL) return string("");
+        else parentPath = parent->getRelativePathToElement() + '/';
+
+	return parentPath + name;
+}
+
 void directoryElement::printOutTreeBelow() {
 	cout << getPathToElement() << endl;
 	if (!isFile)
@@ -196,7 +207,7 @@ directoryElement* directoryElement::getCorrespondingElement() {
 	
 	if (node->get_target()->get_num_of_names() < 1) return NULL;
 	
-	return node->get_target()->get_an_element();
+	return node->get_target()->getCounterpart(getRelativePathToElement());
 }
 
 directoryElement* directoryElement::elementWithName(string theName) {
