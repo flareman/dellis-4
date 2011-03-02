@@ -258,7 +258,7 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			unlinkElement(moveElement->elementWithName(moveName), source.nodes, false);
 			moveCookie = -1;
 			moveName = string("");
-			moveElement = NULL;
+			moveElement = NULL; moveTarget = NULL;
 		}
 	}
 	
@@ -289,6 +289,7 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			moveCookie = theEvent->cookie;
 			moveElement = theElement;
 			moveName = string(theEvent->name);
+                        moveTarget = theElement->elementWithName(moveName)->getCorrespondingElement();
 			break;
 			
 		case IN_MOVED_TO:
@@ -297,10 +298,12 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
                     cout << "Found cookie." << endl;
 				moveCookie = -1;
 				createElement(moveElement->elementWithName(moveName), theElement, string(theEvent->name), NULL);
-                                cout << "Second createElement." << endl;
 				createElement(theElement->elementWithName(string(theEvent->name)), theElement->getCorrespondingElement(), string(theEvent->name), &target.nodes);
-				unlinkElement(moveElement->elementWithName(moveName)->getCorrespondingElement(), target.nodes, true);
+				unlinkElement(moveTarget, target.nodes, true);
                                 unlinkElement(moveElement->elementWithName(moveName), source.nodes, false);
+                                moveName = string("");
+                                moveElement = NULL;
+                                moveTarget = NULL;
 			} else {
                     cout << "Cookie not found." << endl;
 			theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
@@ -309,7 +312,6 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
                         newElement = createElement(theChild, theElement, theChild->get_name(), NULL);
                         newElement->get_node()->set_element(newElement);
                         newElement->get_node()->remove_element(theChild);
-                        cout << "Second createElement." << endl;
 			createElement(newElement, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes);
 			recursiveWatch(newElement);
                         delete theChild;

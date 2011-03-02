@@ -23,9 +23,8 @@ private:
 	int size;
 	int num_of_names;
 	Inode* target;
-public:
 	list<directoryElement*> names;
-
+public:
         int get_size();
 	Inode* get_target();
 	void set_target(Inode* newTarget);
@@ -37,6 +36,7 @@ public:
 	int get_num_of_names();
 	void set_element(directoryElement* n);
 	directoryElement* getCounterpart(string relativePath);
+        directoryElement* getAnyElement();
 	int remove_element(directoryElement* n);
 	Inode(time_t d,int s, ino_t sr);
 };
