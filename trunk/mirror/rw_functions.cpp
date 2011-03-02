@@ -85,13 +85,13 @@ void updateFile(directoryElement* theElement) {
 	return;
 }
 
-directoryElement* createElement(directoryElement* theElement, directoryElement* destination, string newName, iNodeMap* destNodeMap) {
+directoryElement* createElement(directoryElement* theElement, directoryElement* destination, string newName, iNodeMap* nodeMap, bool commitCreate) {
 	directoryElement* newElement = NULL;
 	Inode* newNode = NULL, *node = NULL;
 	struct stat buffer;
 	string newPath = destination->getPathToElement()+'/'+newName;
 		
-	if (destNodeMap != NULL) {
+	if (commitCreate) {
 		if (theElement->isDirectory()) {
 			if(lstat((theElement->getPathToElement()).c_str(),&buffer)) {
 				cerr << "stat() failed on opening directory " << theElement->getPathToElement() << endl;
@@ -103,18 +103,20 @@ directoryElement* createElement(directoryElement* theElement, directoryElement* 
 				exit(-1);
 			}
 			newNode = new Inode(buffer.st_mtime,buffer.st_size,buffer.st_ino);
-			node = destNodeMap->addNode(newNode);
+			node = nodeMap->addNode(newNode);
 			delete newNode; newNode = NULL;
 			theElement->get_node()->set_target(node);
 			newElement = new directoryElement(theElement->get_name(),node,false);
 			node->set_element(newElement);
 			newElement->set_parent(destination);
+                        newElement->set_name(newName);
 			for (delIterator it = theElement->get_contents()->begin();it!=theElement->get_contents()->end();it++)
-				createElement((*it), newElement, (*it)->get_name(), destNodeMap);
+				createElement((*it), newElement, (*it)->get_name(), nodeMap, true);
 		} else {
 			if ((node = theElement->get_node()->get_target()) != NULL) {
 				newElement = new directoryElement(newName,node,true);
 				newElement->set_parent(destination);
+                                newElement->set_name(newName);
 				link(node->getAnyElement()->getPathToElement().c_str(), newPath.c_str());
                                 node->set_element(newElement);
 			} else {
@@ -129,7 +131,7 @@ directoryElement* createElement(directoryElement* theElement, directoryElement* 
 					exit(-1);
 				}
 				newNode = new Inode(buffer.st_mtime,buffer.st_size,buffer.st_ino);
-				node = destNodeMap->addNode(newNode);
+				node = nodeMap->addNode(newNode);
 				delete newNode; newNode = NULL;
 				theElement->get_node()->set_target(node);
 				newElement = new directoryElement(theElement->get_name(),node,true);
@@ -138,9 +140,25 @@ directoryElement* createElement(directoryElement* theElement, directoryElement* 
 			}
 		}
 	} else {
-                newElement = new directoryElement(*theElement);
+            if (theElement->isDirectory()) {
+		if (lstat(newPath.c_str(),&buffer)) {
+			cerr << "stat() failed on creating directory " << newPath << endl;
+			exit(-1);
+		}
+		newNode = new Inode(buffer.st_mtime,buffer.st_size,buffer.st_ino);
+		node = nodeMap->addNode(newNode);
+		delete newNode; newNode = NULL;
+		newElement = new directoryElement(newName,node,false);
+		node->set_element(newElement);
 		newElement->set_parent(destination);
-		newElement->set_name(newName);
+		for (delIterator it = theElement->get_contents()->begin();it!=theElement->get_contents()->end();it++)
+			createElement((*it), newElement, (*it)->get_name(), nodeMap, false);
+            } else {
+                newElement = new directoryElement(*theElement);
+                newElement->set_parent(destination);
+                newElement->set_name(newName);
+                newElement->get_node()->set_element(newElement);
+            }
 	}
 	
 	destination->set_element(newElement);
