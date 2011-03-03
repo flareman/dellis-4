@@ -242,11 +242,11 @@ void notificationMonitor::watchForChanges() {
 		signal (SIGINT, SIG_IGN);
 	}
 	while (keepProcessing && (watchedItems > 0)) {
-		if (checkForEvents()) {
+//		if (checkForEvents()) {
 			bytesRead = fetchEvents();
 			if (bytesRead < 0) break;
 			else parseEventBuffer();
-		}
+//		}
 	}
 	return;
 }
@@ -266,7 +266,7 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 		if ((theEvent->mask & IN_MOVED_TO)&&(moveCookie == theEvent->cookie));
 		else {
 			removeWatch(moveElement->elementWithName(moveName));
-			unlinkElement(moveElement->elementWithName(moveName)->getCorrespondingElement(), target.nodes, true);
+			unlinkElement(moveTarget, target.nodes, true);
 			unlinkElement(moveElement->elementWithName(moveName), source.nodes, false);
 			moveCookie = -1;
 			moveName = string("");
