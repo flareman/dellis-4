@@ -320,7 +320,7 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
                         theChild->set_parent(theElement);
                         directoryElement* newElement = NULL;
                         newElement = createElement(this, theChild, theElement, theChild->get_name(), &source.nodes, false);
-                        newElement->get_node()->set_element(newElement);
+//                        newElement->get_node()->set_element(newElement);
                         newElement->get_node()->remove_element(theChild);
 			createElement(this, newElement, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes, true);
 			recursiveWatch(newElement);
@@ -349,7 +349,7 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
                         directoryElement* newElement = NULL;
                         newElement = createElement(this, theChild, theElement, theChild->get_name(), &source.nodes, false);
-                        newElement->get_node()->set_element(newElement);
+//                        newElement->get_node()->set_element(newElement);
                         newElement->get_node()->remove_element(theChild);
 			createElement(this, newElement, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes, true);
 			recursiveWatch(newElement);
