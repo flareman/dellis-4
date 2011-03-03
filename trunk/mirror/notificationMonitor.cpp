@@ -157,6 +157,9 @@ void notificationMonitor::recursiveSync (directoryElement* source, directoryElem
 
 void notificationMonitor::assignWatches() {
 	recursiveWatch(source.root);
+                        for (map<int,directoryElement*>::iterator it = assignments.begin(); it!=assignments.end();it++) {
+                            cout << (*it).first << "->" << (*it).second->getPathToElement() << endl;
+                        }
 }
 
 void notificationMonitor::recursiveWatch(directoryElement* theElement) {
@@ -167,11 +170,8 @@ void notificationMonitor::recursiveWatch(directoryElement* theElement) {
 	int wd = inotify_add_watch(notificationSocket,theElement->getPathToElement().c_str(),
 							   IN_CREATE|IN_DELETE|IN_MOVE|IN_MODIFY|IN_DELETE_SELF|IN_ATTRIB|IN_CLOSE_WRITE);
 	
-	if (wd < 0) {
-            cerr << wd << endl;
-            return;
-        }
-	else {
+	if (wd < 0) return;
+        else {
 		theElement->watchDescriptor = wd;
 		assignments.insert(pair<int,directoryElement*>(wd,theElement));
 		watchedItems++;
@@ -193,11 +193,10 @@ void notificationMonitor::removeWatch(directoryElement* theElement) {
             inotify_rm_watch(notificationSocket,theElement->watchDescriptor);
 
             for (delIterator it = theElement->get_contents()->begin(); it != theElement->get_contents()->end(); it++)
-                    if ((*it)->isDirectory()) {
+                    if ((*it)->isDirectory())
                             removeWatch(*it);
-                            watchedItems--;
-                    }
-            }
+            watchedItems--;
+        }
 	return;
 }
 
@@ -255,8 +254,11 @@ void notificationMonitor::watchForChanges() {
 void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 	if (theEvent == NULL) return;
         if (theEvent->mask == 0) return;
-	
-	directoryElement* theElement = (assignments.find(theEvent->wd))->second;
+
+        map<int,directoryElement*>::iterator it = assignments.find(theEvent->wd);
+        if (it == assignments.end()) return;
+
+	directoryElement* theElement = (*it).second;
 	directoryElement* theChild = NULL;
 	if (theEvent->len > 0) theChild = theElement->elementWithName(string(theEvent->name));
 	
@@ -331,7 +333,6 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 		case IN_DELETE:
                     cout << "DELETE" << endl;
 			if ((theChild != NULL) && (theChild->isDirectory() == false)) {
-				removeWatch(theChild);
 				unlinkElement(theChild->getCorrespondingElement(), target.nodes, true);
 				unlinkElement(theChild, source.nodes, false);
 			}
@@ -342,6 +343,9 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			removeWatch(theElement);
 			unlinkElement(theElement->getCorrespondingElement(), target.nodes, true);
 			unlinkElement(theElement, source.nodes, false);
+                        for (map<int,directoryElement*>::iterator it = assignments.begin(); it!=assignments.end();it++) {
+                            cout << (*it).first << "->" << (*it).second->getPathToElement() << endl;
+                        }
 			break;
 			
 		case IN_CREATE: {
@@ -354,6 +358,9 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			createElement(this, newElement, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes, true);
 			recursiveWatch(newElement);
                         delete theChild;
+                        for (map<int,directoryElement*>::iterator it = assignments.begin(); it!=assignments.end();it++) {
+                            cout << (*it).first << "->" << (*it).second->getPathToElement() << endl;
+                        }
                 }
 			break;
 		default:

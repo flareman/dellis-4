@@ -45,11 +45,8 @@ delIterator unlinkElement(directoryElement* theElement, iNodeMap& nodeSet, bool 
 		exit(1);
 	}
 
-        cout << "Hardlinks before unlinking: " << theElement->get_node()->get_num_of_names() << endl;
-	if (theElement->get_node()->remove_element(theElement) == 0) {
-		cout << "Deleting obsolete node." << endl;
+	if (theElement->get_node()->remove_element(theElement) == 0)
                 nodeSet.deleteNode(theElement->get_node());
-        }
 	
 	return theElement->get_parent()->remove_element(theElement);
 }
