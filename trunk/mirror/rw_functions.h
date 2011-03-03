@@ -16,7 +16,7 @@
 using namespace std;
 
 delIterator unlinkElement(directoryElement* theElement, iNodeMap& nodeSet, bool commitRemove);
-directoryElement* createElement(notificationMonitor* theMonitor, directoryElement* theElement, directoryElement* destination, string newName, iNodeMap* nodeMap, bool commitCreate);
+directoryElement* createElement(notificationMonitor* theMonitor, directoryElement* theElement, bool forMove, directoryElement* destination, string newName, iNodeMap* nodeMap, bool commitCreate);
 void updateFile(directoryElement* theElement);
 void updateAttributes(directoryElement* theElement);
 int copyFile(string initialFilePath, string outputFilePath);

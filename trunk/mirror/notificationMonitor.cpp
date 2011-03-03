@@ -120,7 +120,7 @@ void notificationMonitor::recursiveSync (directoryElement* source, directoryElem
 			continue;
 		}
 		if (itt == targetList->end()) {
-			createElement(NULL, (*its), target, (*its)->get_name(), &targetNodes, true);
+			createElement(NULL, (*its), false, target, (*its)->get_name(), &targetNodes, true);
 			its++; continue;
 		}
 		if ((*itt)->get_name() < (*its)->get_name()) {
@@ -129,7 +129,7 @@ void notificationMonitor::recursiveSync (directoryElement* source, directoryElem
 			if ((*itt)->get_name() == (*its)->get_name()) {
 				if ((*its)->isDirectory() != (*itt)->isDirectory()) {
 					itt = unlinkElement((*itt), targetNodes, true);
-					createElement(NULL, (*its), target, (*its)->get_name(), &targetNodes, true);
+					createElement(NULL, (*its), false, target, (*its)->get_name(), &targetNodes, true);
 					its++;
 				} else {
 					if ((*its)->isDirectory()) {
@@ -139,7 +139,7 @@ void notificationMonitor::recursiveSync (directoryElement* source, directoryElem
 					} else {
 						if (((*its)->get_node()->get_size() != (*itt)->get_node()->get_size()) || ((*its)->get_node()->get_date() > (*itt)->get_node()->get_date())) {
 							itt = unlinkElement((*itt), targetNodes, true);
-							createElement(NULL, (*its), target, (*its)->get_name(), &targetNodes, true);
+							createElement(NULL, (*its), false, target, (*its)->get_name(), &targetNodes, true);
 							its++;
 						} else {
                                                         (*its)->get_node()->set_target((*itt)->get_node());
@@ -148,7 +148,7 @@ void notificationMonitor::recursiveSync (directoryElement* source, directoryElem
 					}
 				}
 			} else {
-				createElement(NULL, (*its), target, (*its)->get_name(), &targetNodes, true);
+				createElement(NULL, (*its), false, target, (*its)->get_name(), &targetNodes, true);
 				its++;
 			}
 		}
@@ -309,8 +309,8 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			if (moveCookie != -1) {
                     cout << "Found cookie." << endl;
 				moveCookie = -1;
-				createElement(this, moveElement->elementWithName(moveName), theElement, string(theEvent->name), &source.nodes, false);
-				createElement(this, theElement->elementWithName(string(theEvent->name)), theElement->getCorrespondingElement(), string(theEvent->name), &target.nodes, true);
+				createElement(this, moveElement->elementWithName(moveName), false, theElement, string(theEvent->name), &source.nodes, false);
+				createElement(this, theElement->elementWithName(string(theEvent->name)), false, theElement->getCorrespondingElement(), string(theEvent->name), &target.nodes, true);
 				unlinkElement(moveTarget, target.nodes, true);
                                 unlinkElement(moveElement->elementWithName(moveName), source.nodes, false);
                                 moveName = string("");
@@ -321,10 +321,8 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
                         theChild->set_parent(theElement);
                         directoryElement* newElement = NULL;
-                        newElement = createElement(this, theChild, theElement, theChild->get_name(), &source.nodes, false);
-//                        newElement->get_node()->set_element(newElement);
-                        newElement->get_node()->remove_element(theChild);
-			createElement(this, newElement, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes, true);
+                        newElement = createElement(this, theChild, true, theElement, theChild->get_name(), &source.nodes, false);
+			createElement(this, newElement, true, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes, true);
 			recursiveWatch(newElement);
                         delete theChild;
                     }
@@ -352,10 +350,8 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
                     cout << "CREATE" << endl;
 			theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
                         directoryElement* newElement = NULL;
-                        newElement = createElement(this, theChild, theElement, theChild->get_name(), &source.nodes, false);
-//                        newElement->get_node()->set_element(newElement);
-                        newElement->get_node()->remove_element(theChild);
-			createElement(this, newElement, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes, true);
+                        newElement = createElement(this, theChild, true, theElement, theChild->get_name(), &source.nodes, false);
+			createElement(this, newElement, true, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes, true);
 			recursiveWatch(newElement);
                         delete theChild;
                         for (map<int,directoryElement*>::iterator it = assignments.begin(); it!=assignments.end();it++) {
