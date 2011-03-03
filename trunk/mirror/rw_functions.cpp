@@ -126,6 +126,7 @@ directoryElement* createElement(notificationMonitor* theMonitor, directoryElemen
 					exit(-1);
 				}
 				copyFile(theElement->getPathToElement(), newPath);
+                                // Permissions are dark, dark magic
 				chmod(newPath.c_str(), buffer.st_mode & 0000777);
 				if (lstat(newPath.c_str(),&buffer)) {
 					cerr << "stat() failed on creating file " << newPath << endl;

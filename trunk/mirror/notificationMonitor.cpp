@@ -157,9 +157,6 @@ void notificationMonitor::recursiveSync (directoryElement* source, directoryElem
 
 void notificationMonitor::assignWatches() {
 	recursiveWatch(source.root);
-                        for (map<int,directoryElement*>::iterator it = assignments.begin(); it!=assignments.end();it++) {
-                            cout << (*it).first << "->" << (*it).second->getPathToElement() << endl;
-                        }
 }
 
 void notificationMonitor::recursiveWatch(directoryElement* theElement) {
@@ -242,15 +239,16 @@ void notificationMonitor::watchForChanges() {
 		signal (SIGINT, SIG_IGN);
 	}
 	while (keepProcessing && (watchedItems > 0)) {
-//		if (checkForEvents()) {
+		if (checkForEvents()) {
 			bytesRead = fetchEvents();
 			if (bytesRead < 0) break;
 			else parseEventBuffer();
-//		}
+		}
 	}
 	return;
 }
 
+// Here be dragons
 void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 	if (theEvent == NULL) return;
         if (theEvent->mask == 0) return;
@@ -276,20 +274,17 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 	
 	switch (theEvent->mask & IN_ALL_EVENTS) {
 		case IN_MODIFY:
-                    cout << "MODIFY" << endl;
 			if ((theChild != NULL)&&(theChild->isDirectory() == false))
 				theChild->wasModified = true;
 			break;
 
 		case IN_ATTRIB:
-                    cout << "ATTRIB" << endl;
 			if (theChild != NULL)
 				updateAttributes(theChild);
 			else updateAttributes(theElement);
 			break;
 			
 		case IN_CLOSE_WRITE:
-                    cout << "CLOSE AND WRITE" << endl;
 			if ((theChild != NULL)&&(theChild->isDirectory() == false)&&(theChild->wasModified)) {
 				theChild->wasModified = false;
 				updateFile(theChild);
@@ -297,7 +292,6 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			break;
 			
 		case IN_MOVED_FROM:
-                    cout << "MOVED FROM" << endl;
 			moveCookie = theEvent->cookie;
 			moveElement = theElement;
 			moveName = string(theEvent->name);
@@ -305,9 +299,8 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			break;
 			
 		case IN_MOVED_TO:
-                    cout << "MOVED TO" << endl;
+                    // Diablo walks the earth
 			if (moveCookie != -1) {
-                    cout << "Found cookie." << endl;
 				moveCookie = -1;
 				createElement(this, moveElement->elementWithName(moveName), false, theElement, string(theEvent->name), &source.nodes, false);
 				createElement(this, theElement->elementWithName(string(theEvent->name)), false, theElement->getCorrespondingElement(), string(theEvent->name), &target.nodes, true);
@@ -317,7 +310,6 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
                                 moveElement = NULL;
                                 moveTarget = NULL;
 			} else {
-                    cout << "Cookie not found." << endl;
 			theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
                         theChild->set_parent(theElement);
                         directoryElement* newElement = NULL;
@@ -329,7 +321,6 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			break;
 			
 		case IN_DELETE:
-                    cout << "DELETE" << endl;
 			if ((theChild != NULL) && (theChild->isDirectory() == false)) {
 				unlinkElement(theChild->getCorrespondingElement(), target.nodes, true);
 				unlinkElement(theChild, source.nodes, false);
@@ -337,26 +328,20 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			break;
 			
 		case IN_DELETE_SELF:
-                    cout << "DELETE SELF" << endl;
 			removeWatch(theElement);
 			unlinkElement(theElement->getCorrespondingElement(), target.nodes, true);
 			unlinkElement(theElement, source.nodes, false);
                         for (map<int,directoryElement*>::iterator it = assignments.begin(); it!=assignments.end();it++) {
-                            cout << (*it).first << "->" << (*it).second->getPathToElement() << endl;
                         }
 			break;
 			
 		case IN_CREATE: {
-                    cout << "CREATE" << endl;
 			theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
                         directoryElement* newElement = NULL;
                         newElement = createElement(this, theChild, true, theElement, theChild->get_name(), &source.nodes, false);
 			createElement(this, newElement, true, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes, true);
 			recursiveWatch(newElement);
                         delete theChild;
-                        for (map<int,directoryElement*>::iterator it = assignments.begin(); it!=assignments.end();it++) {
-                            cout << (*it).first << "->" << (*it).second->getPathToElement() << endl;
-                        }
                 }
 			break;
 		default:
