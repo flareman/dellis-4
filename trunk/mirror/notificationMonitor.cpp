@@ -1,12 +1,3 @@
-/*
- *  notificationMonitor.cpp
- *  mirror
- *
- *  Created by Σπύρος Σμπαρούνης on 23/02/2011.
- *  Copyright 2011 __MyCompanyName__. All rights reserved.
- *
- */
-
 #include "notificationMonitor.h"
 
 bool keepProcessing;
@@ -31,7 +22,6 @@ void notificationMonitor::clearMonitor() {
 		inotify_rm_watch(notificationSocket, it->first);
 	assignments.clear();
 	close(notificationSocket);
-	watchedItems = 0;
 	delete source.root;
 	delete target.root;
 	source.root = NULL;
@@ -171,7 +161,6 @@ void notificationMonitor::recursiveWatch(directoryElement* theElement) {
         else {
 		theElement->watchDescriptor = wd;
 		assignments.insert(pair<int,directoryElement*>(wd,theElement));
-		watchedItems++;
 	}
 	
 	for (delIterator it = theElement->get_contents()->begin(); it != theElement->get_contents()->end(); it++)
@@ -192,7 +181,6 @@ void notificationMonitor::removeWatch(directoryElement* theElement) {
             for (delIterator it = theElement->get_contents()->begin(); it != theElement->get_contents()->end(); it++)
                     if ((*it)->isDirectory())
                             removeWatch(*it);
-            watchedItems--;
         }
 	return;
 }
@@ -238,7 +226,7 @@ void notificationMonitor::watchForChanges() {
 	if (signal (SIGINT, processSignal) == SIG_IGN) {
 		signal (SIGINT, SIG_IGN);
 	}
-	while (keepProcessing && (watchedItems > 0)) {
+	while (keepProcessing) {
 		if (checkForEvents()) {
 			bytesRead = fetchEvents();
 			if (bytesRead < 0) break;

@@ -1,10 +1,3 @@
-/* 
- * File:   objects.h
- * Author: dante
- *
- * Created on January 27, 2011, 7:05 PM
- */
-
 #ifndef OBJECTS_H
 #define	OBJECTS_H
 

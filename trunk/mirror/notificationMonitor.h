@@ -1,12 +1,3 @@
-/*
- *  notificationMonitor.h
- *  mirror
- *
- *  Created by Σπύρος Σμπαρούνης on 23/02/2011.
- *  Copyright 2011 __MyCompanyName__. All rights reserved.
- *
- */
-
 #ifndef _NOTIFICATION_MONITOR_H
 #define _NOTIFICATION_MONITOR_H
 
@@ -27,7 +18,6 @@ private:
 	int notificationSocket;
 	char eventBuffer[eventBufferSize];
 	int currentPosition;
-	int watchedItems;
 
 	string moveName;
 	int moveCookie;
@@ -47,7 +37,6 @@ public:
 	void clearMonitor();
 	notificationMonitor() {
 		source.root = NULL; target.root = NULL;
-		watchedItems = 0;
 		memset(&eventBuffer, 0, eventBufferSize); currentPosition = 0;
 		moveCookie = -1;
 		moveElement = NULL; moveTarget = NULL;
