@@ -48,7 +48,7 @@ bool isDirectory (char* directoryName) {
     int retval;
     retval = lstat(directoryName, &buffer);
 	if (retval){
-		cerr << "stat() failed on filename " << directoryName << "." << endl;
+		cerr << "Folder " << directoryName << "does not exist." << endl;
 		exit(-1);
 	}
 	return (S_ISDIR(buffer.st_mode));
