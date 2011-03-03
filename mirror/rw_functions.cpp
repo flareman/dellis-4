@@ -36,9 +36,12 @@ int copyFile(string initialFilePath, string outputFilePath){
 }
 
 delIterator unlinkElement(directoryElement* theElement, iNodeMap& nodeSet, bool commitRemove) {
-	if (theElement->isDirectory())
-		for (delIterator it = theElement->get_contents()->begin();it!=theElement->get_contents()->end();it++)
+	if (theElement->isDirectory()) {
+            delIterator it = theElement->get_contents()->begin();
+            while (it != theElement->get_contents()->end()) {
 			it = unlinkElement((*it), nodeSet, commitRemove);
+            }
+        }
 	
 	if ((commitRemove) && (remove((theElement->getPathToElement()).c_str()))) {
 		cerr << "Could not remove " << theElement->get_name() << endl;

@@ -120,7 +120,8 @@ delIterator directoryElement::remove_element(directoryElement* theElement) {
             *it = NULL;
             return contents.erase(it);
         }
-	return contents.end();
+    
+    return contents.end();
 }
 
 bool directoryElement::operator==(const directoryElement &x) const {
