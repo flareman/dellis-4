@@ -83,7 +83,7 @@ void updateFile(directoryElement* theElement) {
 	return;
 }
 
-directoryElement* createElement(notificationMonitor* theMonitor, directoryElement* theElement, directoryElement* destination, string newName, iNodeMap* nodeMap, bool commitCreate) {
+directoryElement* createElement(notificationMonitor* theMonitor, directoryElement* theElement, bool forMove, directoryElement* destination, string newName, iNodeMap* nodeMap, bool commitCreate) {
 	directoryElement* newElement = NULL;
 	Inode* newNode = NULL, *node = NULL;
 	struct stat buffer;
@@ -109,7 +109,7 @@ directoryElement* createElement(notificationMonitor* theMonitor, directoryElemen
 			newElement->set_parent(destination);
                         newElement->set_name(newName);
 			for (delIterator it = theElement->get_contents()->begin();it!=theElement->get_contents()->end();it++)
-				createElement(theMonitor, (*it), newElement, (*it)->get_name(), nodeMap, true);
+				createElement(theMonitor, (*it), forMove, newElement, (*it)->get_name(), nodeMap, true);
 		} else {
 			if ((node = theElement->get_node()->get_target()) != NULL) {
 				newElement = new directoryElement(newName,node,true);
@@ -148,17 +148,19 @@ directoryElement* createElement(notificationMonitor* theMonitor, directoryElemen
 		delete newNode; newNode = NULL;
 		newElement = new directoryElement(newName,node,false);
 		node->set_element(newElement);
+                if (forMove) newElement->get_node()->remove_element(theElement);
 		newElement->set_parent(destination);
                 newElement->set_name(newName);
                 newElement->watchDescriptor = theElement->watchDescriptor;
                 theMonitor->swapWatch(theElement->watchDescriptor, newElement);
 		for (delIterator it = theElement->get_contents()->begin();it!=theElement->get_contents()->end();it++)
-			createElement(theMonitor, (*it), newElement, (*it)->get_name(), nodeMap, false);
+			createElement(theMonitor, (*it), forMove, newElement, (*it)->get_name(), nodeMap, false);
             } else {
                 newElement = new directoryElement(*theElement);
                 newElement->set_parent(destination);
                 newElement->set_name(newName);
                 newElement->get_node()->set_element(newElement);
+                if (forMove) newElement->get_node()->remove_element(theElement);
             }
 	}
 	
