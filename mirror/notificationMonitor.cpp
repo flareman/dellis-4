@@ -319,8 +319,6 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			removeWatch(theElement);
 			unlinkElement(theElement->getCorrespondingElement(), target.nodes, true);
 			unlinkElement(theElement, source.nodes, false);
-                        for (map<int,directoryElement*>::iterator it = assignments.begin(); it!=assignments.end();it++) {
-                        }
 			break;
 			
 		case IN_CREATE: {
