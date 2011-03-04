@@ -1,14 +1,67 @@
 /*----------------------------------------------------------------------------*/
-/*  Dept. of Informatics & Telecommunications					    5/3/2011  */
-/*	National and Kapodistrian University of Athens							  */
-/*																			  */
-/*					4th Exercise in Operating Systems (K-22)				  */
-/*																			  */
-/*			   Spyridon Smparounis (200800138) / std08138@di.uoa.gr			  */
-/*			 George Papakiriakopoulos (200800148) / std08148@di.uoa.gr		  */
+/*Dept. of Informatics & Telecommunications			    5/3/2011  */
+/*National and Kapodistrian University of Athens			      */
+/*									      */
+/*4th Exercise in Operating Systems (K-22)				      */
+/*							                      */
+/*Spyridon Smparounis (200800138) / std08138@di.uoa.gr			      */
+/*George Papakiriakopoulos (200800148) / std08148@di.uoa.gr		      */
 /*----------------------------------------------------------------------------*/
-/*									README									  */
+/*README								      */
 /*----------------------------------------------------------------------------*/
+
+######################################################
 Subversion repository for the project can be found at:
 http://code.google.com/p/dellis-4/
+######################################################
 
+
+Purpose of the Project : The purpose of this project is to implement an application that will mirror and monitor a hierarchy of 
+			 folders and files contained in a root folder in two ways :
+			 
+			 1)Firstly, an initial sync is performed that mirrors everything that exists inside the source folder 
+			   provided to a provided target folder (it is imperative that no files or folders are altered in any
+	                   way during the initial sync).
+			 2)When the programm completes the initial sync, it enters an active monitor state, actively monitoring
+			   the root folder and everything it contains for any file or folder alteration, updating the target(backup)
+			   folder as required.
+
+Source and header files provided with project :
+			
+			Source : objects.cpp --> Contains the implementation of class functions needed for the project.
+				 rw_functions.cpp --> Contains the implementation of functions responsible for reading/writing
+						      on the file system as required then updating the internal hierarchy structure.
+				 notificationMonitor.cpp --> Contains the implementation of functions responsible for performing the
+							     initial sync as well as the handling of active monitor events.
+				 mirror.cpp --> Contains the main() function.
+		       
+		       Headers : objects.h --> Contains the mplementation of object classes needed for the project.
+				 rw_functions.h --> Contains the declerations of functions implemented in the respective .cpp.
+			         notificationMonitor.h --> Contains the declerations of functions implemented in the respective .cpp.
+				 mirror.h --> Contains headers needed for main().
+				 generalHeaders.h --> Contains all the standard headers needed for the project collected to avoid dual
+						      inclusion of any header.
+
+Program Compiltaion : To compile the program simply use 'make' command inside the root folder of the project.(Makefile provided)
+		      To erase .o and binary files created by make use 'make clean' command.
+
+Program Execution : The program requires two arguments to execute properly in the following form :
+		    ./<prog_name> <source_folder> <target_folder>
+		    <source_folder> : provide the full path of the folder that you want to monitor (along with anything it contains).
+		    <target_folder> : provide the full path of the folder where you want the backup(mirror) to be made (must exist).
+
+Events monitored by the application :
+		    File and Folder creation --> Inside the source_folder or any subfolder of any depth.
+		    File and Folder deletion --> Same rules as the creation.
+	    	    File and Folder movement --> 3 types of movement supported in any depth of the hierarchy :
+						 1)movement between locations inside the monitored hierarchy.
+						 2)movement of a file or folder inside the hierarchy to a location outside it(same as deletion)
+						 3)movement of a file or folder from a location outside the hierarchy to a location inside it
+						   (same as creation).
+		    File and Folder modification --> Modification of file data or folder contents.
+		    File and Folder attribute change --> Modification of attributes such as permission rights, last changed date, name etc.
+
+Known bugs : The application execution might abort sometimes when some of the files contained in the monitored folder are special files
+	     (not regular text or binary files,regular files include image,audio,video, verified by testing ).
+
+Project version : Distribution v1.10.4 (revision 104).
