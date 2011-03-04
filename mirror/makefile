@@ -1,5 +1,5 @@
 CC = g++
-ARCHIVE = Smparounis_Papakyriakopoulos_ex4_K22_2011
+ARCHIVE = Smparounis_Papakiriakopoulos_ex4_K22_2011
 
 all: mirror
 	@rm *.o

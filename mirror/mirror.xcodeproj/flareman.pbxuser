@@ -156,6 +156,9 @@
 			DC57CDCE132067CD000F3C67 /* PBXTextBookmark */ = DC57CDCE132067CD000F3C67 /* PBXTextBookmark */;
 			DC57CDCF132067CD000F3C67 /* PBXTextBookmark */ = DC57CDCF132067CD000F3C67 /* PBXTextBookmark */;
 			DC57CDD0132067CD000F3C67 /* PBXTextBookmark */ = DC57CDD0132067CD000F3C67 /* PBXTextBookmark */;
+			DC57CDDC13206832000F3C67 /* PBXTextBookmark */ = DC57CDDC13206832000F3C67 /* PBXTextBookmark */;
+			DC57CDDD13206832000F3C67 /* PBXTextBookmark */ = DC57CDDD13206832000F3C67 /* PBXTextBookmark */;
+			DC57CDDE13206832000F3C67 /* PBXTextBookmark */ = DC57CDDE13206832000F3C67 /* PBXTextBookmark */;
 			DC9F694613116A5300D91619 = DC9F694613116A5300D91619 /* PBXTextBookmark */;
 			DC9F6A1713119AB000D91619 = DC9F6A1713119AB000D91619 /* PBXTextBookmark */;
 			DC9F6A1813119AB000D91619 = DC9F6A1813119AB000D91619 /* PBXTextBookmark */;
@@ -194,9 +197,9 @@
 	};
 	DC22B7C013102B2B0057F173 /* generalHeaders.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {731, 442}}";
-			sepNavSelRange = "{388, 0}";
-			sepNavVisRange = "{0, 388}";
+			sepNavIntBoundsRect = "{{0, 0}, {731, 430}}";
+			sepNavSelRange = "{347, 0}";
+			sepNavVisRange = "{0, 355}";
 		};
 	};
 	DC22B87F131049A40057F173 /* basic_string.h */ = {
@@ -256,7 +259,7 @@
 		fRef = DC22B7C013102B2B0057F173 /* generalHeaders.h */;
 		name = "generalHeaders.h: 24";
 		rLen = 0;
-		rLoc = 388;
+		rLoc = 355;
 		rType = 0;
 		vrLen = 388;
 		vrLoc = 0;
@@ -291,7 +294,7 @@
 	DC57CDAC1320654A000F3C67 /* makefile */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {731, 496}}";
-			sepNavSelRange = "{577, 0}";
+			sepNavSelRange = "{36, 0}";
 			sepNavVisRange = "{0, 681}";
 		};
 	};
@@ -393,6 +396,36 @@
 		rLoc = 577;
 		rType = 0;
 		vrLen = 681;
+		vrLoc = 0;
+	};
+	DC57CDDC13206832000F3C67 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DC57CDAC1320654A000F3C67 /* makefile */;
+		name = "makefile: 2";
+		rLen = 0;
+		rLoc = 36;
+		rType = 0;
+		vrLen = 681;
+		vrLoc = 0;
+	};
+	DC57CDDD13206832000F3C67 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DC22B7C013102B2B0057F173 /* generalHeaders.h */;
+		name = "generalHeaders.h: 24";
+		rLen = 0;
+		rLoc = 355;
+		rType = 0;
+		vrLen = 388;
+		vrLoc = 0;
+	};
+	DC57CDDE13206832000F3C67 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = DC22B7C013102B2B0057F173 /* generalHeaders.h */;
+		name = "generalHeaders.h: 20";
+		rLen = 0;
+		rLoc = 347;
+		rType = 0;
+		vrLen = 355;
 		vrLoc = 0;
 	};
 	DC887E6C130C451800CE8482 /* Source Control */ = {
