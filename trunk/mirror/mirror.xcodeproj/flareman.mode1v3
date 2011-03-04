@@ -229,6 +229,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -271,7 +273,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>1</integer>
+									<integer>2</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -308,14 +310,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>rw_functions.h</string>
+								<string>makefile</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,11 +323,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>rw_functions.h</string>
+										<string>makefile</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>DC57CDAA132063C4000F3C67</string>
+										<string>DC57CDD0132067CD000F3C67</string>
 										<key>history</key>
 										<array>
 											<string>DC9F694613116A5300D91619</string>
@@ -340,15 +340,17 @@
 											<string>DC9F6B191311B42800D91619</string>
 											<string>DC9F6BCA1311BA0000D91619</string>
 											<string>DC578A801312EF36006C98C9</string>
-											<string>DC57CDA2132063C4000F3C67</string>
 											<string>DC57CDA3132063C4000F3C67</string>
 											<string>DC57CDA4132063C4000F3C67</string>
-											<string>DC57CDA5132063C4000F3C67</string>
 											<string>DC57CDA6132063C4000F3C67</string>
-											<string>DC57CDA7132063C4000F3C67</string>
 											<string>DC57CDA8132063C4000F3C67</string>
 											<string>DC57CDA9132063C4000F3C67</string>
-											<string>DC57CD8C13206332000F3C67</string>
+											<string>DC57CDB31320673D000F3C67</string>
+											<string>DC57CDB41320673D000F3C67</string>
+											<string>DC57CDB51320673D000F3C67</string>
+											<string>DC57CDB61320673D000F3C67</string>
+											<string>DC57CDCE132067CD000F3C67</string>
+											<string>DC57CDCF132067CD000F3C67</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -360,14 +362,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {792, 474}}</string>
+								<string>{{0, 0}, {792, 462}}</string>
 								<key>RubberWindowFrame</key>
 								<string>104 55 1034 723 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>474pt</string>
+							<string>462pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -380,14 +382,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 479}, {792, 203}}</string>
+								<string>{{0, 467}, {792, 215}}</string>
 								<key>RubberWindowFrame</key>
 								<string>104 55 1034 723 0 0 1280 778 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
 							<key>Proportion</key>
-							<string>203pt</string>
+							<string>215pt</string>
 						</dict>
 					</array>
 					<key>Proportion</key>
@@ -406,9 +408,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>DC57CD7313205F7C000F3C67</string>
+				<string>DC57CDD1132067CD000F3C67</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>DC57CD7413205F7C000F3C67</string>
+				<string>DC57CDD2132067CD000F3C67</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -546,7 +548,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>DC887EA9130C495C00CE8482</string>
 		<string>/Users/flareman/Documents/Dropbox/DI/3ο Έτος/ΛΣ/Άσκηση 4/mirror/mirror.xcodeproj</string>
@@ -629,7 +630,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>DC887EA9130C495C00CE8482</string>
-				<string>DC57CD7513205F7C000F3C67</string>
+				<string>DC57CDD3132067CD000F3C67</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -751,13 +752,13 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1CD10A99069EF8BA00B06720</string>
-				<string>DC57CD7613205F7C000F3C67</string>
+				<string>DC57CDD4132067CD000F3C67</string>
 				<string>1C162984064C10D400B95A72</string>
-				<string>DC57CD7713205F7C000F3C67</string>
-				<string>DC57CD7813205F7C000F3C67</string>
-				<string>DC57CD7913205F7C000F3C67</string>
-				<string>DC57CD7A13205F7C000F3C67</string>
-				<string>DC57CD7B13205F7C000F3C67</string>
+				<string>DC57CDD5132067CD000F3C67</string>
+				<string>DC57CDD6132067CD000F3C67</string>
+				<string>DC57CDD7132067CD000F3C67</string>
+				<string>DC57CDD8132067CD000F3C67</string>
+				<string>DC57CDD9132067CD000F3C67</string>
 			</array>
 			<key>ToolbarConfiguration</key>
 			<string>xcode.toolbar.config.debugV3</string>
