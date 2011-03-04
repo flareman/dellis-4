@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		DC22B7BF13102B190057F173 /* rw_functions.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC22B7BE13102B190057F173 /* rw_functions.cpp */; };
 		DC4BEC03130C613C00BED0F7 /* objects.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC4BEC01130C613C00BED0F7 /* objects.cpp */; };
+		DC57CDAD1320654A000F3C67 /* makefile in Sources */ = {isa = PBXBuildFile; fileRef = DC57CDAC1320654A000F3C67 /* makefile */; };
 		DC93699E1315859F0087E98A /* notificationMonitor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DC93699D1315859F0087E98A /* notificationMonitor.cpp */; };
 		DCB4AAB6130F247E0004C7BF /* mirror.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DCB4AAB5130F247E0004C7BF /* mirror.cpp */; };
 /* End PBXBuildFile section */
@@ -31,6 +32,8 @@
 		DC22B7C013102B2B0057F173 /* generalHeaders.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = generalHeaders.h; sourceTree = "<group>"; };
 		DC4BEC01130C613C00BED0F7 /* objects.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = objects.cpp; sourceTree = "<group>"; };
 		DC4BEC02130C613C00BED0F7 /* objects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = objects.h; sourceTree = "<group>"; };
+		DC57CDAB1320654A000F3C67 /* README */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README; sourceTree = "<group>"; };
+		DC57CDAC1320654A000F3C67 /* makefile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.make; path = makefile; sourceTree = "<group>"; };
 		DC93699C1315859F0087E98A /* notificationMonitor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = notificationMonitor.h; sourceTree = "<group>"; };
 		DC93699D1315859F0087E98A /* notificationMonitor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = notificationMonitor.cpp; sourceTree = "<group>"; };
 		DCB4AAAF130F07A80004C7BF /* mirror */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = mirror; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -52,6 +55,8 @@
 		08FB7794FE84155DC02AAC07 /* mirror */ = {
 			isa = PBXGroup;
 			children = (
+				DC57CDAB1320654A000F3C67 /* README */,
+				DC57CDAC1320654A000F3C67 /* makefile */,
 				DC22B7BD13102B190057F173 /* rw_functions.h */,
 				DC22B7BE13102B190057F173 /* rw_functions.cpp */,
 				DC4BEC01130C613C00BED0F7 /* objects.cpp */,
@@ -121,6 +126,7 @@
 				DCB4AAB6130F247E0004C7BF /* mirror.cpp in Sources */,
 				DC22B7BF13102B190057F173 /* rw_functions.cpp in Sources */,
 				DC93699E1315859F0087E98A /* notificationMonitor.cpp in Sources */,
+				DC57CDAD1320654A000F3C67 /* makefile in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
