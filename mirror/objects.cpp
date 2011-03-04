@@ -116,9 +116,9 @@ directoryElement* directoryElement::set_element(directoryElement* dir){
 delIterator directoryElement::remove_element(directoryElement* theElement) {
     for (delIterator it = contents.begin(); it != contents.end(); it++)
         if (theElement == (*it)) {
-            delete (*it);
-            *it = NULL;
-            return contents.erase(it);
+			delete (*it);
+			*it = NULL;
+			return contents.erase(it);
         }
     
     return contents.end();
@@ -187,8 +187,7 @@ string directoryElement::getRelativePathToElement() {
 void directoryElement::printOutTreeBelow() {
 	cout << getPathToElement() << endl;
 	if (!isFile)
-		for (delIterator it = contents.begin(); it != contents.end(); it++)
-		{
+		for (delIterator it = contents.begin(); it != contents.end(); it++)	{
 			cout << "|";
 			(*it)->printOutTreeBelow(2);
 		}
@@ -199,8 +198,7 @@ void directoryElement::printOutTreeBelow() {
 void directoryElement::printOutTreeBelow(int depth) {
 	cout << getPathToElement() << endl;
 	if (!isFile)
-		for (delIterator it = contents.begin(); it != contents.end(); it++)
-		{
+		for (delIterator it = contents.begin(); it != contents.end(); it++) {
 			for (int i = 0; i < depth; i++) cout << "|";
 			(*it)->printOutTreeBelow(depth+1);
 		}

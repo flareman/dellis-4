@@ -56,7 +56,7 @@ directoryElement* notificationMonitor::recurse_hierarchy(string filename, string
 	retval=lstat((path+filename).c_str(),&buffer);
 	if (retval){
 		cerr << "stat() failed on file " << filename << " (" << retval << ")." << endl;
-		return NULL;
+		exit(-1);
 	} else {
 		tmpNode = new Inode(buffer.st_mtime,buffer.st_size,buffer.st_ino);
 		node = nodeMap.addNode(tmpNode);
@@ -90,7 +90,7 @@ directoryElement* notificationMonitor::recurse_hierarchy(string filename, string
 }
 
 void notificationMonitor::performInitialSync () {
-        source.root->get_node()->set_target(target.root->get_node());
+	source.root->get_node()->set_target(target.root->get_node());
 	recursiveSync(source.root, target.root, target.nodes);
 	
 	return;
@@ -124,7 +124,7 @@ void notificationMonitor::recursiveSync (directoryElement* source, directoryElem
 				} else {
 					if ((*its)->isDirectory()) {
 						recursiveSync((*its),(*itt),targetNodes);
-                                                (*its)->get_node()->set_target((*itt)->get_node());
+						(*its)->get_node()->set_target((*itt)->get_node());
 						its++; itt++;
 					} else {
 						if (((*its)->get_node()->get_size() != (*itt)->get_node()->get_size()) || ((*its)->get_node()->get_date() > (*itt)->get_node()->get_date())) {
@@ -132,7 +132,7 @@ void notificationMonitor::recursiveSync (directoryElement* source, directoryElem
 							createElement(NULL, (*its), false, target, (*its)->get_name(), &targetNodes, true);
 							its++;
 						} else {
-                                                        (*its)->get_node()->set_target((*itt)->get_node());
+							(*its)->get_node()->set_target((*itt)->get_node());
 							itt++; its++;
 						}
 					}
@@ -151,14 +151,14 @@ void notificationMonitor::assignWatches() {
 
 void notificationMonitor::recursiveWatch(directoryElement* theElement) {
 	if (theElement == NULL) return;
-
-        if (theElement->isDirectory() == false) return;
-        
+	
+	if (theElement->isDirectory() == false) return;
+	
 	int wd = inotify_add_watch(notificationSocket,theElement->getPathToElement().c_str(),
 							   IN_CREATE|IN_DELETE|IN_MOVE|IN_MODIFY|IN_DELETE_SELF|IN_ATTRIB|IN_CLOSE_WRITE);
 	
 	if (wd < 0) return;
-        else {
+	else {
 		theElement->watchDescriptor = wd;
 		assignments.insert(pair<int,directoryElement*>(wd,theElement));
 	}
@@ -172,26 +172,26 @@ void notificationMonitor::recursiveWatch(directoryElement* theElement) {
 
 void notificationMonitor::removeWatch(directoryElement* theElement) {
 	if (theElement == NULL) return;
-
-        map<int,directoryElement*>::iterator it = assignments.find(theElement->watchDescriptor);
+	
+	map<int,directoryElement*>::iterator it = assignments.find(theElement->watchDescriptor);
 	if (it != assignments.end()) {
-            assignments.erase(it);
-            inotify_rm_watch(notificationSocket,theElement->watchDescriptor);
-
-            for (delIterator it = theElement->get_contents()->begin(); it != theElement->get_contents()->end(); it++)
-                    if ((*it)->isDirectory())
-                            removeWatch(*it);
-        }
+		assignments.erase(it);
+		inotify_rm_watch(notificationSocket,theElement->watchDescriptor);
+		
+		for (delIterator it = theElement->get_contents()->begin(); it != theElement->get_contents()->end(); it++)
+			if ((*it)->isDirectory())
+				removeWatch(*it);
+	}
 	return;
 }
 
 bool notificationMonitor::swapWatch(int wd, directoryElement* newElement) {
     map<int,directoryElement*>::iterator it = assignments.find(wd);
     if (it == assignments.end()) return false;
-
+	
     assignments.erase(it);
     assignments.insert(pair<int,directoryElement*>(wd,newElement));
-
+	
     return true;
 }
 
@@ -239,11 +239,11 @@ void notificationMonitor::watchForChanges() {
 // Here be dragons
 void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 	if (theEvent == NULL) return;
-        if (theEvent->mask == 0) return;
-
-        map<int,directoryElement*>::iterator it = assignments.find(theEvent->wd);
-        if (it == assignments.end()) return;
-
+	if (theEvent->mask == 0) return;
+	
+	map<int,directoryElement*>::iterator it = assignments.find(theEvent->wd);
+	if (it == assignments.end()) return;
+	
 	directoryElement* theElement = (*it).second;
 	directoryElement* theChild = NULL;
 	if (theEvent->len > 0) theChild = theElement->elementWithName(string(theEvent->name));
@@ -265,7 +265,7 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			if ((theChild != NULL)&&(theChild->isDirectory() == false))
 				theChild->wasModified = true;
 			break;
-
+			
 		case IN_ATTRIB:
 			if (theChild != NULL)
 				updateAttributes(theChild);
@@ -283,29 +283,29 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			moveCookie = theEvent->cookie;
 			moveElement = theElement;
 			moveName = string(theEvent->name);
-                        moveTarget = theElement->elementWithName(moveName)->getCorrespondingElement();
+			moveTarget = theElement->elementWithName(moveName)->getCorrespondingElement();
 			break;
 			
 		case IN_MOVED_TO:
-                    // Diablo walks the earth
+			// Diablo walks the earth
 			if (moveCookie != -1) {
 				moveCookie = -1;
 				createElement(this, moveElement->elementWithName(moveName), false, theElement, string(theEvent->name), &source.nodes, false);
 				createElement(this, theElement->elementWithName(string(theEvent->name)), false, theElement->getCorrespondingElement(), string(theEvent->name), &target.nodes, true);
 				unlinkElement(moveTarget, target.nodes, true);
-                                unlinkElement(moveElement->elementWithName(moveName), source.nodes, false);
-                                moveName = string("");
-                                moveElement = NULL;
-                                moveTarget = NULL;
+				unlinkElement(moveElement->elementWithName(moveName), source.nodes, false);
+				moveName = string("");
+				moveElement = NULL;
+				moveTarget = NULL;
 			} else {
-			theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
-                        theChild->set_parent(theElement);
-                        directoryElement* newElement = NULL;
-                        newElement = createElement(this, theChild, true, theElement, theChild->get_name(), &source.nodes, false);
-			createElement(this, newElement, true, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes, true);
-			recursiveWatch(newElement);
-                        delete theChild;
-                    }
+				theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
+				theChild->set_parent(theElement);
+				directoryElement* newElement = NULL;
+				newElement = createElement(this, theChild, true, theElement, theChild->get_name(), &source.nodes, false);
+				createElement(this, newElement, true, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes, true);
+				recursiveWatch(newElement);
+				delete theChild;
+			}
 			break;
 			
 		case IN_DELETE:
@@ -323,12 +323,12 @@ void notificationMonitor::processEvent(iNotifyEvent* theEvent) {
 			
 		case IN_CREATE: {
 			theChild = recurse_hierarchy(string(theEvent->name), theElement->getPathToElement()+'/', source.nodes);
-                        directoryElement* newElement = NULL;
-                        newElement = createElement(this, theChild, true, theElement, theChild->get_name(), &source.nodes, false);
+			directoryElement* newElement = NULL;
+			newElement = createElement(this, theChild, true, theElement, theChild->get_name(), &source.nodes, false);
 			createElement(this, newElement, true, theElement->getCorrespondingElement(), theChild->get_name(), &target.nodes, true);
 			recursiveWatch(newElement);
-                        delete theChild;
-                }
+			delete theChild;
+		}
 			break;
 		default:
 			break;

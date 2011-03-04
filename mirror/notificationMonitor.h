@@ -46,7 +46,7 @@ public:
 	bool initializeMonitor(char* sourcePath, char* targetPath);
 	void assignWatches();
 	void watchForChanges();
-        bool swapWatch(int wd, directoryElement* newElement);
+	bool swapWatch(int wd, directoryElement* newElement);
 };
 
 bool compareDirectories (directoryElement* first, directoryElement* second);
