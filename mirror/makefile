@@ -11,13 +11,13 @@ objects.o: objects.cpp objects.h generalHeaders.h
 	@$(CC) -c objects.cpp
 
 rw_functions.o: rw_functions.cpp rw_functions.h generalHeaders.h
-	@$(CC) -c objects.cpp
+	@$(CC) -c rw_functions.cpp
 
 notificationMonitor.o: notificationMonitor.cpp notificationMonitor.h generalHeaders.h
-	@$(CC) -c objects.cpp
+	@$(CC) -c notificationMonitor.cpp
 
 mirror.o: mirror.cpp mirror.h generalHeaders.h
-	@$(CC) -c objects.cpp
+	@$(CC) -c mirror.cpp
 
 clean:
 	@rm -rf *.o mirror $(ARCHIVE).tar
