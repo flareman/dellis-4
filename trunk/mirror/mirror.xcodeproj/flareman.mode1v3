@@ -229,8 +229,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -273,7 +271,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>2</integer>
+									<integer>12</integer>
 									<integer>0</integer>
 								</array>
 							</array>
@@ -310,12 +308,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>makefile</string>
+								<string>generalHeaders.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -323,11 +323,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>makefile</string>
+										<string>generalHeaders.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>DC57CDD0132067CD000F3C67</string>
+										<string>DC57CDDE13206832000F3C67</string>
 										<key>history</key>
 										<array>
 											<string>DC9F694613116A5300D91619</string>
@@ -342,7 +342,6 @@
 											<string>DC578A801312EF36006C98C9</string>
 											<string>DC57CDA3132063C4000F3C67</string>
 											<string>DC57CDA4132063C4000F3C67</string>
-											<string>DC57CDA6132063C4000F3C67</string>
 											<string>DC57CDA8132063C4000F3C67</string>
 											<string>DC57CDA9132063C4000F3C67</string>
 											<string>DC57CDB31320673D000F3C67</string>
@@ -350,7 +349,8 @@
 											<string>DC57CDB51320673D000F3C67</string>
 											<string>DC57CDB61320673D000F3C67</string>
 											<string>DC57CDCE132067CD000F3C67</string>
-											<string>DC57CDCF132067CD000F3C67</string>
+											<string>DC57CDDC13206832000F3C67</string>
+											<string>DC57CDDD13206832000F3C67</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
